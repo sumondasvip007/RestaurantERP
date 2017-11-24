@@ -1,0 +1,15 @@
+D:\Bonomala Projects\DAL\bin\Debug\DAL.dll.config
+D:\Bonomala Projects\DAL\bin\Debug\DAL.dll
+D:\Bonomala Projects\DAL\bin\Debug\DAL.pdb
+D:\Bonomala Projects\DAL\obj\Debug\DAL.dll
+D:\Bonomala Projects\DAL\obj\Debug\DAL.pdb
+D:\Projects\RestaurantERP\DAL\bin\Debug\DAL.dll.config
+D:\Projects\RestaurantERP\DAL\bin\Debug\DAL.dll
+D:\Projects\RestaurantERP\DAL\bin\Debug\DAL.pdb
+D:\Projects\RestaurantERP\DAL\bin\Debug\EntityFramework.dll
+D:\Projects\RestaurantERP\DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects\RestaurantERP\DAL\bin\Debug\EntityFramework.xml
+D:\Projects\RestaurantERP\DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Projects\RestaurantERP\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+D:\Projects\RestaurantERP\DAL\obj\Debug\DAL.dll
+D:\Projects\RestaurantERP\DAL\obj\Debug\DAL.pdb

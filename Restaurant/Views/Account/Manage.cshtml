@@ -1,0 +1,54 @@
+﻿@using Restaurant.Models;
+@using Microsoft.AspNet.Identity;
+@{
+    ViewBag.Title = "";
+}
+<div ng-init="ForLoginSuccess()">
+    <div>
+        <div class="row-fluid">
+            <div class="box bornomala span12">
+                <div class="box-header">
+                    <h2>
+                        <i class="halflings-icon tasks"></i><span class="break"></span>Change Password
+                    </h2>
+                </div>
+                <!-- code strat here-->
+                <div class="box-content">
+
+                    <form class="form-horizontal" name="ChangePasswordForm" ng-submit="ChangePassword()" novalidate>
+                      
+                        <!-- Input Product House Name -->
+                        <div class="control-group">
+                            <label class="control-label">Old Password</label>
+                            <div class="controls">
+                                <input type="password" name="oldPassword" ng-model="password.oldPassword" required>
+                            </div>
+                        </div>
+                        <!-- Input Product House Name -->
+                        <div class="control-group">
+                            <label class="control-label">New passoword </label>
+                            <div class="controls">
+                                <input type="password" name="newPassword" ng-model="password.newPassword" required>
+                            </div>
+                        </div>
+                        <!-- Input Product House Name -->
+                        <div class="control-group">
+                            <label class="control-label">Confirm Password</label>
+                            <div class="controls">
+                                <input type="password" name="confirmPassword" ng-model="password.confirmPassword" required>
+                            </div>
+                        </div>
+
+                        <div class="controls">
+                            <button class="button success btn btn-primary">Change</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryval")
+            }
+        </div>
+        <!-- code end here-->
+    </div>
+</div><!--/span-->

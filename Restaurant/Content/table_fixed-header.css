@@ -1,0 +1,5 @@
+﻿#tbodyStyle {
+        max-height: 400px !important;
+        overflow: hidden !important;
+        overflow-y: auto !important;
+    }

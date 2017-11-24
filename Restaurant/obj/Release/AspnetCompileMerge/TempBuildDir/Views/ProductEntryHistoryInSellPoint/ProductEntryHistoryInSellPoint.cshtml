@@ -1,0 +1,113 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div class="row-fluid" ng-init="ForLoginSuccess()">
+    <div class="box bornomala span12">
+        <div class="box-header">
+            <h2><i class="halflings-icon tasks"></i><span class="break"></span>Product Entry History In Sells Point</h2>
+        </div>
+        <div class="box-content" ng-controller="ProductEntryHistoryInSellPointController">
+
+            <form class="form-horizontal" name="ProductTransferHistorySearchForm" ng-init="SellsPoint">
+                <div class="form-group" ng-init="GetSellsPointInformation()">
+                    <label class="control-label">Sells Point Store</label>
+                    <div class="controls">
+                        <select ng-model="SellsPoint.SellsPointStoreId" ng-change="SellsPointStoreChange()" class="form-control selectpicker" ng-options="x.StoreId as x.StoreName for x in SellsPointList" required enter-as-tab>
+                            <option value="">Select Sells Point</option>
+                        </select>
+                    </div>
+                </div>
+                <br/>
+              
+                <div class="control-group">
+                    <label class="control-label" for="datepicker1">From Date </label>
+                    <div class="controls">
+                        <div style=" width: 200px;">
+                            <datepicker date-format="MM/dd/yyyy" selector="form-control">
+                                <input class="form-control" ng-model="FromDate" placeholder="    Choose a date" readonly required enter-as-tab />
+                            </datepicker>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- To date -->
+
+                <div class="control-group">
+                    <label class="control-label" for="datepicker1">To Date </label>
+                    <div class="controls">
+                        <div style="width: 200px;">
+                            <datepicker date-format="MM/dd/yyyy" selector="form-control">
+                                <input class="form-control" ng-model="ToDate" placeholder="    Choose a date" readonly required enter-as-tab />
+                            </datepicker>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class=" controls">
+
+                        <input type="submit" class="btn btn-primary" value="Search" data-ng-click="SearchProductTransactionList()"/>
+                        &nbsp; &nbsp;
+                        <input type="submit" class="btn btn-primary" value="Generate Report" ng-show="reportButton" data-ng-click="GenerateReportForSearchResult()" />
+                        &nbsp; &nbsp;
+                        
+                        @*<a id="fbplus_01" class="iframe btn btn-primary" href=@Url.Action("ViewPdfReportForSearchResult", "ProductEntryHistoryInSellPoint") ng-show="reportButton" fancyboxable>View Report</a>*@
+                        <a id="fbplus_01" class="iframe btn btn-primary" ng-href="/ProductEntryHistoryInSellPoint/ViewPdfReportForSearchResult/?sellsPointStoreId={{SellsPoint.SellsPointStoreId}}&fromDate={{FromDate}}&toDate={{ToDate}}" ng-show="reportButton" fancyboxable>View Report</a>
+                    </div>
+                </div>
+
+                <br />
+                <table class="table table-striped table-bordered bootstrap-datatable datatable" st-table="rowCollection" st-safe-src="ProductList">
+                    <thead>
+
+                        <tr>
+                            <th colspan="6">
+                                Record Per pages:
+                                <select ng-model="itemsByPage" ng-options="item for item in itemsPerPage"></select>
+                                <div style="float: right;text-align: right;">  Search:<input st-search="" class="form-control" placeholder="global search ..." type="text" /></div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th st-sort="ProductName">Product Name</th>
+                            <th st-sort="ProductTypeName">Type</th>
+                            <th st-sort="Quantity">Quantity</th>
+                            <th st-sort="Unit">Unit</th>
+                            <th st-sort="UnitPrice">Unit Price</th>
+                            <th st-sort="TotalPrice">Total Price</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="row in rowCollection">
+                            <td class="center">{{row.ProductName }}</td>
+                            <td class="center">{{row.ProductTypeName }}</td>
+                            <td class="center">{{row.Quantity }}</td>
+                            <td class="center">{{row.Unit }}</td>
+                            <td class="center">{{row.UnitPrice | number:2}}</td>
+                            <td class="center">{{row.TotalPrice | number:2}}</td>
+
+
+                        </tr>
+                        <toaster-container toaster-options="{'time-out': 1000}"></toaster-container>
+                    </tbody>
+                    <tr>
+                        <td style="text-align:right" colspan="5"><b>Tota Amount</b></td>
+                        <td>{{totalAmount}}</td>
+                    </tr>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5" class="text-center">
+                                <div class="pagination pagination-centered">
+                                    <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="5"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </form>
+        </div>
+    </div><!--/span-->
+
+</div><!--/row-->

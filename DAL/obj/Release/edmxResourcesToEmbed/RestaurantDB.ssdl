@@ -1,0 +1,1621 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RestaurantDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="acc_CashFlow_Type">
+    <Key>
+      <PropertyRef Name="CashFlowType_Id" />
+    </Key>
+    <Property Name="CashFlowType_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CashFlowGroup_Id" Type="int" />
+    <Property Name="CashFlow_Type" Type="nvarchar" MaxLength="300" />
+    <Property Name="EditUser" Type="uniqueidentifier" />
+    <Property Name="EditDate" Type="datetime" />
+    <Property Name="OCode" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="acc_CashFlowGroup">
+    <Key>
+      <PropertyRef Name="CashFlowGroup_Id" />
+    </Key>
+    <Property Name="CashFlowGroup_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CashFlow_Group" Type="nvarchar" MaxLength="100" />
+    <Property Name="EditUser" Type="uniqueidentifier" />
+    <Property Name="EditDate" Type="datetime" />
+    <Property Name="OCode" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="acc_CashFlowMapping">
+    <Key>
+      <PropertyRef Name="CashFlowMapping_Id" />
+    </Key>
+    <Property Name="CashFlowMapping_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LedgerID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CashFlowType_Id" Type="int" Nullable="false" />
+    <Property Name="EditUser" Type="uniqueidentifier" />
+    <Property Name="EditDate" Type="datetime" />
+    <Property Name="OCode" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="acc_Chart_of_Account_Maping">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MIS_Id" Type="int" Nullable="false" />
+    <Property Name="Ledger_Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DateOfEntry" Type="datetime" Nullable="false" />
+    <Property Name="EntryBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="OCode" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="acc_Group">
+    <Key>
+      <PropertyRef Name="GroupID" />
+    </Key>
+    <Property Name="GroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="GroupCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ParentGroupID" Type="int" />
+    <Property Name="NatureID" Type="int" Nullable="false" />
+    <Property Name="EditedDateTime" Type="datetime" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="EditedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="RestrictDelete" Type="bit" />
+    <Property Name="IsSystemDefault" Type="bit" />
+    <Property Name="OCode" Type="int" />
+    <Property Name="RestaurantId" Type="int" />
+  </EntityType>
+  <EntityType Name="acc_Group_Maping">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Group_MIS_Id" Type="int" Nullable="false" />
+    <Property Name="Group_Id" Type="int" Nullable="false" />
+    <Property Name="DateOfEntry" Type="datetime" Nullable="false" />
+    <Property Name="EntryBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="OCode" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="acc_Ledger">
+    <Key>
+      <PropertyRef Name="LedgerID" />
+    </Key>
+    <Property Name="LedgerID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LedgerName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EditedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="EditedDateTime" Type="datetime" />
+    <Property Name="GroupID" Type="int" Nullable="false" />
+    <Property Name="InitialBalance" Type="decimal" Precision="19" Scale="2" />
+    <Property Name="BalanceType" Type="nvarchar" MaxLength="50" />
+    <Property Name="RestrictDelete" Type="bit" />
+    <Property Name="ParentLedgerID" Type="uniqueidentifier" />
+    <Property Name="Comment" Type="varchar(max)" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="IsSystemDefault" Type="bit" />
+    <Property Name="OCode" Type="int" />
+    <Property Name="LedgerCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="RestaurantId" Type="int" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="acc_Nature">
+    <Key>
+      <PropertyRef Name="NatureID" />
+    </Key>
+    <Property Name="NatureID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NatureName" Type="nvarchar" MaxLength="50" />
+    <Property Name="NatureType" Type="int" />
+    <Property Name="EditUser" Type="uniqueidentifier" />
+    <Property Name="EditDate" Type="datetime" />
+    <Property Name="EditUserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="OCode" Type="int" />
+  </EntityType>
+  <EntityType Name="acc_Subsidiary">
+    <Key>
+      <PropertyRef Name="Subsidiary_Id" />
+    </Key>
+    <Property Name="Subsidiary_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Subsidiary_Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="EditUser" Type="uniqueidentifier" />
+    <Property Name="EditDate" Type="datetime" />
+    <Property Name="OCode" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="acc_SubsidiaryVoucherDetail">
+    <Key>
+      <PropertyRef Name="Subsidiary_Voucher_Detail_Id" />
+    </Key>
+    <Property Name="Subsidiary_Voucher_Detail_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VoucherDetailID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Subsidiary_Id" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Precision="19" Scale="2" />
+    <Property Name="VoucherID" Type="int" />
+    <Property Name="EditUser" Type="uniqueidentifier" />
+    <Property Name="EditDate" Type="datetime" />
+    <Property Name="OCode" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="acc_tbl_Group_MIS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="MIS_Group_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="acc_tbl_MIS">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="MIS_Name" Type="nchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="acc_VoucherDetail">
+    <Key>
+      <PropertyRef Name="VoucherDetailID" />
+    </Key>
+    <Property Name="VoucherDetailID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="VoucherID" Type="int" Nullable="false" />
+    <Property Name="LedgerID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Debit" Type="decimal" Precision="19" Scale="2" />
+    <Property Name="Credit" Type="decimal" Precision="19" Scale="2" />
+    <Property Name="ChequeNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="TransactionDate" Type="datetime" />
+    <Property Name="VTypeID" Type="int" />
+    <Property Name="OCode" Type="int" />
+    <Property Name="RestaurantId" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="EditedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="EditedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="acc_VoucherEntry">
+    <Key>
+      <PropertyRef Name="VoucherID" />
+    </Key>
+    <Property Name="VoucherID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VoucherName" Type="nvarchar" MaxLength="50" />
+    <Property Name="TransactionDate" Type="datetime" />
+    <Property Name="Narration" Type="nvarchar(max)" />
+    <Property Name="VTypeID" Type="int" />
+    <Property Name="VNumber" Type="nchar" MaxLength="20" />
+    <Property Name="RestrictDelete" Type="bit" />
+    <Property Name="OCode" Type="int" />
+    <Property Name="ActionName" Type="varchar" MaxLength="50" />
+    <Property Name="RestaurantId" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="EditedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="EditedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="acc_VoucherType">
+    <Key>
+      <PropertyRef Name="VTypeID" />
+    </Key>
+    <Property Name="VTypeID" Type="int" Nullable="false" />
+    <Property Name="VTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="EditUser" Type="uniqueidentifier" />
+    <Property Name="EditDate" Type="datetime" />
+    <Property Name="EditUserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="OCode" Type="int" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="UserFullName" Type="nvarchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="tblAction">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="url" Type="nvarchar" MaxLength="50" />
+    <Property Name="display_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="ui_module_id" Type="int" />
+    <Property Name="is_view" Type="bit" />
+    <Property Name="is_in_menu" Type="bit" />
+  </EntityType>
+  <EntityType Name="tblChalanReport">
+    <Key>
+      <PropertyRef Name="chalanNo" />
+    </Key>
+    <Property Name="chalanNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FromStore" Type="nvarchar" MaxLength="100" />
+    <Property Name="ToStore" Type="nvarchar" MaxLength="50" />
+    <Property Name="Date" Type="date" />
+    <Property Name="ReportName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Supplier" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblDesignation">
+    <Key>
+      <PropertyRef Name="DesignationId" />
+    </Key>
+    <Property Name="DesignationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DesignationName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="RestaurantId" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="EditedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="EditedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblEmployeeInformation">
+    <Key>
+      <PropertyRef Name="EmployeeId" />
+    </Key>
+    <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="EmployeeAddress" Type="nvarchar" MaxLength="300" />
+    <Property Name="ContactNumber" Type="nvarchar" MaxLength="100" />
+    <Property Name="EmployeeNid" Type="nvarchar" MaxLength="100" />
+    <Property Name="EmployeeEmail" Type="nvarchar" MaxLength="100" />
+    <Property Name="EmployeeImage" Type="nvarchar(max)" />
+    <Property Name="DesignationId" Type="int" />
+    <Property Name="RestaurantId" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="EditedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="EditedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblGroupAndShiftMapping">
+    <Key>
+      <PropertyRef Name="GroupMappingId" />
+    </Key>
+    <Property Name="GroupMappingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TransferDate" Type="datetime" />
+    <Property Name="Day" Type="nvarchar" MaxLength="150" />
+    <Property Name="Night" Type="nvarchar" MaxLength="150" />
+    <Property Name="RestaurantId" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="EditedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="EditedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblGroupForShift">
+    <Key>
+      <PropertyRef Name="GroupId" />
+    </Key>
+    <Property Name="GroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupName" Type="nvarchar" MaxLength="100" />
+    <Property Name="RestaurantId" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="EditedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="EditedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblMeasurementUnit">
+    <Key>
+      <PropertyRef Name="UnitId" />
+    </Key>
+    <Property Name="UnitId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UnitName" Type="nvarchar" MaxLength="50" />
+    <Property Name="RestaurantId" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="EditedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="EditedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblModule">
+    <Key>
+      <PropertyRef Name="module_id" />
+    </Key>
+    <Property Name="module_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="module_name" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="module_order" Type="int" />
+    <Property Name="module_icon" Type="nvarchar" MaxLength="100" />
+    <Property Name="RestaurantId" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="EditedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="EditedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblOtherExpense">
+    <Key>
+      <PropertyRef Name="ExpenseId" />
+    </Key>
+    <Property Name="ExpenseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StoreId" Type="int" />
+    <Property Name="ShiftId" Type="int" />
+    <Property Name="TransferDate" Type="datetime" />
+    <Property Name="Less" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Due" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Compliment" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Damage" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="RestaurantId" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="EditedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="EditedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblPHtoSPProductTransfer">
+    <Key>
+      <PropertyRef Name="SPSProductId" />
+    </Key>
+    <Property Name="SPSProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SellsPointId" Type="int" />
+    <Property Name="ProductionHouseId" Type="int" />
+    <Property Name="ShiftId" Type="int" />
+    <Property Name="TransferDate" Type="datetime" />
+    <Property Name="ProductId" Type="int" />
+    <Property Name="Unit" Type="nvarchar" MaxLength="50" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="EditedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="EditedDateTime" Type="datetime" />
+    <Property Name="isIn" Type="bit" />
+    <Property Name="isOut" Type="bit" />
+    <Property Name="RestaurantId" Type="int" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblProductEntryToProductionHouse">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductionHouseId" Type="int" Nullable="false" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="RestuarentId" Type="nvarchar" MaxLength="50" />
+    <Property Name="Unit" Type="int" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="tblProductFromSupplier">
+    <Key>
+      <PropertyRef Name="ProductTransferId" />
+    </Key>
+    <Property Name="ProductTransferId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StoreId" Type="int" />
+    <Property Name="SupplierId" Type="int" />
+    <Property Name="ProductId" Type="int" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Unit" Type="nvarchar" MaxLength="50" />
+    <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="DateTime" Type="datetime" />
+    <Property Name="isIn" Type="bit" />
+    <Property Name="isOut" Type="bit" />
+    <Property Name="RestaurantId" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="EditedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="EditedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblProductInformation">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="200" />
+    <Property Name="ProductTypeId" Type="int" />
+    <Property Name="StoreId" Type="int" />
+    <Property Name="Unit" Type="nvarchar" MaxLength="100" />
+    <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="ProductionCost" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="RestaurantId" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="EditedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="EditedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblProductionHouseInformation">
+    <Key>
+      <PropertyRef Name="ProductionHouseId" />
+    </Key>
+    <Property Name="ProductionHouseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductionHouseName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MainStore" Type="int" Nullable="false" />
+    <Property Name="OwnStore" Type="int" Nullable="false" />
+    <Property Name="RestaurantId" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="EditedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="EditedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblProductionHouseToProductMapping">
+    <Key>
+      <PropertyRef Name="PPMapppingId" />
+    </Key>
+    <Property Name="PPMapppingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductionHouseId" Type="int" Nullable="false" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="RestuarentId" Type="varchar" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="tblProductSold">
+    <Key>
+      <PropertyRef Name="ProductSoldId" />
+    </Key>
+    <Property Name="ProductSoldId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StoreId" Type="int" />
+    <Property Name="ShiftId" Type="int" />
+    <Property Name="TransferDate" Type="datetime" />
+    <Property Name="SupplierId" Type="int" />
+    <Property Name="ProductId" Type="int" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Unit" Type="nvarchar" MaxLength="50" />
+    <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="DateTime" Type="datetime" />
+    <Property Name="RestaurantId" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="EditedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="EditedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblProductTransfer">
+    <Key>
+      <PropertyRef Name="ProductTransferId" />
+    </Key>
+    <Property Name="ProductTransferId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StoreId" Type="int" />
+    <Property Name="ShiftId" Type="int" />
+    <Property Name="TransferDate" Type="datetime" />
+    <Property Name="SupplierId" Type="int" />
+    <Property Name="ProductId" Type="int" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Unit" Type="nvarchar" MaxLength="50" />
+    <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="DateTime" Type="datetime" />
+    <Property Name="isIn" Type="bit" />
+    <Property Name="isOut" Type="bit" />
+    <Property Name="RestaurantId" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="EditedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="EditedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblProductType">
+    <Key>
+      <PropertyRef Name="ProductTypeId" />
+    </Key>
+    <Property Name="ProductTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductTypeName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="RestaurantId" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="EditedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="EditedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblPurchaseProductUnitPrice">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="ProductCost" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="ProcesDate" Type="date" />
+  </EntityType>
+  <EntityType Name="tblRestaurantInformation">
+    <Key>
+      <PropertyRef Name="restaurant_id" />
+    </Key>
+    <Property Name="restaurant_id" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="short_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="reg_Number" Type="nvarchar" MaxLength="50" />
+    <Property Name="initial_date" Type="datetime" />
+    <Property Name="trec_number" Type="nvarchar" MaxLength="50" />
+    <Property Name="RestaurantId" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="EditedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="EditedDateTime" Type="datetime" />
+    <Property Name="Address" Type="nvarchar" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="tblRestaurantModule">
+    <Key>
+      <PropertyRef Name="restaurant_id" />
+      <PropertyRef Name="module_id" />
+    </Key>
+    <Property Name="restaurant_id" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+    <Property Name="module_id" Type="int" Nullable="false" />
+    <Property Name="RestaurantId" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="EditedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="EditedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblRestaurantUser">
+    <Key>
+      <PropertyRef Name="restaurant_id" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="restaurant_id" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="is_admin" Type="decimal" Precision="1" Scale="0" Nullable="false" />
+    <Property Name="is_loggedIn" Type="decimal" Precision="1" Scale="0" />
+    <Property Name="last_logged_time" Type="datetime" />
+    <Property Name="approve_by" Type="nvarchar" MaxLength="128" />
+    <Property Name="approve_date" Type="decimal" Precision="9" Scale="0" />
+    <Property Name="RestaurantId" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="EditedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="EditedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblRestaurantUserModule">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="restaurant_id" />
+      <PropertyRef Name="module_id" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="restaurant_id" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+    <Property Name="module_id" Type="int" Nullable="false" />
+    <Property Name="RestaurantId" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="EditedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="EditedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblRestaurantUserView">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="restaurant_id" />
+      <PropertyRef Name="module_id" />
+      <PropertyRef Name="veiw_id" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="restaurant_id" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+    <Property Name="module_id" Type="int" Nullable="false" />
+    <Property Name="veiw_id" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+    <Property Name="RestaurantId" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="EditedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="EditedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblSellsPoint">
+    <Key>
+      <PropertyRef Name="SellsPointId" />
+    </Key>
+    <Property Name="SellsPointId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SellsPointName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="SellsPointStoreId" Type="int" Nullable="false" />
+    <Property Name="RestaurantId" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="EditedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="EditedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblShift">
+    <Key>
+      <PropertyRef Name="ShiftId" />
+    </Key>
+    <Property Name="ShiftId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShiftName" Type="nvarchar" MaxLength="100" />
+    <Property Name="RestaurantId" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="EditedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="EditedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblStoreInformation">
+    <Key>
+      <PropertyRef Name="store_id" />
+    </Key>
+    <Property Name="store_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="store_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="is_mainStore" Type="bit" Nullable="false" />
+    <Property Name="ProductionHouseId" Type="int" />
+    <Property Name="ParentStoreId" Type="int" />
+    <Property Name="SellsPointStoreId" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="isProductionHouseStore" Type="bit" />
+    <Property Name="IsSellsPointStore" Type="bit" />
+    <Property Name="RestaurantId" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="EditedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="EditedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblSupplierInformation">
+    <Key>
+      <PropertyRef Name="SupplierId" />
+    </Key>
+    <Property Name="SupplierId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SupplierName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SupplierAddress" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="SupplierPhoneNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="SupplierEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RestaurantId" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="EditedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="EditedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblSuppliersProduct">
+    <Key>
+      <PropertyRef Name="SupplierProductId" />
+    </Key>
+    <Property Name="SupplierProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SupplierId" Type="int" />
+    <Property Name="ProductId" Type="int" />
+    <Property Name="Mapped" Type="bit" />
+    <Property Name="EntryDate" Type="datetime" />
+    <Property Name="EntryUser" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserIP" Type="nvarchar" MaxLength="50" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="RestaurantId" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="EditedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="EditedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblUserActionMapping">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="action_id" Type="int" Nullable="false" />
+    <Property Name="is_permitted" Type="int" />
+    <Property Name="restaurant_id" Type="int" />
+    <Property Name="RestaurantId" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="EditedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="EditedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblView">
+    <Key>
+      <PropertyRef Name="view_id" />
+    </Key>
+    <Property Name="view_id" Type="numeric" Precision="9" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="module_id" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+    <Property Name="view_name" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="router_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="action_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="area_name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_acc_Group_acc_Group">
+    <End Role="acc_Group" Type="Self.acc_Group" Multiplicity="0..1" />
+    <End Role="acc_Group1" Type="Self.acc_Group" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="acc_Group">
+        <PropertyRef Name="GroupID" />
+      </Principal>
+      <Dependent Role="acc_Group1">
+        <PropertyRef Name="ParentGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_acc_Group_Maping_acc_Group">
+    <End Role="acc_Group" Type="Self.acc_Group" Multiplicity="1" />
+    <End Role="acc_Group_Maping" Type="Self.acc_Group_Maping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="acc_Group">
+        <PropertyRef Name="GroupID" />
+      </Principal>
+      <Dependent Role="acc_Group_Maping">
+        <PropertyRef Name="Group_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_acc_Group_Maping_acc_tbl_Group_MIS">
+    <End Role="acc_tbl_Group_MIS" Type="Self.acc_tbl_Group_MIS" Multiplicity="1" />
+    <End Role="acc_Group_Maping" Type="Self.acc_Group_Maping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="acc_tbl_Group_MIS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="acc_Group_Maping">
+        <PropertyRef Name="Group_MIS_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_acc_Ledger_acc_Group">
+    <End Role="acc_Group" Type="Self.acc_Group" Multiplicity="1" />
+    <End Role="acc_Ledger" Type="Self.acc_Ledger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="acc_Group">
+        <PropertyRef Name="GroupID" />
+      </Principal>
+      <Dependent Role="acc_Ledger">
+        <PropertyRef Name="GroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_acc_LedgerDetail_acc_Ledger">
+    <End Role="acc_Ledger" Type="Self.acc_Ledger" Multiplicity="1" />
+    <End Role="acc_VoucherDetail" Type="Self.acc_VoucherDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="acc_Ledger">
+        <PropertyRef Name="LedgerID" />
+      </Principal>
+      <Dependent Role="acc_VoucherDetail">
+        <PropertyRef Name="LedgerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_acc_SubsidiaryVoucherDetail_acc_Subsidiary">
+    <End Role="acc_Subsidiary" Type="Self.acc_Subsidiary" Multiplicity="1" />
+    <End Role="acc_SubsidiaryVoucherDetail" Type="Self.acc_SubsidiaryVoucherDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="acc_Subsidiary">
+        <PropertyRef Name="Subsidiary_Id" />
+      </Principal>
+      <Dependent Role="acc_SubsidiaryVoucherDetail">
+        <PropertyRef Name="Subsidiary_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_acc_SubsidiaryVoucherDetail_acc_SubsidiaryVoucherDetail">
+    <End Role="acc_VoucherDetail" Type="Self.acc_VoucherDetail" Multiplicity="1" />
+    <End Role="acc_SubsidiaryVoucherDetail" Type="Self.acc_SubsidiaryVoucherDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="acc_VoucherDetail">
+        <PropertyRef Name="VoucherDetailID" />
+      </Principal>
+      <Dependent Role="acc_SubsidiaryVoucherDetail">
+        <PropertyRef Name="VoucherDetailID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_acc_VoucherDetail_acc_VoucherEntry">
+    <End Role="acc_VoucherEntry" Type="Self.acc_VoucherEntry" Multiplicity="1" />
+    <End Role="acc_VoucherDetail" Type="Self.acc_VoucherDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="acc_VoucherEntry">
+        <PropertyRef Name="VoucherID" />
+      </Principal>
+      <Dependent Role="acc_VoucherDetail">
+        <PropertyRef Name="VoucherID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_acc_VoucherEntry_acc_VoucherType">
+    <End Role="acc_VoucherType" Type="Self.acc_VoucherType" Multiplicity="0..1" />
+    <End Role="acc_VoucherEntry" Type="Self.acc_VoucherEntry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="acc_VoucherType">
+        <PropertyRef Name="VTypeID" />
+      </Principal>
+      <Dependent Role="acc_VoucherEntry">
+        <PropertyRef Name="VTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblAction_tblModule">
+    <End Role="tblModule" Type="Self.tblModule" Multiplicity="0..1" />
+    <End Role="tblAction" Type="Self.tblAction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblModule">
+        <PropertyRef Name="module_id" />
+      </Principal>
+      <Dependent Role="tblAction">
+        <PropertyRef Name="ui_module_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblEmployeeInformation_tblDesignation">
+    <End Role="tblDesignation" Type="Self.tblDesignation" Multiplicity="0..1" />
+    <End Role="tblEmployeeInformation" Type="Self.tblEmployeeInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblDesignation">
+        <PropertyRef Name="DesignationId" />
+      </Principal>
+      <Dependent Role="tblEmployeeInformation">
+        <PropertyRef Name="DesignationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbllRestaurentModule_tblModule">
+    <End Role="tblModule" Type="Self.tblModule" Multiplicity="1" />
+    <End Role="tblRestaurantModule" Type="Self.tblRestaurantModule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblModule">
+        <PropertyRef Name="module_id" />
+      </Principal>
+      <Dependent Role="tblRestaurantModule">
+        <PropertyRef Name="module_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbllRestaurentModule_tblRestaurentInformation">
+    <End Role="tblRestaurantInformation" Type="Self.tblRestaurantInformation" Multiplicity="1" />
+    <End Role="tblRestaurantModule" Type="Self.tblRestaurantModule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRestaurantInformation">
+        <PropertyRef Name="restaurant_id" />
+      </Principal>
+      <Dependent Role="tblRestaurantModule">
+        <PropertyRef Name="restaurant_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbllRestaurentUser_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="tblRestaurantUser" Type="Self.tblRestaurantUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblRestaurantUser">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbllRestaurentUser_tbllRestaurentInformation">
+    <End Role="tblRestaurantInformation" Type="Self.tblRestaurantInformation" Multiplicity="1" />
+    <End Role="tblRestaurantUser" Type="Self.tblRestaurantUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRestaurantInformation">
+        <PropertyRef Name="restaurant_id" />
+      </Principal>
+      <Dependent Role="tblRestaurantUser">
+        <PropertyRef Name="restaurant_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOtherExpense_tblSellsPoint">
+    <End Role="tblStoreInformation" Type="Self.tblStoreInformation" Multiplicity="0..1" />
+    <End Role="tblOtherExpense" Type="Self.tblOtherExpense" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblStoreInformation">
+        <PropertyRef Name="store_id" />
+      </Principal>
+      <Dependent Role="tblOtherExpense">
+        <PropertyRef Name="StoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOtherExpense_tblShift">
+    <End Role="tblShift" Type="Self.tblShift" Multiplicity="0..1" />
+    <End Role="tblOtherExpense" Type="Self.tblOtherExpense" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblShift">
+        <PropertyRef Name="ShiftId" />
+      </Principal>
+      <Dependent Role="tblOtherExpense">
+        <PropertyRef Name="ShiftId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPHtoSPProductTransfer_tblProductInformation">
+    <End Role="tblProductInformation" Type="Self.tblProductInformation" Multiplicity="0..1" />
+    <End Role="tblPHtoSPProductTransfer" Type="Self.tblPHtoSPProductTransfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProductInformation">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="tblPHtoSPProductTransfer">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPHtoSPProductTransfer_tblProductionHouseInformation">
+    <End Role="tblProductionHouseInformation" Type="Self.tblProductionHouseInformation" Multiplicity="0..1" />
+    <End Role="tblPHtoSPProductTransfer" Type="Self.tblPHtoSPProductTransfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProductionHouseInformation">
+        <PropertyRef Name="ProductionHouseId" />
+      </Principal>
+      <Dependent Role="tblPHtoSPProductTransfer">
+        <PropertyRef Name="ProductionHouseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPHtoSPProductTransfer_tblSellsPoint">
+    <End Role="tblSellsPoint" Type="Self.tblSellsPoint" Multiplicity="0..1" />
+    <End Role="tblPHtoSPProductTransfer" Type="Self.tblPHtoSPProductTransfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSellsPoint">
+        <PropertyRef Name="SellsPointId" />
+      </Principal>
+      <Dependent Role="tblPHtoSPProductTransfer">
+        <PropertyRef Name="SellsPointId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPHtoSPProductTransfer_tblShift">
+    <End Role="tblShift" Type="Self.tblShift" Multiplicity="0..1" />
+    <End Role="tblPHtoSPProductTransfer" Type="Self.tblPHtoSPProductTransfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblShift">
+        <PropertyRef Name="ShiftId" />
+      </Principal>
+      <Dependent Role="tblPHtoSPProductTransfer">
+        <PropertyRef Name="ShiftId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProductEntryToProductionHouse_tblProductInformation">
+    <End Role="tblProductInformation" Type="Self.tblProductInformation" Multiplicity="1" />
+    <End Role="tblProductEntryToProductionHouse" Type="Self.tblProductEntryToProductionHouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProductInformation">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="tblProductEntryToProductionHouse">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProductEntryToProductionHouse_tblProductionHouseInformation">
+    <End Role="tblProductionHouseInformation" Type="Self.tblProductionHouseInformation" Multiplicity="1" />
+    <End Role="tblProductEntryToProductionHouse" Type="Self.tblProductEntryToProductionHouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProductionHouseInformation">
+        <PropertyRef Name="ProductionHouseId" />
+      </Principal>
+      <Dependent Role="tblProductEntryToProductionHouse">
+        <PropertyRef Name="ProductionHouseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProductInformation_tblProductType">
+    <End Role="tblProductType" Type="Self.tblProductType" Multiplicity="0..1" />
+    <End Role="tblProductInformation" Type="Self.tblProductInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProductType">
+        <PropertyRef Name="ProductTypeId" />
+      </Principal>
+      <Dependent Role="tblProductInformation">
+        <PropertyRef Name="ProductTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProductInformation_tblStoreInformation1">
+    <End Role="tblStoreInformation" Type="Self.tblStoreInformation" Multiplicity="0..1" />
+    <End Role="tblProductInformation" Type="Self.tblProductInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblStoreInformation">
+        <PropertyRef Name="store_id" />
+      </Principal>
+      <Dependent Role="tblProductInformation">
+        <PropertyRef Name="StoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProductionHouseToProductMapping_tblProductInformation">
+    <End Role="tblProductInformation" Type="Self.tblProductInformation" Multiplicity="1" />
+    <End Role="tblProductionHouseToProductMapping" Type="Self.tblProductionHouseToProductMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProductInformation">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="tblProductionHouseToProductMapping">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProductSold_tblShift">
+    <End Role="tblShift" Type="Self.tblShift" Multiplicity="0..1" />
+    <End Role="tblProductSold" Type="Self.tblProductSold" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblShift">
+        <PropertyRef Name="ShiftId" />
+      </Principal>
+      <Dependent Role="tblProductSold">
+        <PropertyRef Name="ShiftId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProductTransfer_tblProductInformation">
+    <End Role="tblProductInformation" Type="Self.tblProductInformation" Multiplicity="0..1" />
+    <End Role="tblProductTransfer" Type="Self.tblProductTransfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProductInformation">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="tblProductTransfer">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProductTransfer_tblShift">
+    <End Role="tblShift" Type="Self.tblShift" Multiplicity="0..1" />
+    <End Role="tblProductTransfer" Type="Self.tblProductTransfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblShift">
+        <PropertyRef Name="ShiftId" />
+      </Principal>
+      <Dependent Role="tblProductTransfer">
+        <PropertyRef Name="ShiftId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProductTransfer_tblStoreInformation">
+    <End Role="tblStoreInformation" Type="Self.tblStoreInformation" Multiplicity="0..1" />
+    <End Role="tblProductTransfer" Type="Self.tblProductTransfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblStoreInformation">
+        <PropertyRef Name="store_id" />
+      </Principal>
+      <Dependent Role="tblProductTransfer">
+        <PropertyRef Name="StoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblRestaurentUserModule_tblRestaurentModule">
+    <End Role="tblRestaurantModule" Type="Self.tblRestaurantModule" Multiplicity="1" />
+    <End Role="tblRestaurantUserModule" Type="Self.tblRestaurantUserModule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRestaurantModule">
+        <PropertyRef Name="restaurant_id" />
+        <PropertyRef Name="module_id" />
+      </Principal>
+      <Dependent Role="tblRestaurantUserModule">
+        <PropertyRef Name="restaurant_id" />
+        <PropertyRef Name="module_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblRestaurentUserModule_tblRestaurentUser">
+    <End Role="tblRestaurantUser" Type="Self.tblRestaurantUser" Multiplicity="1" />
+    <End Role="tblRestaurantUserModule" Type="Self.tblRestaurantUserModule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRestaurantUser">
+        <PropertyRef Name="restaurant_id" />
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tblRestaurantUserModule">
+        <PropertyRef Name="restaurant_id" />
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblRestaurentUserView_tblRestaurentUserModule">
+    <End Role="tblRestaurantUserModule" Type="Self.tblRestaurantUserModule" Multiplicity="1" />
+    <End Role="tblRestaurantUserView" Type="Self.tblRestaurantUserView" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRestaurantUserModule">
+        <PropertyRef Name="UserId" />
+        <PropertyRef Name="restaurant_id" />
+        <PropertyRef Name="module_id" />
+      </Principal>
+      <Dependent Role="tblRestaurantUserView">
+        <PropertyRef Name="UserId" />
+        <PropertyRef Name="restaurant_id" />
+        <PropertyRef Name="module_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblRestaurentUserView_tblView">
+    <End Role="tblView" Type="Self.tblView" Multiplicity="1" />
+    <End Role="tblRestaurantUserView" Type="Self.tblRestaurantUserView" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblView">
+        <PropertyRef Name="view_id" />
+      </Principal>
+      <Dependent Role="tblRestaurantUserView">
+        <PropertyRef Name="veiw_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSellsPoint_tblStoreInformation">
+    <End Role="tblStoreInformation" Type="Self.tblStoreInformation" Multiplicity="1" />
+    <End Role="tblSellsPoint" Type="Self.tblSellsPoint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblStoreInformation">
+        <PropertyRef Name="store_id" />
+      </Principal>
+      <Dependent Role="tblSellsPoint">
+        <PropertyRef Name="SellsPointStoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSuppliersProduct_tblProductInformation">
+    <End Role="tblProductInformation" Type="Self.tblProductInformation" Multiplicity="0..1" />
+    <End Role="tblSuppliersProduct" Type="Self.tblSuppliersProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProductInformation">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="tblSuppliersProduct">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUserActionMapping_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="tblUserActionMapping" Type="Self.tblUserActionMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblUserActionMapping">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUserActionMapping_tblAction">
+    <End Role="tblAction" Type="Self.tblAction" Multiplicity="1" />
+    <End Role="tblUserActionMapping" Type="Self.tblUserActionMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblAction">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tblUserActionMapping">
+        <PropertyRef Name="action_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="BackUpDatabase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="path" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetProductAvailableQuantity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="storeId" Type="int" Mode="In" />
+    <Parameter Name="productId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_AvailableQuantityForPhToSpTransfer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="storeId" Type="int" Mode="In" />
+    <Parameter Name="productId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_AvailableQuantityForProductToProductionHouse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="storeId" Type="int" Mode="In" />
+    <Parameter Name="productId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_AvailableQuantityForProductUsesInProductionHouse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="storeId" Type="int" Mode="In" />
+    <Parameter Name="productId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_CheckAvailableQuantityForProductForProductSoldForDayShift" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="storeId" Type="int" Mode="In" />
+    <Parameter Name="shiftId" Type="int" Mode="In" />
+    <Parameter Name="productId" Type="int" Mode="In" />
+    <Parameter Name="fromDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="sp_CheckAvailableQuantityForProductForProductSoldForNightShift" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="storeId" Type="int" Mode="In" />
+    <Parameter Name="shiftId" Type="int" Mode="In" />
+    <Parameter Name="productId" Type="int" Mode="In" />
+    <Parameter Name="fromDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="sp_GetProductAvailableQuantity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="storeId" Type="int" Mode="In" />
+    <Parameter Name="productId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_MainStoreProductStatusQuery" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="storeId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_mainStoreToProductionHouse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fromDate" Type="datetime" Mode="In" />
+    <Parameter Name="toDate" Type="datetime" Mode="In" />
+    <Parameter Name="storeId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_mainStoreToProductionHouseFinal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fromDate" Type="datetime" Mode="In" />
+    <Parameter Name="toDate" Type="datetime" Mode="In" />
+    <Parameter Name="storeId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_OtherExpenseAmountForSellReportWithOpeningProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="storeId" Type="int" Mode="In" />
+    <Parameter Name="shiftId" Type="int" Mode="In" />
+    <Parameter Name="fromDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="sp_ProductEntryHistoryForaSpecificDateFromSupplierToMainStore" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="date" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="sp_ProductEntryHistoryForaSpecificDateFromSupplierToMainStoreFinal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="date" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="sp_ProductEntryHistoryForSpecificDayInSellsPoint" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fromDate" Type="datetime" Mode="In" />
+    <Parameter Name="storeId" Type="int" Mode="In" />
+    <Parameter Name="shiftId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_ProductEntryHistoryFromSupplierToMainStoreForReporting" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fromDate" Type="datetime" Mode="In" />
+    <Parameter Name="toDate" Type="datetime" Mode="In" />
+    <Parameter Name="supplierId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_ProductEntryHistoryFromSupplierToMainStoreForReportingFinal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fromDate" Type="datetime" Mode="In" />
+    <Parameter Name="toDate" Type="datetime" Mode="In" />
+    <Parameter Name="supplierId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_ProductSell" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fromDate" Type="datetime" Mode="In" />
+    <Parameter Name="toDate" Type="datetime" Mode="In" />
+    <Parameter Name="storeId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_ProductSellFinal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fromDate" Type="datetime" Mode="In" />
+    <Parameter Name="toDate" Type="datetime" Mode="In" />
+    <Parameter Name="storeId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_ProductSellHistoryWithOpeningProductForDayShift" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="storeId" Type="int" Mode="In" />
+    <Parameter Name="shiftId" Type="int" Mode="In" />
+    <Parameter Name="fromDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="sp_ProductSellHistoryWithOpeningProductForDayShiftQueryB" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="storeId" Type="int" Mode="In" />
+    <Parameter Name="shiftId" Type="int" Mode="In" />
+    <Parameter Name="fromDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="sp_ProductSellHistoryWithOpeningProductForNightShift" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="storeId" Type="int" Mode="In" />
+    <Parameter Name="shiftId" Type="int" Mode="In" />
+    <Parameter Name="fromDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="sp_ProductSellHistoryWithOpeningProductForNightShiftQueryB" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="storeId" Type="int" Mode="In" />
+    <Parameter Name="shiftId" Type="int" Mode="In" />
+    <Parameter Name="fromDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="sp_ProductSellReportWithOpeningProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="storeId" Type="int" Mode="In" />
+    <Parameter Name="date" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="sp_ProductSoldForDayShift" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="storeId" Type="int" Mode="In" />
+    <Parameter Name="shiftId" Type="int" Mode="In" />
+    <Parameter Name="fromDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="sp_ProductSoldForNightShift" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="storeId" Type="int" Mode="In" />
+    <Parameter Name="shiftId" Type="int" Mode="In" />
+    <Parameter Name="fromDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="sp_PurchableProductQuantity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="storeId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_PurchaseAndBothTypeProductList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="storeId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_PurchaseAndBothTypeProductListForProductUsesInProductionHouse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="storeId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_PuschaseableProductStatusInProductionHouse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="storeId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_SellableProductQuantity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="storeId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_SellableProductStatusInProductionHouse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="storeId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_SellPointProductStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="storeId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_updatePurchaseTypeProductPrice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spSearchProductEntryHistoryInSellsPoint" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fromDate" Type="datetime" Mode="In" />
+    <Parameter Name="toDate" Type="datetime" Mode="In" />
+    <Parameter Name="storeId" Type="int" Mode="In" />
+    <Parameter Name="shiftId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spSearchProductEntryHistoryInSellsPointFinal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fromDate" Type="datetime" Mode="In" />
+    <Parameter Name="toDate" Type="datetime" Mode="In" />
+    <Parameter Name="storeId" Type="int" Mode="In" />
+    <Parameter Name="shiftId" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="RestaurantDBModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="acc_CashFlow_Type" EntityType="Self.acc_CashFlow_Type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="acc_CashFlowGroup" EntityType="Self.acc_CashFlowGroup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="acc_CashFlowMapping" EntityType="Self.acc_CashFlowMapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="acc_Chart_of_Account_Maping" EntityType="Self.acc_Chart_of_Account_Maping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="acc_Group" EntityType="Self.acc_Group" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="acc_Group_Maping" EntityType="Self.acc_Group_Maping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="acc_Ledger" EntityType="Self.acc_Ledger" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="acc_Nature" EntityType="Self.acc_Nature" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="acc_Subsidiary" EntityType="Self.acc_Subsidiary" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="acc_SubsidiaryVoucherDetail" EntityType="Self.acc_SubsidiaryVoucherDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="acc_tbl_Group_MIS" EntityType="Self.acc_tbl_Group_MIS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="acc_tbl_MIS" EntityType="Self.acc_tbl_MIS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="acc_VoucherDetail" EntityType="Self.acc_VoucherDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="acc_VoucherEntry" EntityType="Self.acc_VoucherEntry" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="acc_VoucherType" EntityType="Self.acc_VoucherType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblAction" EntityType="Self.tblAction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblChalanReport" EntityType="Self.tblChalanReport" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblDesignation" EntityType="Self.tblDesignation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblEmployeeInformation" EntityType="Self.tblEmployeeInformation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblGroupAndShiftMapping" EntityType="Self.tblGroupAndShiftMapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblGroupForShift" EntityType="Self.tblGroupForShift" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblMeasurementUnit" EntityType="Self.tblMeasurementUnit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblModule" EntityType="Self.tblModule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblOtherExpense" EntityType="Self.tblOtherExpense" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPHtoSPProductTransfer" EntityType="Self.tblPHtoSPProductTransfer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblProductEntryToProductionHouse" EntityType="Self.tblProductEntryToProductionHouse" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblProductFromSupplier" EntityType="Self.tblProductFromSupplier" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblProductInformation" EntityType="Self.tblProductInformation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblProductionHouseInformation" EntityType="Self.tblProductionHouseInformation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblProductionHouseToProductMapping" EntityType="Self.tblProductionHouseToProductMapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblProductSold" EntityType="Self.tblProductSold" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblProductTransfer" EntityType="Self.tblProductTransfer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblProductType" EntityType="Self.tblProductType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPurchaseProductUnitPrice" EntityType="Self.tblPurchaseProductUnitPrice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblRestaurantInformation" EntityType="Self.tblRestaurantInformation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblRestaurantModule" EntityType="Self.tblRestaurantModule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblRestaurantUser" EntityType="Self.tblRestaurantUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblRestaurantUserModule" EntityType="Self.tblRestaurantUserModule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblRestaurantUserView" EntityType="Self.tblRestaurantUserView" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSellsPoint" EntityType="Self.tblSellsPoint" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblShift" EntityType="Self.tblShift" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblStoreInformation" EntityType="Self.tblStoreInformation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSupplierInformation" EntityType="Self.tblSupplierInformation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSuppliersProduct" EntityType="Self.tblSuppliersProduct" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUserActionMapping" EntityType="Self.tblUserActionMapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblView" EntityType="Self.tblView" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_acc_Group_acc_Group" Association="Self.FK_acc_Group_acc_Group">
+      <End Role="acc_Group" EntitySet="acc_Group" />
+      <End Role="acc_Group1" EntitySet="acc_Group" />
+    </AssociationSet>
+    <AssociationSet Name="FK_acc_Group_Maping_acc_Group" Association="Self.FK_acc_Group_Maping_acc_Group">
+      <End Role="acc_Group" EntitySet="acc_Group" />
+      <End Role="acc_Group_Maping" EntitySet="acc_Group_Maping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_acc_Group_Maping_acc_tbl_Group_MIS" Association="Self.FK_acc_Group_Maping_acc_tbl_Group_MIS">
+      <End Role="acc_tbl_Group_MIS" EntitySet="acc_tbl_Group_MIS" />
+      <End Role="acc_Group_Maping" EntitySet="acc_Group_Maping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_acc_Ledger_acc_Group" Association="Self.FK_acc_Ledger_acc_Group">
+      <End Role="acc_Group" EntitySet="acc_Group" />
+      <End Role="acc_Ledger" EntitySet="acc_Ledger" />
+    </AssociationSet>
+    <AssociationSet Name="FK_acc_LedgerDetail_acc_Ledger" Association="Self.FK_acc_LedgerDetail_acc_Ledger">
+      <End Role="acc_Ledger" EntitySet="acc_Ledger" />
+      <End Role="acc_VoucherDetail" EntitySet="acc_VoucherDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_acc_SubsidiaryVoucherDetail_acc_Subsidiary" Association="Self.FK_acc_SubsidiaryVoucherDetail_acc_Subsidiary">
+      <End Role="acc_Subsidiary" EntitySet="acc_Subsidiary" />
+      <End Role="acc_SubsidiaryVoucherDetail" EntitySet="acc_SubsidiaryVoucherDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_acc_SubsidiaryVoucherDetail_acc_SubsidiaryVoucherDetail" Association="Self.FK_acc_SubsidiaryVoucherDetail_acc_SubsidiaryVoucherDetail">
+      <End Role="acc_VoucherDetail" EntitySet="acc_VoucherDetail" />
+      <End Role="acc_SubsidiaryVoucherDetail" EntitySet="acc_SubsidiaryVoucherDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_acc_VoucherDetail_acc_VoucherEntry" Association="Self.FK_acc_VoucherDetail_acc_VoucherEntry">
+      <End Role="acc_VoucherEntry" EntitySet="acc_VoucherEntry" />
+      <End Role="acc_VoucherDetail" EntitySet="acc_VoucherDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_acc_VoucherEntry_acc_VoucherType" Association="Self.FK_acc_VoucherEntry_acc_VoucherType">
+      <End Role="acc_VoucherType" EntitySet="acc_VoucherType" />
+      <End Role="acc_VoucherEntry" EntitySet="acc_VoucherEntry" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblAction_tblModule" Association="Self.FK_tblAction_tblModule">
+      <End Role="tblModule" EntitySet="tblModule" />
+      <End Role="tblAction" EntitySet="tblAction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblEmployeeInformation_tblDesignation" Association="Self.FK_tblEmployeeInformation_tblDesignation">
+      <End Role="tblDesignation" EntitySet="tblDesignation" />
+      <End Role="tblEmployeeInformation" EntitySet="tblEmployeeInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbllRestaurentModule_tblModule" Association="Self.FK_tbllRestaurentModule_tblModule">
+      <End Role="tblModule" EntitySet="tblModule" />
+      <End Role="tblRestaurantModule" EntitySet="tblRestaurantModule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbllRestaurentModule_tblRestaurentInformation" Association="Self.FK_tbllRestaurentModule_tblRestaurentInformation">
+      <End Role="tblRestaurantInformation" EntitySet="tblRestaurantInformation" />
+      <End Role="tblRestaurantModule" EntitySet="tblRestaurantModule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbllRestaurentUser_AspNetUsers" Association="Self.FK_tbllRestaurentUser_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="tblRestaurantUser" EntitySet="tblRestaurantUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbllRestaurentUser_tbllRestaurentInformation" Association="Self.FK_tbllRestaurentUser_tbllRestaurentInformation">
+      <End Role="tblRestaurantInformation" EntitySet="tblRestaurantInformation" />
+      <End Role="tblRestaurantUser" EntitySet="tblRestaurantUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOtherExpense_tblSellsPoint" Association="Self.FK_tblOtherExpense_tblSellsPoint">
+      <End Role="tblStoreInformation" EntitySet="tblStoreInformation" />
+      <End Role="tblOtherExpense" EntitySet="tblOtherExpense" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOtherExpense_tblShift" Association="Self.FK_tblOtherExpense_tblShift">
+      <End Role="tblShift" EntitySet="tblShift" />
+      <End Role="tblOtherExpense" EntitySet="tblOtherExpense" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPHtoSPProductTransfer_tblProductInformation" Association="Self.FK_tblPHtoSPProductTransfer_tblProductInformation">
+      <End Role="tblProductInformation" EntitySet="tblProductInformation" />
+      <End Role="tblPHtoSPProductTransfer" EntitySet="tblPHtoSPProductTransfer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPHtoSPProductTransfer_tblProductionHouseInformation" Association="Self.FK_tblPHtoSPProductTransfer_tblProductionHouseInformation">
+      <End Role="tblProductionHouseInformation" EntitySet="tblProductionHouseInformation" />
+      <End Role="tblPHtoSPProductTransfer" EntitySet="tblPHtoSPProductTransfer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPHtoSPProductTransfer_tblSellsPoint" Association="Self.FK_tblPHtoSPProductTransfer_tblSellsPoint">
+      <End Role="tblSellsPoint" EntitySet="tblSellsPoint" />
+      <End Role="tblPHtoSPProductTransfer" EntitySet="tblPHtoSPProductTransfer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPHtoSPProductTransfer_tblShift" Association="Self.FK_tblPHtoSPProductTransfer_tblShift">
+      <End Role="tblShift" EntitySet="tblShift" />
+      <End Role="tblPHtoSPProductTransfer" EntitySet="tblPHtoSPProductTransfer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProductEntryToProductionHouse_tblProductInformation" Association="Self.FK_tblProductEntryToProductionHouse_tblProductInformation">
+      <End Role="tblProductInformation" EntitySet="tblProductInformation" />
+      <End Role="tblProductEntryToProductionHouse" EntitySet="tblProductEntryToProductionHouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProductEntryToProductionHouse_tblProductionHouseInformation" Association="Self.FK_tblProductEntryToProductionHouse_tblProductionHouseInformation">
+      <End Role="tblProductionHouseInformation" EntitySet="tblProductionHouseInformation" />
+      <End Role="tblProductEntryToProductionHouse" EntitySet="tblProductEntryToProductionHouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProductInformation_tblProductType" Association="Self.FK_tblProductInformation_tblProductType">
+      <End Role="tblProductType" EntitySet="tblProductType" />
+      <End Role="tblProductInformation" EntitySet="tblProductInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProductInformation_tblStoreInformation1" Association="Self.FK_tblProductInformation_tblStoreInformation1">
+      <End Role="tblStoreInformation" EntitySet="tblStoreInformation" />
+      <End Role="tblProductInformation" EntitySet="tblProductInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProductionHouseToProductMapping_tblProductInformation" Association="Self.FK_tblProductionHouseToProductMapping_tblProductInformation">
+      <End Role="tblProductInformation" EntitySet="tblProductInformation" />
+      <End Role="tblProductionHouseToProductMapping" EntitySet="tblProductionHouseToProductMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProductSold_tblShift" Association="Self.FK_tblProductSold_tblShift">
+      <End Role="tblShift" EntitySet="tblShift" />
+      <End Role="tblProductSold" EntitySet="tblProductSold" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProductTransfer_tblProductInformation" Association="Self.FK_tblProductTransfer_tblProductInformation">
+      <End Role="tblProductInformation" EntitySet="tblProductInformation" />
+      <End Role="tblProductTransfer" EntitySet="tblProductTransfer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProductTransfer_tblShift" Association="Self.FK_tblProductTransfer_tblShift">
+      <End Role="tblShift" EntitySet="tblShift" />
+      <End Role="tblProductTransfer" EntitySet="tblProductTransfer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProductTransfer_tblStoreInformation" Association="Self.FK_tblProductTransfer_tblStoreInformation">
+      <End Role="tblStoreInformation" EntitySet="tblStoreInformation" />
+      <End Role="tblProductTransfer" EntitySet="tblProductTransfer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblRestaurentUserModule_tblRestaurentModule" Association="Self.FK_tblRestaurentUserModule_tblRestaurentModule">
+      <End Role="tblRestaurantModule" EntitySet="tblRestaurantModule" />
+      <End Role="tblRestaurantUserModule" EntitySet="tblRestaurantUserModule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblRestaurentUserModule_tblRestaurentUser" Association="Self.FK_tblRestaurentUserModule_tblRestaurentUser">
+      <End Role="tblRestaurantUser" EntitySet="tblRestaurantUser" />
+      <End Role="tblRestaurantUserModule" EntitySet="tblRestaurantUserModule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblRestaurentUserView_tblRestaurentUserModule" Association="Self.FK_tblRestaurentUserView_tblRestaurentUserModule">
+      <End Role="tblRestaurantUserModule" EntitySet="tblRestaurantUserModule" />
+      <End Role="tblRestaurantUserView" EntitySet="tblRestaurantUserView" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblRestaurentUserView_tblView" Association="Self.FK_tblRestaurentUserView_tblView">
+      <End Role="tblView" EntitySet="tblView" />
+      <End Role="tblRestaurantUserView" EntitySet="tblRestaurantUserView" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSellsPoint_tblStoreInformation" Association="Self.FK_tblSellsPoint_tblStoreInformation">
+      <End Role="tblStoreInformation" EntitySet="tblStoreInformation" />
+      <End Role="tblSellsPoint" EntitySet="tblSellsPoint" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSuppliersProduct_tblProductInformation" Association="Self.FK_tblSuppliersProduct_tblProductInformation">
+      <End Role="tblProductInformation" EntitySet="tblProductInformation" />
+      <End Role="tblSuppliersProduct" EntitySet="tblSuppliersProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUserActionMapping_AspNetUsers" Association="Self.FK_tblUserActionMapping_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="tblUserActionMapping" EntitySet="tblUserActionMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUserActionMapping_tblAction" Association="Self.FK_tblUserActionMapping_tblAction">
+      <End Role="tblAction" EntitySet="tblAction" />
+      <End Role="tblUserActionMapping" EntitySet="tblUserActionMapping" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

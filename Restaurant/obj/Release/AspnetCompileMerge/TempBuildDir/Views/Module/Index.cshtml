@@ -1,0 +1,65 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<div ng-controller="demoController">
+    <div>
+        <div class="row-fluid" ng-init="ForLoginSuccess()">
+            <div class="box bornomala span12">
+                <div class="box-header">
+                    <h2>
+                        <i class="halflings-icon tasks"></i><span class="break"></span>Add Module
+                    </h2>
+                </div>
+                <div class="box-content">
+                    <!-- code start here-->
+                    <div class="module_from col-md-4">
+                        <div class="box-content">
+                            <form class="form-horizontal" name="moduleForm" ng-submit="submit()" novalidate>
+
+
+                                <div class="control-group">
+                                    <label class="control-label">Module Name</label>
+                                    <div class="controls">
+                                        <input type="text" name="moduleName" ng-model="module.module_name" required>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label">Module Icon</label>
+                                    <div class="controls">
+                                        <label><input type="text" class="form-control" ng-model="module.module_icon" /></label>
+                                    </div>
+                                </div>
+
+                                <input type="hidden" ng-model="module.module_id" />
+
+                                <div class="control-group">
+                                    <label class="control-label" for="focusedInput">Module Order</label>
+                                    <div class="controls">
+                                        <input type="number" name="moduleOrder" ng-model="module.module_order" required>
+                                    </div>
+                                </div>
+
+                                <div class="controls">
+                                    <button class="button success btn btn-primary">{{buttonName}}</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div><!--/span-->
+                    <!-- code end here-->
+                </div>
+            </div><!--/span-->
+
+        </div><!--/row-->
+    </div>
+    <!-- show module list -->
+
+
+</div><!-- controller end-->
+
+
+
+

@@ -1,0 +1,91 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="row-fluid" ng-init="ForLoginSuccess()">
+    <div class="box bornomala span12">
+        <div class="box-header">
+            <h2><i class="halflings-icon tasks"></i><span class="break"></span>Add Employee Information </h2>
+        </div>
+        <div class="box-content" ng-controller="EmployeeInformationController">
+
+            <form class="form-horizontal" name="EmployeeInformationAddForm" ng-init="Employee">
+                <div class="form-group">
+                    <label class="control-label">Employee Name</label>
+                    <div class="controls">
+                        <input type="text" class="form-control input-sm" data-ng-model="Employee.EmployeeName" required enter-as-tab />
+                    </div>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <label class="control-label">Address</label>
+                    <div class="controls">
+                        <input type="text" class="form-control input-sm" data-ng-model="Employee.EmployeeAddress" required enter-as-tab />
+                    </div>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <label class="control-label">Contact Number</label>
+                    <div class="controls">
+                        <input type="text" name="ContactNumber" class="form-control input-sm" data-ng-model="Employee.ContactNumber" @*ng-minlength="11" ng-maxlength="11" maxlength="11"*@ positive-numbers-only required enter-as-tab />
+                        @*<p class="error" ng-show="EmployeeInformationAddForm.ContactNumber.$error.minlength || submitted">Contact Number must be 11 digits</p>
+                        <p class="error" ng-show="EmployeeInformationAddForm.ContactNumber.$error.maxlength">Contact Number must be 11 digits</p>*@
+
+                    </div>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <label class="control-label">NID</label>
+                    <div class="controls">
+                        <input type="text" class="form-control input-sm" data-ng-model="Employee.EmployeeNid" />
+                    </div>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <label class="control-label">Email</label>
+                    <div class="controls">
+                        <input type="email" name="Email" class="form-control input-sm" data-ng-model="Employee.EmployeeEmail" />
+                    </div>
+                </div>
+                
+
+                <div class="controls">
+                    <div ng-hide="myValue" style="margin-top: 4px;">
+                        <img ng-src="{{a}}" height="120" width="160" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Image</label>
+                    <div class="controls">
+                        <input type="file"  fileread="myFile" onchange="angular.element(this).scope().photoChanged(this.files)" />
+                    </div>
+                </div>
+                <br />
+              
+                <div class="form-group" ng-init="GetAllDesignation()">
+                    <label class="control-label">Designation</label>
+                    <div class="controls">
+                        <select data-ng-model="Employee.DesignationId" class="form-control selectpicker" ng-options="x.DesignationId as x.DesignationName for x in designationList" required>
+                            <option value="">-------Select Designation-------</option>
+                        </select>
+                    </div>
+                </div>
+
+                <br />
+                @*<toaster-container toaster-options="{'time-out': 1000}"></toaster-container>*@
+                <div class="form-group">
+                    <div class=" controls">
+
+                        <input type="submit" class="btn btn-primary" value="Add Employee" @*ng-disabled="EmployeeInformationAddForm.ContactNumber.$error.$invalid"*@ data-ng-click="SaveEmployeeInformation()" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div><!--/span-->
+
+</div><!--/row-->

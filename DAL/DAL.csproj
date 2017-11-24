@@ -1,0 +1,387 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1006B953-637A-4F51-9999-1CC660BE1A26}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DAL</RootNamespace>
+    <AssemblyName>DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="acc_CashFlowGroup.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="acc_CashFlowMapping.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="acc_CashFlow_Type.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="acc_Chart_of_Account_Maping.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="acc_Group.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="acc_Group_Maping.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="acc_Ledger.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="acc_Nature.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="acc_Subsidiary.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="acc_SubsidiaryVoucherDetail.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="acc_tbl_Group_MIS.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="acc_tbl_MIS.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="acc_VoucherDetail.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="acc_VoucherEntry.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="acc_VoucherType.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetRole.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaim.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogin.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\CustomRepository.cs" />
+    <Compile Include="Repository\GenericRepository.cs" />
+    <Compile Include="Repository\SPRepository.cs" />
+    <Compile Include="Repository\UnitOfWork.cs" />
+    <Compile Include="RestaurantDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RestaurantDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RestaurantDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RestaurantDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RestaurantDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="spSearchProductEntryHistoryInSellsPointFinal_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spSearchProductEntryHistoryInSellsPoint_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_AvailableQuantityForPhToSpTransfer_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_AvailableQuantityForProductToProductionHouse_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_AvailableQuantityForProductUsesInProductionHouse_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_CheckAvailableQuantityForProductForProductSoldForDayShift_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_CheckAvailableQuantityForProductForProductSoldForNightShift_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_MainStoreProductStatusQuery_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_mainStoreToProductionHouseFinal_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_mainStoreToProductionHouse_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_monthlyTotalAmountForDayShift_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_monthlyTotalAmountForNightShift_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_monthlyTotalAmount_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_OtherExpenseAmountForSellReportWithOpeningProduct_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_ProductEntryHistoryForaSpecificDateFromSupplierToMainStoreFinal_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_ProductEntryHistoryForaSpecificDateFromSupplierToMainStore_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_ProductEntryHistoryForSpecificDayInSellsPoint_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_ProductEntryHistoryFromSupplierToMainStoreForReportingFinal_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_ProductEntryHistoryFromSupplierToMainStoreForReporting_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_ProductSellFinal_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_ProductSellHistoryWithOpeningProductForDayShiftQueryB_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_ProductSellHistoryWithOpeningProductForDayShift_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_ProductSellHistoryWithOpeningProductForNightShiftQueryB_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_ProductSellHistoryWithOpeningProductForNightShift_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_ProductSellReportWithOpeningProduct_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_ProductSell_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_ProductSoldForDayShift_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_ProductSoldForNightShift_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_PurchaseAndBothTypeProductListForProductUsesInProductionHouse_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_PurchaseAndBothTypeProductList_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_PuschaseableProductStatusInProductionHouse_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_SellableProductStatusInProductionHouse_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_SellPointProductStatus_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_weeklyTotalAmountDayShiftWise_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_weeklyTotalAmountNightShiftWise_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_weeklyTotalAmount_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_weeklyTotalProductSellByGraph_Result.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAction.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblChalanReport.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblDesignation.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEmployeeInformation.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblGroupAndShiftMapping.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblGroupForShift.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblMeasurementUnit.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblModule.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblOtherExpense.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPHtoSPProductTransfer.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblProductEntryToProductionHouse.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblProductFromSupplier.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblProductInformation.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblProductionHouseInformation.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblProductionHouseToProductMapping.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblProductSold.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblProductTransfer.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblProductType.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPurchaseProductUnitPrice.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblRestaurantInformation.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblRestaurantModule.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblRestaurantUser.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblRestaurantUserModule.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblRestaurantUserView.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSellsPoint.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblShift.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblStoreInformation.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSupplierInformation.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSuppliersProduct.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblTotalAmount.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblUserActionMapping.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblView.cs">
+      <DependentUpon>RestaurantDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\VM_AccVoucher.cs" />
+    <Compile Include="ViewModel\VM_Chart.cs" />
+    <Compile Include="ViewModel\VM_GroupAndShiftMapping.cs" />
+    <Compile Include="ViewModel\VM_GroupForShift.cs" />
+    <Compile Include="ViewModel\VM_OtherExpense.cs" />
+    <Compile Include="ViewModel\VM_Product.cs" />
+    <Compile Include="ViewModel\VM_Shift.cs" />
+    <Compile Include="ViewModel\VM_Test.cs" />
+    <Compile Include="ViewModel\VoucherPrefix.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+    <EntityDeploy Include="RestaurantDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>RestaurantDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="RestaurantDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RestaurantDB.edmx</DependentUpon>
+      <LastGenOutput>RestaurantDB.Context.cs</LastGenOutput>
+    </None>
+    <None Include="RestaurantDB.edmx.diagram">
+      <DependentUpon>RestaurantDB.edmx</DependentUpon>
+    </None>
+    <None Include="RestaurantDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RestaurantDB.edmx</DependentUpon>
+      <LastGenOutput>RestaurantDB.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

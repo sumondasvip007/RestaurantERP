@@ -1,0 +1,300 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Home</title>
+    @using Restaurant.Utility
+    @*<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet" />*@
+
+    @*<link href="~/css/bootstrap.css" rel="stylesheet">
+        <link href="~/css/bootstrap-theme.css" rel="stylesheet">
+        <link href="~/css/font-awesome.css" rel="stylesheet">
+        <link href="~/css/color.css" rel="stylesheet">
+        <link href="~/css/style.css" rel="stylesheet">
+        <link href="~/css/responsive.css" rel="stylesheet">
+        <link href="~/css/themetypo.css" rel="stylesheet">
+        <link href="~/css/bxslider.css" rel="stylesheet">
+        <link href="~/css/datepicker.css" rel="stylesheet">*@
+
+    @*Restaurant CSS*@
+    <!-- start: Mobile Specific -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- end: Mobile Specific -->
+    <!-- start: CSS -->
+    <link id="bootstrap-style" href="~/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link id="base-style" href="~/css/style.css" rel="stylesheet">
+    <link id="base-style-responsive" href="~/css/style-responsive.css" rel="stylesheet">
+    @*<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>*@
+    <!-- end: CSS -->
+    <link href="~/Content/jquery.fancybox-plus.css" rel="stylesheet" />
+    <link href="~/FancyBox/jquery.fancybox.css" rel="stylesheet" />
+    <link href="~/Content/TreeView/TreeView.css" rel="stylesheet" />
+    <link href="~/Content/angular-block-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-drawer-1.0.4/dist/css/bootstrap-drawer.css" rel="stylesheet" />
+    <link href="~/Content/ivh-treeview.css" rel="stylesheet" />
+    <link href="~/Content/table_fixed-header.css" rel="stylesheet" />
+    <link href="~/Content/textAngular.css" rel="stylesheet" />
+    <link href="~/Content/toastr.css" rel="stylesheet" />
+    <link href="~/Content/angular-motion.min.css" rel="stylesheet" />
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/css/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/angular-datepicker.css" rel="stylesheet"/>
+    <!-- added by mosaddik -->
+    <link href="~/css/select.css" rel="stylesheet"/>
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>*@ 
+    <link href="~/Content/jquery.elevator.css" rel="stylesheet" />
+
+    <style>        
+         .two-column {
+             text-align: justify;
+         }
+
+        .two-column:after {
+            content: '';
+            display: inline-block;
+            width: 100%;
+        }
+    </style>
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body ng-app="myApp" ng-controller="DashboardController">
+
+    <div class="navbar" ng-init="Login()">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="brand" href="#/Index"><span><b>Bornomala ERP</b></span></a>
+                <!-- start: Header Menu -->
+                @Html.Partial("_LoginPartial")
+                <!--End of Header Men-->
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid-full">
+        <div class="row-fluid">
+            <!-- start: Main Menu -->
+            <div id="sidebar-left" ng-hide="menu" ng-controller="DashboardController" class="span2">
+                <div id="slim-scrollbar">
+                    @Html.Partial("_Menu")
+                </div>
+            </div>
+            <!-- end: Main Menu -->
+
+            <noscript>
+                <div class="alert alert-block span10">
+                    <h4 class="alert-heading">Warning!</h4>
+                    <p>
+                        You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.
+                    </p>
+                </div>
+            </noscript>
+            <!-- start: Jquery Elevator top-->
+            <div id="top" class="elevator"></div>
+
+            <!-- start: Content -->
+            <div id="content" class="span10">
+                <ul class="breadcrumb" ng-hide="pagename">
+                    <li>
+                        <i class="icon-home"></i>
+                        <a href="#/Index">Home</a>
+                        <i class="icon-angle-right"></i>
+                    </li>
+                    <li><a href="#">Dashboard</a></li>
+                </ul>
+                <div class="row-fluid">
+                    <ng-view>
+                        @RenderBody()
+                    </ng-view>
+                </div>
+            </div>
+
+            <div ng-hide="pagename" id="content" class="span10" style=" padding-bottom: 0px;">
+                <footer>
+                    <p style="text-align:right">
+                        <span style="text-align:right !important;float:right">&copy; 2013 <a href="http://www.bornomalasystems.com" alt="Bornomala_Systems_Dashboard" style="color:#ffffff">Bornomala Systems Ltd.</a></span>
+                    </p>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal hide fade" id="myModal">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <h3>Settings</h3>
+        </div>
+        <div class="modal-body">
+            <p>Here settings can be configured...</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn" data-dismiss="modal">Close</a>
+            <a href="#" class="btn btn-primary">Save changes</a>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <!--Jquery Elevatory Bottom-->
+    <div id="bottom" class="elevator"></div>
+
+    <!-- start: JavaScript-->
+    <script src="~/js/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/jquery.js"></script>
+
+    <script src="~/js/jquery.slimscroll.js"></script>
+    <script src="~/js/jquery.elevator.js"></script>
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <script src="~/js/jquery-migrate-1.0.0.min.js"></script>
+    <script src="~/js/jquery-ui-1.10.0.custom.min.js"></script>
+    <script src="~/js/jquery.ui.touch-punch.js"></script>
+    <script src="~/js/modernizr.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/jquery.cookie.js"></script>
+    <script src="~/js/fullcalendar.min.js"></script>
+    <script src="~/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/excanvas.js"></script>
+    <script src="~/js/jquery.flot.js"></script>
+    <script src="~/js/jquery.flot.pie.js"></script>
+    <script src="~/js/jquery.flot.stack.js"></script>
+    <script src="~/js/jquery.flot.resize.min.js"></script>
+    <script src="~/js/jquery.chosen.min.js"></script>
+    <script src="~/js/jquery.uniform.min.js"></script>
+    <script src="~/js/jquery.cleditor.min.js"></script>
+    <script src="~/js/jquery.noty.js"></script>
+    <script src="~/js/jquery.elfinder.min.js"></script>
+    <script src="~/js/jquery.raty.min.js"></script>
+    <script src="~/js/jquery.iphone.toggle.js"></script>
+    <script src="~/js/jquery.uploadify-3.1.min.js"></script>
+    <script src="~/js/jquery.gritter.min.js"></script>
+    <script src="~/js/jquery.imagesloaded.js"></script>
+    <script src="~/js/jquery.masonry.min.js"></script>
+    <script src="~/js/jquery.knob.modified.js"></script>
+    <script src="~/js/jquery.sparkline.min.js"></script>
+    <script src="~/js/counter.js"></script>
+    <script src="~/js/retina.js"></script>
+    <script src="~/js/custom.js"></script>
+
+
+
+    @*Enable Left Sidebar Scrolling - Using jquery.slimscroll.js*@
+    <script>
+        (function () {
+            $(document).ready(function () {
+                $('#slim-scrollbar').slimScroll({
+                    height: '100%',
+                    alwaysVisible: false,
+                    color: '#FFA500',
+                    size: '6px',
+                    wheelStep: 10
+                });
+                /* Bottom to top // Elevator */
+                $.elevator({
+                    glass: true,
+                    item_top: $('#content')
+                });
+            });
+        })();
+    </script>
+
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/angular-route.min.js"></script>
+    <script src="~/Scripts/angular-animate.min.js"></script>    
+    <script src="~/Scripts/smart-table.js"></script>
+    <script src="~/Scripts/ui-bootstrap-tpls-0.13.3.js"></script>
+    <script src="~/Scripts/ng-file-upload.js"></script>
+    <script src="~/Scripts/jquery.fancybox-plus.js"></script>
+    <script src="~/Scripts/angular-fancybox-plus.js"></script>
+    <script src="~/Scripts/ui-router.js"></script>
+    <script src="~/Scripts/angular-block-ui.js"></script>
+    <script src="~/Scripts/textAngular.js"></script>
+    <script src="~/Scripts/textAngular-rangy.min.js"></script>
+    <script src="~/Scripts/textAngular-sanitize.js"></script>
+    <script src="~/Scripts/textAngularSetup.js"></script>
+    <script src="~/Scripts/Areas/Route.js"></script>
+    <script src="~/Scripts/toastr.js"></script>
+    <script src="~/Scripts/angular-route.min.js"></script>
+    <script src="~/Scripts/ng-google-chart.js"></script>
+    <script src="~/Scripts/jsapi.js"></script>
+    <script src="~/Scripts/ivh-treeview.min.js"></script>
+    <script src="~/Scripts/Areas/ProductToproductionHouse/ProductionHouseServices.js"></script>
+    <script src="~/Scripts/Areas/ReciverVoucher/ReciveVoucherServices.js"></script>
+    <script src="~/Scripts/Areas/MainStoreProductTransferStatus/angular-datepicker.js"></script>
+    <script src="~/Scripts/Areas/AccLedger/Services/AccLedgerService.js"></script>
+    <script src="~/Scripts/Areas/ReciverVoucher/ReciveVoucher.js"></script>
+    <script src="~/Scripts/Areas/Module/Controllers/EditModule.js"></script>
+    <script src="~/Scripts/Areas/SecurityManagement/RegisterController.js"></script>
+    <script src="~/Scripts/Areas/Deshboard/DashboardColtroller.js"></script>
+    <script src="~/Scripts/Areas/ActionMenu/addActionMenuController.js"></script>
+    <script src="~/Scripts/Areas/ActionMenu/editActionController.js"></script>
+    <script src="~/Scripts/Areas/ActionMenu/viewActionController.js"></script>
+    <script src="~/Scripts/Areas/Store/supplierProductMappingController.js"></script>
+    <script src="~/Scripts/Areas/Store/storeController.js"></script>
+    <script src="~/Scripts/Areas/Store/productionHouseProductMappingController.js"></script>
+    <script src="~/Scripts/Areas/Store/productEntryToProductionHouseController.js"></script>
+    <script src="~/Scripts/Areas/ChalanReport/ChalanReport.js"></script>
+    <script src="~/Scripts/Directives/commonDirective.js"></script>
+    <script src="~/Scripts/Directives/pageSelect.directive.js"></script>
+    <link href="~/Content/select.css" rel="stylesheet" />
+    <script src="~/Scripts/select.js"></script>
+    <script src="~/Scripts/angu-fixed-header-table.js"></script>
+    <script src="~/Scripts/ngCart.js"></script>
+    <script src="~/Scripts/jquery.noty.packaged.js"></script>
+    <script src="~/Scripts/angular-ui/ui-bootstrap-tpls.js"></script>
+    <script src="~/Scripts/angular-input-date.js"></script>
+    <script src="~/Scripts/angular-elevate-zoom.js"></script>
+    <script src="~/Scripts/Areas/AspNetUser/AspNetUserController.js"></script>
+    <script src="~/Scripts/Areas/Product/ProductController.js"></script>
+    <script src="~/Scripts/Areas/Module/Controllers/ModuleController.js"></script>
+    <script src="~/Scripts/Areas/Module/Controllers/EditModule.js"></script>
+    <script src="~/Scripts/Areas/UserPermissions/UserPermission.js"></script>
+    <script src="~/Scripts/Areas/Store/storeController.js"></script>
+    <script src="~/Scripts/Areas/ProductionHouse/ProductionHouse.js"></script>
+    <script src="~/Scripts/Areas/ProductionHouse/showProductionHouse.js"></script>
+    <script src="~/Scripts/Areas/SupplierInformation/showSuppierController.js"></script>
+    <script src="~/Scripts/Areas/SupplierInformation/SupplierInformation.js"></script>
+    <script src="~/Scripts/Areas/ProductUsesInProductionHouse/Services/ProductionHouseService.js"></script>
+    <script src="~/Scripts/Areas/ProductToproductionHouse/ProductToProductionHouse.js"></script>
+    <script src="~/Scripts/Areas/SecurityManagement/UserMenuPermissionController.js"></script>
+    <script src="~/Scripts/Areas/ProductHouseStatus/ProductionHouseStatus.js"></script>
+    <script src="~/Scripts/Areas/SellsPoint/SellsPointController.js"></script>
+    <script src="~/Scripts/Areas/ProductToStore/ProductToStoreController.js"></script>
+    <script src="~/Scripts/Areas/SellsPointStatus/SellsPointStatusController.js"></script>
+    <script src="~/Scripts/Areas/MainStoreProductTransferStatus/MainStoreProductTransferStatus.js"></script>
+    <script src="~/Scripts/Areas/ProductEntryHistoryInSellPoint/ProductEntryHistoryInSellPoint.js"></script>
+    <script src="~/Scripts/Areas/PHtoSPProductTransfer/PHtoSProductTransferController.js"></script>
+    <script src="~/Scripts/Areas/ChalanReport/ChalanReport.js"></script>
+    <script src="~/Scripts/Areas/ProductSold/ProductSold.js"></script>
+    <script src="~/Content/Scripts/Directives/select.js"></script>
+    <script src="~/Scripts/Areas/EmployeeInformation/EmployeeImageDirective.js"></script>
+    <script src="~/Scripts/Areas/EmployeeInformation/EmployeeImageService.js"></script>
+    <script src="~/Scripts/Areas/EmployeeInformation/EmployeeInformation.js"></script>
+    <script src="~/Scripts/Areas/ProductUsesInProductionHouse/Services/ProductServices.js"></script>
+    <script src="~/Scripts/Areas/ProductUsesInProductionHouse/ProductUsesInProductionHouse.js"></script>
+    <script src="~/Scripts/Areas/PHtoSPProductTransfer/PHtoSProductTransferController.js"></script>
+    <script src="~/Scripts/Areas/MainStoreStatus/MainStoreStatusController.js"></script>
+    <script src="~/Scripts/Areas/ProductSellReport/ProductSellReport.js"></script>
+    <script src="~/Scripts/Areas/AccLedger/AccLedgerController.js"></script>
+    <script src="~/Scripts/Areas/ProductEntryHistoryFromSupplierToMainStore/ProductEntryHistoryFromSupplierToMainStore.js"></script>
+    <script src="~/Scripts/Areas/ProductEntryHistoryForaSpecificDateFromSupplierToMainStore/ProductEntryHistoryForaSpecificDateFromSupplierToMainStore.js"></script>
+    <script src="~/Scripts/Areas/AccGroup/AccGroupController.js"></script>
+    <script src="~/Scripts/Areas/AccVoucher/AccPaymentVoucherController.js"></script>
+    <script src="~/Scripts/Areas/ReciverVoucher/ReciveVoucher.js"></script>
+    <script src="~/Scripts/Areas/AccVoucher/AccContraVoucherController.js"></script>
+    <script src="~/Scripts/Areas/AccVoucher/AccJournalVoucherController.js"></script>
+    <script src="~/Scripts/Areas/ChangePassword/ChangePasswordService.js"></script>
+    <script src="~/Scripts/Areas/ChangePassword/ChangePassword.js"></script>
+    <script src="~/Scripts/Areas/DbBackUp/DbBackUp.js"></script>
+    <script src="~/Scripts/Areas/OpeningProductBalanceInStore/OpeningProductBalanceInStore.js"></script>
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

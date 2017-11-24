@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RestaurantModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="RestaurantEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="RestaurantModel.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="RestaurantModel.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="RestaurantModel.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="RestaurantModel.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="RestaurantModel.AspNetUser" />
+    <EntitySet Name="tblModules" EntityType="RestaurantModel.tblModule" />
+    <EntitySet Name="tblRestaurantInformations" EntityType="RestaurantModel.tblRestaurantInformation" />
+    <EntitySet Name="tblRestaurantModules" EntityType="RestaurantModel.tblRestaurantModule" />
+    <EntitySet Name="tblRestaurantUsers" EntityType="RestaurantModel.tblRestaurantUser" />
+    <EntitySet Name="tblRestaurantUserModules" EntityType="RestaurantModel.tblRestaurantUserModule" />
+    <EntitySet Name="tblViews" EntityType="RestaurantModel.tblView" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="RestaurantModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="RestaurantModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbllRestaurantUser_AspNetUsers" Association="RestaurantModel.FK_tbllRestaurantUser_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="tblRestaurantUser" EntitySet="tblRestaurantUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbllRestaurantModule_tblModule" Association="RestaurantModel.FK_tbllRestaurantModule_tblModule">
+      <End Role="tblModule" EntitySet="tblModules" />
+      <End Role="tblRestaurantModule" EntitySet="tblRestaurantModules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbllRestaurantModule_tblRestaurantInformation" Association="RestaurantModel.FK_tbllRestaurantModule_tblRestaurantInformation">
+      <End Role="tblRestaurantInformation" EntitySet="tblRestaurantInformations" />
+      <End Role="tblRestaurantModule" EntitySet="tblRestaurantModules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbllRestaurantUser_tbllRestaurantInformation" Association="RestaurantModel.FK_tbllRestaurantUser_tbllRestaurantInformation">
+      <End Role="tblRestaurantInformation" EntitySet="tblRestaurantInformations" />
+      <End Role="tblRestaurantUser" EntitySet="tblRestaurantUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblRestaurantUserModule_tblRestaurantModule" Association="RestaurantModel.FK_tblRestaurantUserModule_tblRestaurantModule">
+      <End Role="tblRestaurantModule" EntitySet="tblRestaurantModules" />
+      <End Role="tblRestaurantUserModule" EntitySet="tblRestaurantUserModules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblRestaurantUserModule_tblRestaurantUser" Association="RestaurantModel.FK_tblRestaurantUserModule_tblRestaurantUser">
+      <End Role="tblRestaurantUser" EntitySet="tblRestaurantUsers" />
+      <End Role="tblRestaurantUserModule" EntitySet="tblRestaurantUserModules" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="RestaurantModel.AspNetUserRoles">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="tblRestaurantUserView" Association="RestaurantModel.tblRestaurantUserView">
+      <End Role="tblRestaurantUserModule" EntitySet="tblRestaurantUserModules" />
+      <End Role="tblView" EntitySet="tblViews" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="RestaurantModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="RestaurantModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="RestaurantModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="UserFullName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="RestaurantModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="RestaurantModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+    <NavigationProperty Name="tblRestaurantUsers" Relationship="RestaurantModel.FK_tbllRestaurantUser_AspNetUsers" FromRole="AspNetUser" ToRole="tblRestaurantUser" />
+    <NavigationProperty Name="AspNetRoles" Relationship="RestaurantModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+  </EntityType>
+  <EntityType Name="tblModule">
+    <Key>
+      <PropertyRef Name="module_id" />
+    </Key>
+    <Property Name="module_id" Type="Decimal" Nullable="false" Precision="9" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="module_name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblRestaurantModules" Relationship="RestaurantModel.FK_tbllRestaurantModule_tblModule" FromRole="tblModule" ToRole="tblRestaurantModule" />
+  </EntityType>
+  <EntityType Name="tblRestaurantInformation">
+    <Key>
+      <PropertyRef Name="Restaurant_id" />
+    </Key>
+    <Property Name="Restaurant_id" Type="Decimal" Nullable="false" Precision="9" Scale="0" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="short_name" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="reg_Number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="initial_date" Type="DateTime" Precision="3" />
+    <Property Name="trec_number" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblRestaurantModules" Relationship="RestaurantModel.FK_tbllRestaurantModule_tblRestaurantInformation" FromRole="tblRestaurantInformation" ToRole="tblRestaurantModule" />
+    <NavigationProperty Name="tblRestaurantUsers" Relationship="RestaurantModel.FK_tbllRestaurantUser_tbllRestaurantInformation" FromRole="tblRestaurantInformation" ToRole="tblRestaurantUser" />
+  </EntityType>
+  <EntityType Name="tblRestaurantModule">
+    <Key>
+      <PropertyRef Name="Restaurant_id" />
+      <PropertyRef Name="module_id" />
+    </Key>
+    <Property Name="Restaurant_id" Type="Decimal" Nullable="false" Precision="9" Scale="0" />
+    <Property Name="module_id" Type="Decimal" Nullable="false" Precision="9" Scale="0" />
+    <NavigationProperty Name="tblModule" Relationship="RestaurantModel.FK_tbllRestaurantModule_tblModule" FromRole="tblRestaurantModule" ToRole="tblModule" />
+    <NavigationProperty Name="tblRestaurantInformation" Relationship="RestaurantModel.FK_tbllRestaurantModule_tblRestaurantInformation" FromRole="tblRestaurantModule" ToRole="tblRestaurantInformation" />
+    <NavigationProperty Name="tblRestaurantUserModules" Relationship="RestaurantModel.FK_tblRestaurantUserModule_tblRestaurantModule" FromRole="tblRestaurantModule" ToRole="tblRestaurantUserModule" />
+  </EntityType>
+  <EntityType Name="tblRestaurantUser">
+    <Key>
+      <PropertyRef Name="Restaurant_id" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="Restaurant_id" Type="Decimal" Nullable="false" Precision="9" Scale="0" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="is_admin" Type="Decimal" Nullable="false" Precision="1" Scale="0" />
+    <Property Name="is_loggedIn" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="last_logged_time" Type="DateTime" Precision="3" />
+    <Property Name="approve_by" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="approve_date" Type="Decimal" Precision="9" Scale="0" />
+    <NavigationProperty Name="AspNetUser" Relationship="RestaurantModel.FK_tbllRestaurantUser_AspNetUsers" FromRole="tblRestaurantUser" ToRole="AspNetUser" />
+    <NavigationProperty Name="tblRestaurantInformation" Relationship="RestaurantModel.FK_tbllRestaurantUser_tbllRestaurantInformation" FromRole="tblRestaurantUser" ToRole="tblRestaurantInformation" />
+    <NavigationProperty Name="tblRestaurantUserModules" Relationship="RestaurantModel.FK_tblRestaurantUserModule_tblRestaurantUser" FromRole="tblRestaurantUser" ToRole="tblRestaurantUserModule" />
+  </EntityType>
+  <EntityType Name="tblRestaurantUserModule">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="Restaurant_id" />
+      <PropertyRef Name="module_id" />
+    </Key>
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Restaurant_id" Type="Decimal" Nullable="false" Precision="9" Scale="0" />
+    <Property Name="module_id" Type="Decimal" Nullable="false" Precision="9" Scale="0" />
+    <NavigationProperty Name="tblRestaurantModule" Relationship="RestaurantModel.FK_tblRestaurantUserModule_tblRestaurantModule" FromRole="tblRestaurantUserModule" ToRole="tblRestaurantModule" />
+    <NavigationProperty Name="tblRestaurantUser" Relationship="RestaurantModel.FK_tblRestaurantUserModule_tblRestaurantUser" FromRole="tblRestaurantUserModule" ToRole="tblRestaurantUser" />
+    <NavigationProperty Name="tblViews" Relationship="RestaurantModel.tblRestaurantUserView" FromRole="tblRestaurantUserModule" ToRole="tblView" />
+  </EntityType>
+  <EntityType Name="tblView">
+    <Key>
+      <PropertyRef Name="view_id" />
+    </Key>
+    <Property Name="view_id" Type="Decimal" Nullable="false" Precision="9" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="module_id" Type="Decimal" Nullable="false" Precision="9" Scale="0" />
+    <Property Name="view_name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="router_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="action_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="area_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblRestaurantUserModules" Relationship="RestaurantModel.tblRestaurantUserView" FromRole="tblView" ToRole="tblRestaurantUserModule" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Type="RestaurantModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="RestaurantModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaim">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Type="RestaurantModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="RestaurantModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogin">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbllRestaurantUser_AspNetUsers">
+    <End Type="RestaurantModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="RestaurantModel.tblRestaurantUser" Role="tblRestaurantUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblRestaurantUser">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbllRestaurantModule_tblModule">
+    <End Type="RestaurantModel.tblModule" Role="tblModule" Multiplicity="1" />
+    <End Type="RestaurantModel.tblRestaurantModule" Role="tblRestaurantModule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblModule">
+        <PropertyRef Name="module_id" />
+      </Principal>
+      <Dependent Role="tblRestaurantModule">
+        <PropertyRef Name="module_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbllRestaurantModule_tblRestaurantInformation">
+    <End Type="RestaurantModel.tblRestaurantInformation" Role="tblRestaurantInformation" Multiplicity="1" />
+    <End Type="RestaurantModel.tblRestaurantModule" Role="tblRestaurantModule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRestaurantInformation">
+        <PropertyRef Name="Restaurant_id" />
+      </Principal>
+      <Dependent Role="tblRestaurantModule">
+        <PropertyRef Name="Restaurant_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbllRestaurantUser_tbllRestaurantInformation">
+    <End Type="RestaurantModel.tblRestaurantInformation" Role="tblRestaurantInformation" Multiplicity="1" />
+    <End Type="RestaurantModel.tblRestaurantUser" Role="tblRestaurantUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRestaurantInformation">
+        <PropertyRef Name="Restaurant_id" />
+      </Principal>
+      <Dependent Role="tblRestaurantUser">
+        <PropertyRef Name="Restaurant_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblRestaurantUserModule_tblRestaurantModule">
+    <End Type="RestaurantModel.tblRestaurantModule" Role="tblRestaurantModule" Multiplicity="1" />
+    <End Type="RestaurantModel.tblRestaurantUserModule" Role="tblRestaurantUserModule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRestaurantModule">
+        <PropertyRef Name="Restaurant_id" />
+        <PropertyRef Name="module_id" />
+      </Principal>
+      <Dependent Role="tblRestaurantUserModule">
+        <PropertyRef Name="Restaurant_id" />
+        <PropertyRef Name="module_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblRestaurantUserModule_tblRestaurantUser">
+    <End Type="RestaurantModel.tblRestaurantUser" Role="tblRestaurantUser" Multiplicity="1" />
+    <End Type="RestaurantModel.tblRestaurantUserModule" Role="tblRestaurantUserModule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRestaurantUser">
+        <PropertyRef Name="Restaurant_id" />
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tblRestaurantUserModule">
+        <PropertyRef Name="Restaurant_id" />
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Type="RestaurantModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+    <End Type="RestaurantModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+  </Association>
+  <Association Name="tblRestaurantUserView">
+    <End Type="RestaurantModel.tblRestaurantUserModule" Role="tblRestaurantUserModule" Multiplicity="*" />
+    <End Type="RestaurantModel.tblView" Role="tblView" Multiplicity="*" />
+  </Association>
+</Schema>

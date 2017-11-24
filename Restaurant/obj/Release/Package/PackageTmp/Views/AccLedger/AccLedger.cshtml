@@ -1,0 +1,105 @@
+﻿@{
+    Layout = null;
+}
+<div class="row-fluid" ng-init="ForLoginSuccess()">
+    <div class="box bornomala span8">
+        <div class="box-header">
+            <h2><i class="halflings-icon tasks"></i><span class="break"></span>Ledger</h2>
+        </div>
+        <div class="box-content" style="height: 450px;">
+            <form class="form-horizontal" name="accLedgerForm" ng-submit="saveLedger()" novalidate>
+
+                <div class="form-group">
+                    <label class="control-label"> New Ledger Name </label>
+                    <div class="controls">
+                        <input type="text" name="ledgerName" class="form-control input-sm" data-ng-model="accLedger.LedgerName" required />
+                    </div>
+                </div> <br />
+
+                <div class="form-group">
+                    <label class="control-label"> ledger Code </label>
+                    <div class="controls">
+                        <input type="text" name="ledgerCode" class="form-control input-sm" data-ng-model="accLedger.LedgerCode" required />
+                    </div>
+                </div> <br />
+
+                <div class="form-group" ng-init="loadGroupList()">
+                    <label class="control-label"> Under Which Group </label>
+                    <div class="controls">
+                        <select name="accountGroup" ng-model="accLedger.GroupID" ng-options="accGroup.GroupID as accGroup.GroupName for accGroup in AccGroupList" required>
+                            <option value="" selected>Select
+                            <option>
+                        </select>
+                    </div>
+                </div> <br/>
+
+                <div class="form-group" ng-init="loadBalanceType()">
+                    <label class="control-label"> Opening Balance </label>
+                    <div class="controls">
+                        <input type="text" name="openingBalance" class="form-control input-sm span3" data-ng-model="accLedger.InitialBalance" required positive-numbers-only />
+                        &nbsp;   &nbsp;    &nbsp;
+                        <select ng-model="accLedger.BalanceType" name="balanceType" class="span2" ng-options="balanceType.Value as balanceType.Text for balanceType in balanceTypeList" required>
+                            <option value="" selected>Type
+                            <option>
+                        </select>
+                    </div>
+                </div> <br />
+
+
+                <div class="form-group">
+                    <label class="control-label"> Narration </label>
+                    <div class=" controls">
+                        <textarea rows="4" cols="50" ng-model="accLedger.Comment"></textarea>
+                    </div>
+                </div><br />
+
+                <div class="form-group">
+                    <div class=" controls">
+                        <input type="submit" class="btn btn-primary" value={{button}} />
+                        <input type="submit" ng-show="isUpdate" class="btn btn-primary" value="Cancel Update" ng-click="cancelUpdate()" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div><!--/span-->
+
+
+    <div class="box bornomala span4" >
+        <div class="box-header">
+            <h2>
+                <i class="halflings-icon tasks"></i><span class="break"></span>Show Ledger
+            </h2>
+        </div>
+        <div class="box-content" ng-init="loadAllLedger()" style="height: 450px;   overflow-y: scroll; ">
+            <table class="table table-striped table-bordered" st-table="Ledgers" st-safe-src="LedgerList">
+                <thead>
+                    <tr>
+                        <th colspan="5"><input st-search="" class="form-control" placeholder="Search" type="text" /></th>
+                    </tr>
+                <tr>
+                    <th st-sort="LedgerName">Ledger Name</th>
+                    <th>Edit</th>
+                </tr>
+                </thead>
+                <tbody>
+                
+                <tr ng-repeat="row in Ledgers">
+                    <td>
+                        {{row.LedgerName}}
+                    </td>
+
+                    <td>
+                        <a class="btn btn-info" ng-click="editViewCalled(row)">
+                            <i class="halflings-icon white edit"></i>
+                        </a>
+                    </td>
+
+
+                </tr>
+                </tbody>
+            </table>
+        </div><!--/row-->
+    </div>
+
+ </div>
+

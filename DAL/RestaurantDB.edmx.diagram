@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8638f3d7f2914b848a50aaa05ff6f488" Name="Diagram1" ZoomLevel="94">
+        <EntityTypeShape EntityType="RestaurantDBModel.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="2.625" />
+        <EntityTypeShape EntityType="RestaurantDBModel.acc_CashFlow_Type" Width="1.5" PointX="0.75" PointY="7.625" />
+        <EntityTypeShape EntityType="RestaurantDBModel.acc_CashFlowGroup" Width="1.5" PointX="5.75" PointY="5.625" />
+        <EntityTypeShape EntityType="RestaurantDBModel.acc_CashFlowMapping" Width="1.5" PointX="7.75" PointY="2.625" />
+        <EntityTypeShape EntityType="RestaurantDBModel.acc_Chart_of_Account_Maping" Width="1.5" PointX="7.75" PointY="5.625" />
+        <EntityTypeShape EntityType="RestaurantDBModel.acc_Group" Width="1.5" PointX="17.75" PointY="21.75" />
+        <EntityTypeShape EntityType="RestaurantDBModel.acc_Group_Maping" Width="1.5" PointX="20" PointY="21.625" />
+        <EntityTypeShape EntityType="RestaurantDBModel.acc_Ledger" Width="1.5" PointX="20" PointY="25" />
+        <EntityTypeShape EntityType="RestaurantDBModel.acc_Nature" Width="1.5" PointX="9.75" PointY="2.625" />
+        <EntityTypeShape EntityType="RestaurantDBModel.acc_Subsidiary" Width="1.5" PointX="22.25" PointY="22.125" />
+        <EntityTypeShape EntityType="RestaurantDBModel.acc_SubsidiaryVoucherDetail" Width="1.5" PointX="24.5" PointY="25.75" />
+        <EntityTypeShape EntityType="RestaurantDBModel.acc_tbl_Group_MIS" Width="1.5" PointX="17.75" PointY="19.125" />
+        <EntityTypeShape EntityType="RestaurantDBModel.acc_tbl_MIS" Width="1.5" PointX="0.75" PointY="10.625" />
+        <EntityTypeShape EntityType="RestaurantDBModel.acc_VoucherDetail" Width="1.5" PointX="22.25" PointY="25.125" />
+        <EntityTypeShape EntityType="RestaurantDBModel.acc_VoucherEntry" Width="1.5" PointX="20" PointY="31.25" />
+        <EntityTypeShape EntityType="RestaurantDBModel.acc_VoucherType" Width="1.5" PointX="17.75" PointY="32" />
+        <EntityTypeShape EntityType="RestaurantDBModel.AspNetRole" Width="1.5" PointX="10.75" PointY="9.125" />
+        <EntityTypeShape EntityType="RestaurantDBModel.AspNetUserClaim" Width="1.5" PointX="15.25" PointY="12.375" />
+        <EntityTypeShape EntityType="RestaurantDBModel.AspNetUserLogin" Width="1.5" PointX="15.25" PointY="19.125" />
+        <EntityTypeShape EntityType="RestaurantDBModel.AspNetUser" Width="1.5" PointX="13" PointY="7.75" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblAction" Width="1.5" PointX="16" PointY="15.5" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblChalanReport" Width="1.5" PointX="8.75" PointY="11.625" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblDesignation" Width="1.5" PointX="0.75" PointY="3.375" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblEmployeeInformation" Width="1.5" PointX="3" PointY="2.875" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblGroupAndShiftMapping" Width="1.5" PointX="10.75" PointY="13.625" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblGroupForShift" Width="1.5" PointX="12.75" PointY="15.625" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblMeasurementUnit" Width="1.5" PointX="18.75" PointY="12.625" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblModule" Width="1.5" PointX="13" PointY="22.375" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblOtherExpense" Width="1.5" PointX="6" PointY="17.75" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblPHtoSPProductTransfer" Width="1.5" PointX="5.25" PointY="22.875" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblProductEntryToProductionHouse" Width="1.5" PointX="5.25" PointY="13" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblProductFromSupplier" Width="1.5" PointX="19.75" PointY="16.625" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblProductInformation" Width="1.5" PointX="3" PointY="17.375" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblProductionHouseInformation" Width="1.5" PointX="3" PointY="13.125" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblProductionHouseToProductMapping" Width="1.5" PointX="5.25" PointY="31.375" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblProductSold" Width="1.5" PointX="20.75" PointY="8.625" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblProductTransfer" Width="1.5" PointX="8.25" PointY="17.375" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblProductType" Width="1.5" PointX="0.75" PointY="13.5" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblRestaurantInformation" Width="1.5" PointX="13" PointY="3.125" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblRestaurantModule" Width="1.5" PointX="15.25" PointY="22.5" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblRestaurantUser" Width="1.5" PointX="15.25" PointY="7" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblRestaurantUserModule" Width="1.5" PointX="17.5" PointY="4.375" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblRestaurantUserView" Width="1.5" PointX="19.75" PointY="4.375" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblSellsPoint" Width="1.5" PointX="3" PointY="26.375" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblShift" Width="1.5" PointX="3.75" PointY="9.25" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblStoreInformation" Width="1.5" PointX="0.75" PointY="17.5" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblSupplierInformation" Width="1.5" PointX="21.75" PointY="2.625" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblSuppliersProduct" Width="1.5" PointX="5.25" PointY="35" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblTotalAmount" Width="1.5" PointX="6" PointY="9.75" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblUserActionMapping" Width="1.5" PointX="18.25" PointY="8.25" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblView" Width="1.5" PointX="17.5" PointY="0.75" />
+        <EntityTypeShape EntityType="RestaurantDBModel.tblPurchaseProductUnitPrice" Width="1.5" PointX="9.75" PointY="6.625" />
+        <AssociationConnector Association="RestaurantDBModel.FK_acc_Group_acc_Group" />
+        <AssociationConnector Association="RestaurantDBModel.FK_acc_Group_Maping_acc_Group" />
+        <AssociationConnector Association="RestaurantDBModel.FK_acc_Ledger_acc_Group" />
+        <AssociationConnector Association="RestaurantDBModel.FK_acc_Group_Maping_acc_tbl_Group_MIS" />
+        <AssociationConnector Association="RestaurantDBModel.FK_acc_LedgerDetail_acc_Ledger" />
+        <AssociationConnector Association="RestaurantDBModel.FK_acc_SubsidiaryVoucherDetail_acc_Subsidiary" />
+        <AssociationConnector Association="RestaurantDBModel.FK_acc_SubsidiaryVoucherDetail_acc_SubsidiaryVoucherDetail" />
+        <AssociationConnector Association="RestaurantDBModel.FK_acc_VoucherDetail_acc_VoucherEntry" />
+        <AssociationConnector Association="RestaurantDBModel.FK_acc_VoucherEntry_acc_VoucherType" />
+        <AssociationConnector Association="RestaurantDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="RestaurantDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tbllRestaurentUser_AspNetUsers" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tblUserActionMapping_AspNetUsers" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tblAction_tblModule" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tblUserActionMapping_tblAction" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tblEmployeeInformation_tblDesignation" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tbllRestaurentModule_tblModule" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tblOtherExpense_tblSellsPoint" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tblOtherExpense_tblShift" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tblPHtoSPProductTransfer_tblProductInformation" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tblPHtoSPProductTransfer_tblProductionHouseInformation" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tblPHtoSPProductTransfer_tblSellsPoint" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tblPHtoSPProductTransfer_tblShift" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tblProductEntryToProductionHouse_tblProductInformation" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tblProductEntryToProductionHouse_tblProductionHouseInformation" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tblProductInformation_tblProductType" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tblProductInformation_tblStoreInformation1" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tblProductionHouseToProductMapping_tblProductInformation" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tblProductTransfer_tblProductInformation" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tblSuppliersProduct_tblProductInformation" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tblProductTransfer_tblStoreInformation" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tbllRestaurentModule_tblRestaurentInformation" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tbllRestaurentUser_tbllRestaurentInformation" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tblRestaurentUserModule_tblRestaurentModule" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tblRestaurentUserModule_tblRestaurentUser" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tblRestaurentUserView_tblRestaurentUserModule" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tblRestaurentUserView_tblView" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tblSellsPoint_tblStoreInformation" />
+        <AssociationConnector Association="RestaurantDBModel.FK_tblTotalAmount_tblShift" />
+        <AssociationConnector Association="RestaurantDBModel.AspNetUserRoles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

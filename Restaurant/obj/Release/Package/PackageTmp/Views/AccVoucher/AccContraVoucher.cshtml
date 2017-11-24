@@ -1,0 +1,133 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div class="row-fluid" ng-controller="AccContraVoucherController" ng-init="ForLoginSuccess()">
+    <div class="box bornomala span8">
+        <div class="box-header">
+            <h2><i class="halflings-icon tasks"></i><span class="break"></span>Contra Voucher</h2>
+        </div>
+        <div class="box-content" ng-init="GetContraLadgerList()">
+
+            <div class="box-content">
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <td rowspan="3"> <label align="right"> Voucher No </label></td>
+                        <td ng-init="GetContraVoucherNumber()"> <input ng-model="ContraVoucherEntry.VNumber" value="{{ContraVoucherEntry.VNumber}}" readonly /></td>
+                        <td><label align="right"> Transaction Date </label> </td>
+                        <td><label><input value="&nbsp;{{ContraVoucherEntry.TransactionDate| date:'fullDate'}}" readonly /></label> </td>
+                    </tr>
+                </table>
+            </div> <!-- box content end -->
+
+            <form class="form-horizontal" name="AccContraVoucherForm" ng-submit="SaveContraVoucher()" ng-init="">
+                <div class="box-content" ng-init="">
+                    <div class="box-content">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Dr/Cr</th>
+                                    <th>Select Ladger</th>
+                                    <th>Chq./Desc.</th>
+                                    <th>Debit</th>
+                                    <th>Credit</th>
+                                    <th>Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="ContraVoucherDetails in choices">
+                                    <td>
+                                        <input type="submit" class="btn btn-primary" value="{{ContraVoucherDetails.DrCrButton}}" data-ng-click="DrCrButtonClick($index)" />
+                                    </td>
+                                    <td>
+                                        <select ng-model="ContraVoucherDetails.LedgerID" class="form-control selectpicker" ng-options="x.LedgerID as x.LedgerName for x in LadgerList" required enter-as-tab>
+                                            <option value="">Select Ladger</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input class="span12" type="text" ng-model="ContraVoucherDetails.ChequeNumber" required enter-as-tab>
+                                    </td>
+                                    <td>
+                                        <input class="span12" type="number" ng-model="ContraVoucherDetails.Debit" ng-change="TotalDebitCalculate()" ng-disabled="ContraVoucherDetails.DrTextBox" required enter-as-tab>
+                                    </td>
+                                    <td>
+                                        <input class="span12" type="number" ng-model="ContraVoucherDetails.Credit" ng-change="TotalCreditCalculate()" ng-disabled="ContraVoucherDetails.CrTextBox" required enter-as-tab>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-danger">
+                                            <i class="icon-remove" ng-click="removeChoice($index)"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>{{TotalDebit}}</td>
+                                    <td>{{TotalCredit}}</td>
+                                    <td><button class="btn btn-primary addfields" ng-click="addNewChoice()">Add Row</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div style="margin-bottom: 10px;">
+                            {{myText}}
+                            <input type="text" class="span12" ng-model="ContraVoucherEntry.Narration" placeholder="Narration of the Contra Voucher..." />
+                        </div>
+
+                        <div align="center">
+                            <input type="submit" class="btn btn-primary" value="Save Voucher" ng-show="AddButton" />
+                            <input type="submit" class="btn btn-primary" value="Update Voucher" ng-show="UpdateButton" data-ng-click="UpdateContraVoucher()" />
+                            <input type="submit" class="btn btn-primary" value="Cancel Edit" ng-show="CancelButton" data-ng-click="CancelEdit()" />
+                        </div><br /><br />
+                        @*<div id="choicesDisplay">
+                        {{choices}}
+                        <br/>
+                    </div>*@
+                    </div>
+                </div>
+            </form>
+            <hr />
+            <div>
+            </div>
+        </div>
+    </div><!--/span-->
+    <div class="box bornomala span4" ng-init="GetAllContraVoucherList()">
+        <div class="box-header">
+            <h2>
+                <i class="halflings-icon tasks"></i><span class="break"></span>Contra Voucher List
+            </h2>
+        </div>
+        <div class="box-content" style="height:450px; overflow:auto">
+
+            <table class="table table-striped table-bordered bootstrap-datatable datatable" st-table="rowCollection" st-safe-src="ContraVoucherEntryList">
+                <thead>
+                    <tr>
+                        <th colspan="2">
+                            <input st-search="" class="form-control" placeholder="Search" type="text" />
+                        </th>
+                    </tr>
+                    <tr>
+                        <th st-sort="VNumber">Contra Voucher Name  &#9947;</th>
+                        <th style="text-align: center;">Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="x in rowCollection">
+                        <td class="center">{{x.VNumber}}</td>
+
+                        <td class="center" style="text-align: center;">
+                            <a class="btn btn-info" ng-click="EditContraVoucher(x)">
+                                <i class="halflings-icon white edit"></i>
+                            </a>
+                            <a class="iframe  btn btn-success" ng-href="/AccVoucher/ViewPdfReportForVoucher/?VoucherID={{x.VoucherID}}" fancyboxable><i class="halflings-icon white zoom-in"></i> </a>
+
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div><!--/row-->

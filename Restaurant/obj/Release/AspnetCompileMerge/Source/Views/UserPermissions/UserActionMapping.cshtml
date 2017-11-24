@@ -1,0 +1,57 @@
+﻿@{
+    Layout = null;
+}
+
+<div ng-controller="UserPermission">
+
+
+    <div class="row-fluid" ng-init="ForLoginSuccess()">
+        <div class="box bornomala span12">
+            <div class="box-header">
+                <h2><i class="halflings-icon tasks"></i><span class="break"></span>Dashboard</h2>
+            </div>
+            <div class="box-content">
+
+                <div ng-controller="UserPermissionController" ng-init="LoadInitial()">
+
+                    <form class="form-horizontal" ng-submit="" name="UserPermissionForm">
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                <label>User Name</label>
+                            </div>
+                            <div class="col-md-4">
+                                <select data-ng-model="User.user_id" class="dropdown form-control input-sm"
+                                        ng-options="user.value as user.text for user in userList" ng-change="LoadActionListForUser(User.user_id)" required enter-as-tab>
+                                    <option value="">---------------Select---------------</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                <label>Filter Menu</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="input-sm" ng-model="bagSearch" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-2"></div>
+                            <div ivh-treeview="bag"
+                                 style="max-height: 350px; overflow: auto;"
+                                 ivh-treeview-filter="bagSearch">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-4">
+                                <a ng-click="SaveUserPermission()" class="btn btn-default">Save</a>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+        </div> 
+    </div>
+</div> 
+    </div>

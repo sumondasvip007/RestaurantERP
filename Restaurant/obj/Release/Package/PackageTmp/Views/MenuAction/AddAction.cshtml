@@ -1,0 +1,69 @@
+﻿@{
+    Layout = null;
+}
+
+
+<div class="row-fluid" ng-init="ForLoginSuccess()">
+    <div class="box bornomala span12">
+        <div class="box-header">
+            <h2><i class="halflings-icon tasks"></i><span class="break"></span>Add Action</h2>
+        </div>
+        <div class="box-content">
+            <form class="form-horizontal" name="ActionForm" ng-submit="addAction()">
+                <div ng-controlle=" addactionmenucontroller" ng-init="initialize();">
+                <div class="row">
+                    <div class="span12">
+
+                        <div class="control-group">
+                            <label class="control-label" for="name">Name</label>
+                            <div class="controls">
+                                <input id="name" type="text" ng-model="name" required>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="display_name">Display Name</label>
+                            <div class="controls">
+                                <input type="text" id="display_name" ng-model="display_name" required>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="url">Url</label>
+                            <div class="controls">
+                                <input id="name" type="text" ng-model="url" required>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="display_name">Module</label>
+                            <div class="controls">
+                                <select ng-model="ui_module_id" required>
+                                    <option value=""> select </option>
+                                    <option ng-repeat="m in modules" value="{{m.module_id}}">{{m.module_name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <label class="checkbox inline">
+                                    <input type="checkbox" id="inlineCheckbox1" ng-model="is_in_menu" value="option1"> Is In Menu
+                                </label>
+                                <label class="checkbox inline">
+                                    <input type="checkbox" id="inlineCheckbox2" ng-model="is_view" value="option2"> Is View
+                                </label>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <button class="button success btn btn-primary" @*ng-click="addAction()*@;"><span class="mif-checkmark"></span> Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+</div>
+            </form>
+        </div>
+
+    </div><!--/span-->
+
+</div><!--/row-->

@@ -1,0 +1,62 @@
+﻿@{
+    Layout = null;
+}
+
+<div ng-controller="productionHouse">
+    <div>
+        <div class="row-fluid" ng-init="ForLoginSuccess()">
+            <div class="box bornomala span12">
+                <div class="box-header">
+                    <h2>
+                        <i class="halflings-icon tasks"></i><span class="break"></span>Production House
+                    </h2>
+                </div>
+                <div class="box-content">
+                    <!-- code strat  here-->
+                    <div class="box-content">
+                        <form class="form-horizontal" name="productionHouseform" ng-submit="AddnewProductionHouse()" novalidate>
+                            <!-- Input Product House Name -->
+                            <div class="control-group">
+                                <label class="control-label">Production House Name</label>
+                                <div class="controls">
+                                    <input type="text" name="ProductionHouseName" ng-model="ProductionHouse.ProductionHouseName" required>
+                                </div>
+                            </div>
+                            <!-- for edit option -->
+                            <input type="hidden" ng-model="ProductionHouse.ProductionHouseId" />
+                            <input type="hidden" ng-model="oldProductionHouse.oldMainStore" />
+                            <input type="hidden" ng-model="oldProductionHouse.oldOwnStore" />
+
+                            <!-- Get All Main Store by [isProductionHouseStore] -->
+                            <div class="control-group" ng-init="GetAllMainstore()">
+                                <label class="control-label" for="selectError3">Main Store</label>
+                                <div class="controls">
+                                    <select id="selectError3" name="mainstore" ng-model="ProductionHouse.MainStore" ng-options="x.store_id as x.store_name for x in mainStore" required></select>
+
+                                </div>
+                            </div>
+
+                            <!-- Get All Own Store by [isProductionHouseStore] -->
+                            <div class="control-group">
+                                <label class="control-label" for="selectError3">Own Store</label>
+                                <div class="controls">
+                                    <select id="selectError3" name="ownStore" ng-model="ProductionHouse.OwnStore" ng-options="x.store_id as  x.store_name for x in OwnStore" required>
+                                        <option ng-model="data"> Selete a Own Store </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="controls">
+                                <button class="button success btn btn-primary">{{Button}}</button>
+                                <a ng-href="#/ShowProductionHouse" ng-show="isUpdate"><button class="button success btn btn-primary">Cancel Update </button></a>
+                            </div>
+
+                        </form>
+                    </div> <!-- box content end -->
+                </div><!--/span-->
+                <!-- code end here-->
+            </div>
+        </div><!--/span-->
+
+    </div><!--/row-->
+</div>
+

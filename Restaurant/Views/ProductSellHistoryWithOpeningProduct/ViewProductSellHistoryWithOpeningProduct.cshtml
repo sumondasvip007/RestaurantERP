@@ -1,0 +1,175 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<div class="row-fluid" ng-init="ForLoginSuccess()">
+    <div class="box bornomala span12">
+        <div class="box-header">
+            <h2><i class="halflings-icon tasks"></i><span class="break"></span>Product Sell History With Opening Product</h2>
+        </div>
+        <div class="box-content" ng-controller="ProductSellHistoryWithOpeningProductController">
+
+            <form class="form-horizontal" name="ProductSellHistoryWithOpeningProductForm">
+                <div class="form-group" ng-init="GetAllSellsPoint()">
+                    <label class="control-label">Sells Point</label>
+                    <div class="controls">
+                        <select ng-model="sellspoint" class="form-control selectpicker" name="Sellspoint" ng-options="x.store_id as x.store_name for x in sellsPointList" ng-click="SellspointClick()" required enter-as-tab>
+                            <option value="">Select Sells Point</option>
+                        </select>
+                    </div>
+                </div>
+                <br />
+                @*<div class="control-group">
+                    <label class="control-label">Select Group</label>
+                    <div class="controls" ng-init="getGroups()">
+                        <select ng-model="GroupId" class="form-control selectpicker" name="GroupId"
+                                ng-options="x.GroupId as x.GroupName for x in groupList" required enter-as-tab>
+                            <option value="">--Select Group--</option>
+                        </select>
+                    </div>
+                </div>*@
+
+                <div class="control-group">
+                    <label class="control-label">Select Shift</label>
+                    <div class="controls" ng-init="getShifts()">
+                        <select ng-model="ShiftId" class="form-control selectpicker" name="ShiftId"
+                                ng-options="x.ShiftId as x.ShiftName for x in shiftList" required enter-as-tab>
+                            <option value="">--Select Shift--</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="datepicker1">Date </label>
+                    <div class="controls">
+                        <div style=" width: 200px;">
+                            <datepicker date-format="MM/dd/yyyy" selector="form-control">
+                                <input class="form-control" ng-model="FromDate" placeholder="Choose a date" readonly required enter-as-tab />
+                            </datepicker>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- To date -->
+                @*<div class="control-group">
+                        <label class="control-label" for="datepicker1">To Date </label>
+                        <div class="controls">
+                            <div style="width: 200px;">
+                                <datepicker date-format="MM/dd/yyyy" selector="form-control">
+                                    <input class="form-control" ng-model="ToDate" placeholder="Choose a date" readonly required enter-as-tab />
+                                </datepicker>
+                            </div>
+                        </div>
+                    </div>*@
+                <div class="form-group">
+                    <div class=" controls">
+
+                        <input type="submit" class="btn btn-primary" value="Search" data-ng-click="GetSellsPointProductQuantityList()" />
+                        &nbsp; &nbsp;
+                        <input type="submit" class="btn btn-primary" value="Generate Report" ng-show="reportButton" data-ng-click="GenerateReportForSearchResult()" />
+                        &nbsp; &nbsp;
+
+                        <a id="fbplus_01" class="iframe btn btn-primary" ng-href="/ProductSellHistoryWithOpeningProduct/ViewPdfReportForSearchResult/?storeId={{sellspoint}}&shiftId={{ShiftId}}&fromDate={{FromDate}}" ng-show="reportButton" fancyboxable>View Report</a>
+                    </div>
+                </div>
+
+                <br />
+
+                <table class="table table-striped table-bordered bootstrap-datatable datatable" st-table="rowCollection" st-safe-src="sellsPointProductList" ng-init="GetSellsPointProductList()">
+                    <thead>
+
+                        <tr>
+                            <th colspan="11">
+                                Record Per pages:
+                                <select ng-model="itemsByPage" ng-options="item for item in itemsPerPage"></select>
+                                <div style="float: right;text-align: right;">  Search:<input st-search="" class="form-control" placeholder="global search ..." type="text" /></div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th st-sort="ProductName">Product Name</th>
+                            <th st-sort="OpeningProduct">Opening Product</th>
+                            <th st-sort="InProduct">Issue</th>
+                            <th st-sort="TotalProduct">Total Product</th>
+                            <th st-sort="SellProduct">Sell Product</th>
+                            <th st-sort="ClosingProduct">Closing Product</th>
+                            <th st-sort="Unit">Unit</th>
+                            <th st-sort="ProductionCost">Production Cost</th>
+                            <th st-sort="TotalProductionCost">Total Production Cost</th>
+                            <th st-sort="UnitPrice">Unit Price</th>
+                            @*<th st-sort="Quantity">Quantity</th>*@
+                            <th st-sort="TotalPrice">Total Sell Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="row in rowCollection">
+                            <td class="center">{{row.ProductName}}</td>
+                            <td class="center">{{row.OpeningProduct}}</td>
+                            <td class="center">{{row.InProduct}}</td>
+                            <td class="center">{{row.TotalProduct}}</td>
+                            <td class="center">{{row.SellProduct}}</td>
+                            <td class="center">{{row.ClosingProduct}}</td>
+                            <td class="center">{{row.Unit}}</td>
+                            <td class="center" style="text-align: right">{{row.ProductionCost| number:2}}</td>
+                            <td class="center" style="text-align: right">{{row.TotalProductionCost| number:2}}</td>
+                            <td class="center" style="text-align: right">{{row.UnitPrice | number:2}}</td>
+                            @*<td class="center">{{row.Quantity}}</td>*@
+                            <td class="center" style="text-align: right">{{row.TotalPrice | number:2}}</td>
+                        </tr>
+                    <tr>
+                        <td style="text-align: right" colspan="8"><b>@*Total Production Cost Amount*@</b></td>
+                        <td ng-init="totalAmount=0" style="text-align: right; color: green">{{totalProductionCostAmount | number:2}}</td>
+                        <td style="text-align: right" colspan="1"><b>@*Total Sell Amount*@</b></td>
+                        <td ng-init="totalAmount=0" style="text-align: right; color: green">{{totalAmount | number:2}}</td>
+                    </tr>
+                        <tr>
+                            <td style="text-align: right" colspan="11"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right" colspan="10"><b>Less</b></td>
+                            <td ng-init="less=0" style="text-align: right">{{less | number:2}}</td>
+                        </tr>
+                    <tr>
+                        <td style="text-align: right" colspan="10"><b>Due</b></td>
+                        <td ng-init="due=0" style="text-align: right">{{due | number:2}}</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right" colspan="10"><b>Compliment</b></td>
+                        <td ng-init="complimen=0" style="text-align: right">{{complimen | number:2}}</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right" colspan="10"><b>Damage</b></td>
+                        <td ng-init="damage=0" style="text-align: right">{{damage | number:2}}</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right" colspan="10"><b>total Other Expense</b></td>
+                        <td ng-init="totalOtherExpense=0" style="text-align: right; color: green">{{totalOtherExpense | number:2}}</td>
+                    </tr>
+                        <tr>
+                            <td style="text-align: right" colspan="11"></td>
+                        </tr>
+                    <tr>
+                        <td style="text-align: right" colspan="10"><b>Net Cash</b></td>
+                        <td ng-init="netCash=0" style="text-align: right; color: green">{{netCash | number:2}}</td>
+                    </tr>
+
+
+                        <toaster-container toaster-options="{'time-out': 1000}"></toaster-container>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="11" class="text-center">
+                                <div class="pagination pagination-centered">
+                                    <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="5"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </form>
+
+        </div> <!-- box content end -->
+    </div><!--/span-->
+    <!-- code end here-->
+</div>

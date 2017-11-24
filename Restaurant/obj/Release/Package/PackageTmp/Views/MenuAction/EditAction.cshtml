@@ -1,0 +1,77 @@
+﻿@{
+    Layout = null;
+}
+
+
+<div class="row-fluid" ng-init="ForLoginSuccess()">
+    <div class="box bornomala span12">
+        <div class="box-header">
+            <h2><i class="halflings-icon tasks"></i><span class="break"></span>Edit Action</h2>
+        </div>
+        <div class="box-content">
+            <div ng-controlle="editActionController" ng-init="initialize();">
+
+                <form class="form-horizontal">
+                    <div class="row">
+                        <div class="span12">
+
+                            <div class="control-group">
+                                <label class="control-label" for="name">Name</label>
+                                <div class="controls">
+                                    <input id="name" type="text" ng-model="actionData.name">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="display_name">Display Name</label>
+                                <div class="controls">
+                                    <input type="text" id="display_name" ng-model="actionData.display_name">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="display_name">URL</label>
+                                <div class="controls">
+                                    <input type="text" id="url" ng-model="actionData.url">
+                                </div>
+                                
+                            </div>
+                            @*<div class="control-group">
+                                <label class="control-label" for="display_name">Module</label>
+                                <div class="controls">
+                                    <select ng-model="actionData.module">
+
+                                        <option ng-repeat="m in modules" ng-selected="actionData.ui_module_id == m.module_id" value="{{m.module_id}}">{{m.module_name}}</option>
+                                    </select>
+                                </div>
+                            </div>*@
+                            <div class="form-group" >
+                                <label class="control-label">Module</label>
+                                <div class="controls">
+                                    <select ng-model="actionData.ui_module_id" ng-init="actionData.module" class="form-control selectpicker" ng-options="x.module_id as x.module_name for x in modules" required enter-as-tab>
+                                        <option value="">Select Module</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <label class="checkbox inline">
+                                        <input type="checkbox" id="inlineCheckbox1" ng-model="actionData.is_in_menu"> Is In Menu
+                                       
+                                    </label>
+                                    <label class="checkbox inline">
+                                        <input type="checkbox" id="inlineCheckbox2" ng-model="actionData.is_view"> Is View
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <button class="button success btn btn-primary" ng-click="updateAction();"><span class="mif-checkmark"></span> Update</button>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div><!--/span-->

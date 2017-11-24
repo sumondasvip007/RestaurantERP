@@ -1,0 +1,11 @@
+F:\New folder\RestaurantERP\DAL\obj\Debug\Fakes\ef\b\EntityFramework.Fakes.xml
+F:\New folder\RestaurantERP\DAL\obj\Debug\Fakes\ef\b\EntityFramework.Fakes.dll
+F:\New folder\RestaurantERP\DAL\obj\Debug\Fakes\ef\b\EntityFramework.Fakes.pdb
+F:\New folder\RestaurantERP\DAL\obj\Debug\Fakes\ef\b\EntityFramework.dll
+F:\New folder\RestaurantERP\DAL\obj\Debug\Fakes\ef\b\EntityFramework.SqlServer.dll
+F:\New folder\RestaurantERP\DAL\obj\Debug\Fakes\ef\b\Microsoft.QualityTools.Testing.Fakes.dll
+F:\New folder\RestaurantERP\DAL\obj\Debug\Fakes\ef\b\EntityFramework.xml
+F:\New folder\RestaurantERP\DAL\obj\Debug\Fakes\ef\b\EntityFramework.SqlServer.xml
+F:\New folder\RestaurantERP\DAL\obj\Debug\Fakes\ef\o\f.csprojResolveAssemblyReference.cache
+F:\New folder\RestaurantERP\DAL\obj\Debug\Fakes\ef\o\EntityFramework.Fakes.dll
+F:\New folder\RestaurantERP\DAL\obj\Debug\Fakes\ef\o\EntityFramework.Fakes.pdb

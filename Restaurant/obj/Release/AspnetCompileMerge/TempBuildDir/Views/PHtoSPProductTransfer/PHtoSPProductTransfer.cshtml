@@ -1,0 +1,109 @@
+﻿@{
+    Layout = null;
+}
+
+<div ng-controller="phtoSProductTransferController" ng-init="ForLoginSuccess()">
+    <div class="row-fluid">
+        <div class="box bornomala span12">
+            <div class="box-header">
+                <h2>
+                    <i class="halflings-icon tasks"></i><span class="break"></span>Product Transfer To SellPoint
+                </h2>
+            </div>
+            <div class="box-content">
+
+                <form class="form-horizontal" name="PHtoSPProductTransfer">
+                    <div class="form-group">
+                        <div class="control-group">
+                            <label class="control-label">Select Sells Point</label>
+                            <div class="controls" ng-init="GetSellsPointist()">
+                                <select ng-model="ddlSellsPoint.SellsPointStoreId" class="form-control selectpicker"
+                                        ng-options="x.SellsPointStoreId as x.SellsPointName for x in sellsPointList" required enter-as-tab>
+                                    <option value="">--Select Sells Point--</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Select Production House</label>
+                        <div class="controls" ng-init="GetProductionHouseList()">
+                            <select ng-model="ddlProductionHouse.ProductionHouseId" class="form-control selectpicker"
+                                    ng-options="x.ProductionHouseId as x.ProductionHouseName for x in productionHouseList"
+                                    ng-change="GetProductionHouseProductList(ddlProductionHouse.ProductionHouseId)" required enter-as-tab>
+                                <option value="">--Select Production House--</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <br />
+                    <div @*style="height:350px; overflow:auto"*@ ng-init="getUnits();">
+                        @*<p><strong>Available Product List</strong></p>*@
+                        <table class="table table-striped table-bordered bootstrap-datatable datatable" st-table="rowCollection" st-safe-src="productionHouseProductList">
+                            <thead>
+                                <tr>
+                                    <th colspan="5">
+                                        Record Per pages:
+                                        <select ng-model="itemsByPage" ng-options="item for item in itemsPerPage"></select>
+                                        <div style="float: right;text-align: right;">  Search:<input st-search="" class="form-control" placeholder="global search ..." type="text" /></div>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Select</th>
+                                    <th>Product Name</th>
+                                    <th>Transfer Quantity</th>
+                                    <th>Available Quantity </th>
+                                    <th>Unit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="ProductToStore in rowCollection" ng-init="rowIndex= $index">
+                                    <td>
+                                        <input type="checkbox" ng-model="ProductToStore.IsSelected" ng-change="createProductList(ProductToStore)" />
+                                    </td>
+                                    <td class="center">
+                                        <input type="hidden" ng-model="ProductToStore.ProductId" required />
+                                        {{ProductToStore.ProductName}}
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control"
+                                               ng-disabled="!ProductToStore.IsSelected"
+                                               ng-required="ProductToStore.Qty"
+                                               ng-model="ProductToStore.Qty[index = $index]"
+                                               ng-init="ProductToStore.Qty=''"
+                                               ng-change="checkValidation(ddlProductionHouse,ProductToStore,index,rowIndex)"
+                                               numbersonly positive-numbers-only />
+                                        <input type="hidden" ng-model="ProductToStore.Quantity"/>
+                                    </td>
+                                    <td>
+                                        {{ProductToStore.AvaliableQuatity}}
+                                    </td>
+                                    <td>
+                                        {{ProductToStore.Unit}}
+
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="5" class="text-center">
+                                        <div class="pagination pagination-centered">
+                                            <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="5"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="form-group">
+                        <div class="control-group">
+                            <input type="submit" class="btn btn-primary" value="Transfer Product" data-ng-click="SaveProductToProductionHouse()" />
+                        </div>
+                    </div>
+                    <toaster-container toaster-options="{'time-out': 1000}"></toaster-container>
+                </form>
+            </div>
+        </div><!--/span-->
+    </div>
+
+</div><!--/row-->

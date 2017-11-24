@@ -1,0 +1,9 @@
+D:\Projects\KajerChele\DLL\bin\Debug\DLL.dll.config
+D:\Projects\KajerChele\DLL\bin\Debug\DLL.dll
+D:\Projects\KajerChele\DLL\bin\Debug\DLL.pdb
+D:\Projects\KajerChele\DLL\bin\Debug\EntityFramework.dll
+D:\Projects\KajerChele\DLL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects\KajerChele\DLL\bin\Debug\EntityFramework.xml
+D:\Projects\KajerChele\DLL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Projects\KajerChele\DLL\obj\Debug\DLL.dll
+D:\Projects\KajerChele\DLL\obj\Debug\DLL.pdb

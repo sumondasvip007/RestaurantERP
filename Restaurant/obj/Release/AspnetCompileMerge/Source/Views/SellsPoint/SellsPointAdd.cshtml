@@ -1,0 +1,43 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div class="row-fluid" ng-init="ForLoginSuccess()">
+    <div class="box bornomala span12">
+        <div class="box-header">
+            <h2><i class="halflings-icon tasks"></i><span class="break"></span>Add Sells Point</h2>
+        </div>
+        <div class="box-content" ng-controller="SellsPointController">
+
+            <form class="form-horizontal" name="SellsPointAddForm" ng-init="SellsPoint">
+                <div class="form-group">
+                    <label class="control-label">Sells Point Name</label>
+                    <div class="controls">
+                        <input type="text" class="form-control input-sm" data-ng-model="SellsPoint.SellsPointName" required enter-as-tab />
+                    </div>
+                </div>
+                <br />
+                <div class="form-group" ng-init="GetStoreInformation()">
+                    <label class="control-label">Select Store</label>
+                    <div class="controls">
+                        <select ng-model="SellsPoint.SellsPointStoreId" class="form-control selectpicker" ng-options="x.StoreId as x.StoreName for x in StoreList" required enter-as-tab>
+                            <option value="">Select Store</option>
+                        </select>
+                    </div>
+                </div>
+                <br />
+
+                <br />
+                <toaster-container toaster-options="{'time-out': 1000}"></toaster-container>
+                <div class="form-group">
+                    <div class=" controls">
+
+                        <input type="submit" class="btn btn-primary" value="Add Sells Point" data-ng-click="SaveSellsPoint()" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div><!--/span-->
+
+</div><!--/row-->

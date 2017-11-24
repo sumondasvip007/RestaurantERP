@@ -1,0 +1,85 @@
+﻿@{
+    Layout = null;
+}
+
+<div ng-controller="showSuppierController" ng-init="ForLoginSuccess()">
+
+    <div class="row-fluid module_from">
+        <div class="box bornomala span12">
+            <div class="box-header">
+                <h2>
+                    <i class="halflings-icon tasks"></i><span class="break"></span>Show All Supplier Information
+                </h2>
+            </div><!-- box header -->
+            <div class="box-content">
+
+                <!-- code start here -->
+                <div ng-init="GetAllSupplier()">
+
+                    <table class="table table-striped table-bordered bootstrap-datatable datatable" st-table="a" st-safe-src="ShowAllSupplier">
+
+
+                        <thead>
+
+                            <tr>
+                                <th colspan="5">
+                                    Record Per pages:
+                                    <select ng-model="itemsByPage" ng-options="item for item in itemsPerPage"></select>
+                                    <div style="float: right;text-align: right;">  Search:<input st-search="" class="form-control" placeholder="global search ..." type="text" /></div>
+                                </th>
+
+
+                            </tr>
+                            <tr>
+                                <th st-sort="module_name">Supplier Name</th>
+                                <th st-sort="module_order">Supplier Address </th>
+                                <th st-sort="module_icon">Supplier Phone No </th>
+                                <th st-sort="module_icon">Supplier Email </th>
+                                <th>Action</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr ng-repeat="x in a  | orderBy:'ProductionHouseId'">
+
+                                <td class="center">{{x.SupplierName}}</td>
+                                <td class="center">{{x.SupplierAddress}}</td>
+                                <td class="center">{{x.SupplierPhoneNo}}</td>
+                                <td class="center">{{x.SupplierEmail}}</td>
+                                <td class="center">
+
+                                    <md-content layout-fill role="main">
+
+                                    </md-content>
+                                    <md-button remove-style class="btn btn-info" ng-click="edit(x.SupplierId)">
+                                        <i class="halflings-icon white edit"></i>
+                                    </md-button>
+
+                                    <md-button remove-style class="btn btn-danger" ng-click="delete(x.SupplierId)">
+                                        <i class=" halflings-icon white trash">
+                                        </i>
+                                    </md-button>
+
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="5" class="text-center">
+                                    <div class="pagination pagination-centered">
+                                        <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages=""></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

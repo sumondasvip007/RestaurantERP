@@ -1,0 +1,31 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div class="row-fluid" ng-init="ForLoginSuccess()">
+    <div class="box bornomala span12">
+        <div class="box-header">
+            <h2><i class="halflings-icon tasks"></i><span class="break"></span>Add Path </h2>
+        </div>
+        <div class="box-content" ng-controller="DbBackUpController">
+
+            <form class="form-horizontal" name="DbBackUpForm" ng-init="LoadBackupPath()">
+                <div class="form-group">
+                    <label class="control-label">Path</label>
+                    <div class="controls">
+                        <input type="text" class="form-control input-sm" data-ng-model="Path" readonly enter-as-tab />
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <div class=" controls">
+
+                        <input type="submit" class="btn btn-primary" value="Back Up" data-ng-click="BackupDatabase()" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div><!--/span-->
+
+</div><!--/row-->

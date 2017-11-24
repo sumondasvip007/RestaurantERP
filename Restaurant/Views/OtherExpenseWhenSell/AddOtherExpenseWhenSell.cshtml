@@ -1,0 +1,100 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div ng-controller="AddOtherExpenseWhenSellController">
+    <div>
+        <div class="row-fluid" ng-init="ForLoginSuccess()">
+            <div class="box bornomala span12">
+                <div class="box-header">
+                    <h2>
+                        <i class="halflings-icon tasks"></i><span class="break"></span>Other Expense When Sell
+                    </h2>
+                </div>
+                <div class="box-content">
+                    <!-- code strat  here-->
+                    <div class="box-content">
+
+                        <form class="form-horizontal" name="AddOtherExpenseWhenSellForm">
+
+                            <!-- Get All Sells Point -->
+                            <div class="control-group" ng-init="GetAllSellsPoint()">
+                                <label class="control-label" for="selectError3">Sells Point</label>
+                                <div class="controls">
+                                    <select id="selectError3" ng-model="OtherExpense.StoreId" ng-options="x.store_id as x.store_name for x in sellsPointList" required>
+                                        <option value="">Select Sell Point</option>
+                                    </select>
+                                </div>
+                            </div>
+                            @*<div class="control-group">
+                                <label class="control-label">Select Group</label>
+                                <div class="controls" ng-init="getGroups()">
+                                    <select ng-model="OtherExpense.GroupId" class="form-control selectpicker" name="GroupId"
+                                            ng-options="x.GroupId as x.GroupName for x in groupList" required enter-as-tab>
+                                        <option value="">--Select Group--</option>
+                                    </select>
+                                </div>
+                            </div>*@
+
+                            <div class="control-group">
+                                <label class="control-label">Select Shift</label>
+                                <div class="controls" ng-init="getShifts()">
+                                    <select ng-model="OtherExpense.ShiftId" class="form-control selectpicker" name="ShiftId"
+                                            ng-options="x.ShiftId as x.ShiftName for x in shiftList" required enter-as-tab>
+                                        <option value="">--Select Shift--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            @*<div class="control-group">
+                                <label class="control-label" for="datepicker1">Date </label>
+                                <div class="controls">
+                                    <div style="width: 200px;">
+                                        <datepicker date-format="yyyy-MM-dd" selector="form-control">
+                                            <input class="form-control" ng-model="FromDate" placeholder="    Choose a date" readonly required enter-as-tab />
+                                        </datepicker>
+                                    </div>
+                                </div>
+                            </div>*@
+                            <div class="control-group">
+                                <label class="control-label">Less</label>
+                                <div class="controls">
+                                    <input type="text" class="form-control input-sm" data-ng-model="OtherExpense.Less" positive-numbers-only   />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Due</label>
+                                <div class="controls">
+                                    <input type="text" class="form-control input-sm" data-ng-model="OtherExpense.Due" positive-numbers-only  />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Compliment</label>
+                                <div class="controls">
+                                    <input type="text" class="form-control input-sm" data-ng-model="OtherExpense.Compliment" positive-numbers-only   />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Damage</label>
+                                <div class="controls">
+                                    <input type="text" class="form-control input-sm" data-ng-model="OtherExpense.Damage" positive-numbers-only />
+                                </div>
+                            </div>
+                          
+
+                            <!-- button -->
+                            <div class="controls">
+                                <button class="button success btn btn-primary" ng-click="AddOtherExpense()">Add</button>
+                            </div>
+                            <!-- button end -->
+                        </form>
+
+                    </div> <!-- box content end -->
+                </div><!--/span-->
+                <!-- code end here-->
+            </div>
+        </div><!--/span-->
+
+    </div><!--/row-->
+</div>
+

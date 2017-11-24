@@ -1,0 +1,171 @@
+﻿   .scrollable-menu {
+    height: auto;
+    max-height: 500px;
+    overflow-x: hidden;
+}
+
+    /* Scrollbar */
+
+/*::-webkit-scrollbar {
+    width: 10px;
+}*/
+ 
+/*::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(242, 231, 231, 0.60); 
+    border-radius: 5px;
+}*/
+ 
+/*::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 6px rgba(242, 231, 231, 0.60); 
+}*/
+
+
+/*::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+::-moz-scrollbar {
+    width: 12px;
+}
+ 
+::-moz-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+::-moz-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}*/
+
+
+
+
+.reveal-animation.ng-enter {
+    -webkit-animation: Fade-Enter-Anime 4s;
+    -moz-animation: Fade-Enter-Anime 4s;
+    -o-animation: Fade-Enter-Anime 4s;
+    animation: Fade-Enter-Anime 4s;
+}
+
+.Content-Fade-Leave {
+    -webkit-animation: Fade-Leave-Anime 4s;
+    -moz-animation: Fade-Leave-Anime 4s;
+    -o-animation: Fade-Leave-Anime 4s;
+    animation: Fade-Leave-Anime 4s;
+}
+
+.ng-enter {
+    transition: 1s;
+    opacity: 0;
+}
+
+.ng-enter-active {
+    opacity: 1;
+}
+
+/*.ng-leave {
+    transition: 0.75s;
+    opacity: 1;
+}
+
+.ng-leave-active {
+    opacity: 0;
+}*/
+
+
+
+@-webkit-keyframes Fade-Enter-Anime {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+
+@-webkit-keyframes Fade-Leave-Anime {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+
+@-moz-keyframes Fade-Enter-Anime {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes Fade-Leave-Anime {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+
+@-o-keyframes Fade-Enter-Anime {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes Fade-Leave-Anime {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes Fade-Enter-Anime {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes Fade-Leave-Anime {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}

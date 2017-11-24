@@ -1,0 +1,70 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<div ng-controller="AddSupplierController" ng-init="ForLoginSuccess()">
+    <div>
+        <div class="row-fluid">
+            <div class="box bornomala span12">
+                <div class="box-header">
+                    <h2>
+                        <i class="halflings-icon tasks"></i><span class="break"></span>Supplier Add
+                    </h2>
+                </div>
+                <div class="box-content">
+                    <!-- code strat  here-->
+                    <div class="box-content">
+                        <form class="form-horizontal" name="AddSupplierform" >
+                        
+                            <!-- Input Product House Name -->
+                            <div class="control-group">
+                                <label class="control-label">Supplier Name</label>
+                                <div class="controls">
+                                    <input type="text" name="SupplierName" ng-model="SupplierInformation.SupplierName" placeholder="Supplier Name" required>
+
+                                </div>
+                            </div>
+                            <input type="hidden" ng-model="SupplierInformation.SupplierId" />
+
+                            <div class="control-group">
+                                <label class="control-label">Address</label>
+                                <div class="controls">
+                                    <input type="text" name="SupplierAddress" ng-model="SupplierInformation.SupplierAddress" placeholder="Address" required>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Phone No</label>
+                                <div class="controls">
+                                    <input type="text" name="SupplierPhoneNo" ng-model="SupplierInformation.SupplierPhoneNo" placeholder="Phone Number" required>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Email</label>
+                                <div class="controls">
+                                    <input type="email" name="SupplierEmail" ng-model="SupplierInformation.SupplierEmail" placeholder="Email" required>
+
+                                </div>
+                            </div>
+                            <!-- button -->
+                            <div class="controls">
+                                <button class=" button success btn btn-primary" ng-click="AddnewSupplierInformation()">{{button}}</button>
+                            </div>
+                            <!-- button end -->
+
+                              <!-- button -->
+                            <div class="controls" ng-show="false">
+                                <button class=" button success btn btn-primary" ng-click="CancelUpdate()">Cancel Update</button>
+                            </div>
+                            <!-- button end -->
+                        </form>
+
+                    </div> <!-- box content end -->
+                </div><!--/span-->
+                <!-- code end here-->
+            </div>
+        </div><!--/span-->
+
+    </div><!--/row-->
+</div>

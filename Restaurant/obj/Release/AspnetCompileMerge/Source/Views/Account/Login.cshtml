@@ -1,0 +1,66 @@
+﻿@using Restaurant.Models
+@model LoginViewModel
+
+@{
+    ViewBag.Title = "Log in";
+}
+<style>
+    .Color{
+        color:#00897B !important;
+    }
+</style>
+
+<div class="row-fluid">
+  
+        <div class="row-fluid">
+            <div class="login-box">
+                <div class="icons">
+
+                    <a href="#/"><i class="halflings-icon cog"></i></a>
+                </div>
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                @Html.AntiForgeryToken()
+                <form>
+
+                    <div class="input-prepend" style="padding-top:0px; margin-top:-10px">
+                        <h2 style="color:#00897B; font-weight:bold; font-size:22px">Login to your account</h2>
+                    </div>
+                    <div class="input-prepend" style="padding:0px" title="Username">
+                        <label class="toast-error" style="color:#fff;margin-left:-3px; text-align:center">@TempData["errorMessage"]</label>
+                        <span class="add-on"><i class="halflings-icon home"></i></span>
+                        @Html.TextBoxFor(m => m.RestaurantName, new { @class = "input-large span10 Color", placeholder = "Restaurant" })
+                        @Html.ValidationMessageFor(m => m.RestaurantName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="input-prepend" style="padding:0px" title="Username">
+                        <span class="add-on"><i class="halflings-icon user"></i></span>
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "input-large span10 Color", placeholder = "Username" })
+                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="input-prepend" style="padding:0px" title="Password">
+                        <span class="add-on"><i class="halflings-icon lock"></i></span>
+                        @Html.PasswordFor(m => m.Password, new { @class = "input-large span10 Color", placeholder = "Password" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="button-login" style="padding-bottom:20px; margin-top:0px">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                    <div class="clearfix"></div>
+                </form>
+                }
+             
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

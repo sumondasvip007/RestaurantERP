@@ -1,0 +1,16 @@
+﻿@model dynamic
+
+@{
+    Layout = null;
+}
+
+<div class="control-group" ng-init="GetAllOwnStore()">
+    <label class="control-label" for="selectError3">Production House Name</label>
+    <div class="controls">
+        <select id="selectError3" ng-model="d" ng-options="x.store_id as x.store_name for x in ownStore" ng-required="ProductionHouse.ownStore" ng-change="ProductLoad()">
+            <option value="">-------SELECT--------</option>
+
+        </select>
+       <p> {{d}} </p>
+    </div>
+</div>

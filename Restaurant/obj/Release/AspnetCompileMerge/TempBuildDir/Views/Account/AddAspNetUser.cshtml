@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = "AddAspNetUser";
+    Layout = null;
+}
+
+
+<div class="row-fluid" ng-init="ForLoginSuccess()">
+    <div class="box bornomala span12">
+        <div class="box-header">
+            <h2><i class="halflings-icon tasks"></i><span class="break"></span>Add New User Information</h2>
+        </div>
+        <div class="box-content" ng-controller="AspNetUserController">
+
+            <form class="form-horizontal" name="AspNetUserForm">
+                @*<div class="form-group">
+                <label class="control-label">User Full Name</label>
+                <div class="controls">
+                    <input type="text" class="form-control input-sm" data-ng-model="AspNetUser.UserFullName" required enter-as-tab />
+                </div>
+            </div>*@
+                <br />
+
+                <div class="form-group">
+                    <label class="control-label">Username</label>
+                    <div class="controls">
+                        <input type="text" class="form-control input-sm" data-ng-model="AspNetUser.UserName" required enter-as-tab />
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label class="control-label">Email</label>
+                    <div class="controls">
+                        <input type="email" name="Email" class="form-control input-sm" data-ng-model="AspNetUser.Email" required enter-as-tab />
+                        <p class="error" ng-show="AspNetUserForm.Email.$error.email || submitted">Please Provide correct email address</p>
+                    </div>
+                </div>
+
+                <br />
+                <div class="form-group">
+                    <label class="control-label">Phone Number</label>
+                    <div class="controls">
+                        <input type="text" class="form-control input-sm" data-ng-model="AspNetUser.PhoneNumber" required positive-numbers-only enter-as-tab />
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="form-group">
+                    <label class="control-label">Password</label>
+                    <div class="controls">
+                        <input type="password" name="Password" class="form-control input-sm" ng-model="AspNetUser.Password" ng-minlength="6" required enter-as-tab />
+                        <p class="error" ng-show="AspNetUserForm.Password.$error.minlength || submitted">Password must be at least be 6 digits</p>
+                    </div>
+                </div>
+                <br />
+
+
+                <div class="form-group">
+                    <label class="control-label">Confirm Password</label>
+                    <div class="controls">
+                        <input type="password" name="ConfirmPassword" class="form-control input-sm" ng-model="AspNetUser.ConfirmPassword" ng-minlength="6" required enter-as-tab ng-blur="CheckPassword()" />
+                        <p class="error" ng-show="AspNetUserForm.ConfirmPassword.$error.mismatch || submitted">Password and confirm password does not match</p>
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <div class=" controls">
+
+                        <input type="submit" class="btn btn-primary" value="Add User" data-ng-click="SaveUser()"/>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div><!--/span-->
+
+</div><!--/row-->

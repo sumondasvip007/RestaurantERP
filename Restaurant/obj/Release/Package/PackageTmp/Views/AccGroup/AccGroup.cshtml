@@ -1,0 +1,97 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="row-fluid" ng-controller="AccGroupController" ng-init="ForLoginSuccess()">
+
+    <div class="box bornomala span8">
+        <div class="box-header">
+            <h2>
+                <i class="halflings-icon tasks"></i><span class="break"></span>Add Account Group
+            </h2>
+        </div>
+        <div class="box-content" style="height:450px;">
+            <br/>
+            <br/>
+            <br/>
+            <form class=" form-horizontal" name="AccGroupForm">
+            <div class="form-group" ng-init="GetAccNatureInformation()">
+                <label class="control-label">Nature</label>
+                <div class="controls">
+                    <select ng-model="AccGroup.NatureID" class="form-control selectpicker" ng-options="x.NatureID as x.NatureName for x in AccNatureList" required enter-as-tab>
+                        <option value="">Select Nature</option>
+                    </select>
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <label class="control-label">New Group Name</label>
+                <div class="controls">
+                    <input type="text" class="form-control input-sm" data-ng-model="AccGroup.GroupName" required enter-as-tab />
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <label class="control-label">Group Code</label>
+                <div class="controls">
+                    <input type="text" class="form-control input-sm" data-ng-model="AccGroup.GroupCode" required enter-as-tab />
+                </div>
+            </div>
+            <br />
+            <div class="form-group" ng-init="GetAccGroupInformation()">
+                <label class="control-label">Under Which group</label>
+                <div class="controls">
+                    <select ng-model="AccGroup.ParentGroupID" class="form-control selectpicker" ng-options="x.GroupID as x.GroupName for x in AccGroupList" enter-as-tab>
+                        <option value="">Select Group</option>
+                    </select>
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <div class=" controls">
+
+                    <input type="submit" class="btn btn-primary" value="Add Group" ng-show="AddButton" data-ng-click="SaveAccGroup()" />
+                    <input type="submit" class="btn btn-primary" value="Update Group" ng-show="UpdateButton" data-ng-click="UpdateAccGroup()" />
+                    <input type="submit" class="btn btn-primary" value="Cancel Edit" ng-show="CancelButton" data-ng-click="CancelEdit()" />
+                </div>
+            </div>
+            </form>
+
+        </div>
+    </div><!--/span-->
+    <div class="box bornomala span4">
+        <div class="box-header">
+            <h2>
+                <i class="halflings-icon tasks"></i><span class="break"></span>Account Group List
+            </h2>
+        </div>
+        <div class="box-content" style="height:450px; overflow:auto">
+           
+            <table class="table table-striped table-bordered bootstrap-datatable datatable" st-table="rowCollection" st-safe-src="AccGroupList">
+                <thead>
+                    <tr>
+                        <th colspan="2">
+                            <input st-search="" class="form-control" placeholder="Search" type="text"/>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th st-sort="GroupName">Group Name  &#9947;</th>
+                        <th style="text-align: center;">Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="x in rowCollection">
+                        <td class="center">{{x.GroupName}}</td>
+                        
+                        <td class="center" style="text-align: center;">
+                            <a class="btn btn-info" ng-click="EditAccGroup(x)">
+                                <i class="halflings-icon white edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+               
+            </table>
+        </div>
+    </div>
+</div><!--/row-->

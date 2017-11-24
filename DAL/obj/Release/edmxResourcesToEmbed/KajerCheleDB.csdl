@@ -1,0 +1,365 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KajerCheleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="KajerCheleEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AspNetRoles" EntityType="KajerCheleModel.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="KajerCheleModel.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="KajerCheleModel.AspNetUserLogin" />
+    <EntitySet Name="AspNetUserRoles" EntityType="KajerCheleModel.AspNetUserRole" />
+    <EntitySet Name="AspNetUsers" EntityType="KajerCheleModel.AspNetUser" />
+    <EntitySet Name="Categories" EntityType="KajerCheleModel.Category" />
+    <EntitySet Name="Customers" EntityType="KajerCheleModel.Customer" />
+    <EntitySet Name="NewProducts" EntityType="KajerCheleModel.NewProduct" />
+    <EntitySet Name="OrderDetails" EntityType="KajerCheleModel.OrderDetail" />
+    <EntitySet Name="Orders" EntityType="KajerCheleModel.Order" />
+    <EntitySet Name="SubCategories" EntityType="KajerCheleModel.SubCategory" />
+    <EntitySet Name="tblAdminUsers" EntityType="KajerCheleModel.tblAdminUser" />
+    <AssociationSet Name="FK_tblUser_AspNetUsers" Association="KajerCheleModel.FK_tblUser_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="tblAdminUser" EntitySet="tblAdminUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubCategory_Category" Association="KajerCheleModel.FK_SubCategory_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="SubCategory" EntitySet="SubCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NewProducts_Customers" Association="KajerCheleModel.FK_NewProducts_Customers">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="NewProduct" EntitySet="NewProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Customers" Association="KajerCheleModel.FK_Orders_Customers">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NewProducts_Orders" Association="KajerCheleModel.FK_NewProducts_Orders">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="NewProduct" EntitySet="NewProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetails_Orders" Association="KajerCheleModel.FK_OrderDetails_Orders">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="OrderDetail" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <EntitySet Name="Products" EntityType="KajerCheleModel.Product" />
+    <AssociationSet Name="FK_Products_Category" Association="KajerCheleModel.FK_Products_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetails_Products" Association="KajerCheleModel.FK_OrderDetails_Products">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="OrderDetail" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_SubCategory" Association="KajerCheleModel.FK_Products_SubCategory">
+      <End Role="SubCategory" EntitySet="SubCategories" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <EntitySet Name="ServiceAreas" EntityType="KajerCheleModel.ServiceArea" />
+    <EntitySet Name="OrderByUploadedBazarLists" EntityType="KajerCheleModel.OrderByUploadedBazarList" />
+    <AssociationSet Name="FK_OrderByUploadedBazarList_Customers" Association="KajerCheleModel.FK_OrderByUploadedBazarList_Customers">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="OrderByUploadedBazarList" EntitySet="OrderByUploadedBazarLists" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AspNetUserRole">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="RoleId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblAdminUser" Relationship="KajerCheleModel.FK_tblUser_AspNetUsers" FromRole="AspNetUser" ToRole="tblAdminUser" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CategoryOrder" Type="Int32" Nullable="false" />
+    <Property Name="EditDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="SubCategories" Relationship="KajerCheleModel.FK_SubCategory_Category" FromRole="Category" ToRole="SubCategory" />
+    <NavigationProperty Name="Products" Relationship="KajerCheleModel.FK_Products_Category" FromRole="Category" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="NewProducts" Relationship="KajerCheleModel.FK_NewProducts_Customers" FromRole="Customer" ToRole="NewProduct" />
+    <NavigationProperty Name="Orders" Relationship="KajerCheleModel.FK_Orders_Customers" FromRole="Customer" ToRole="Order" />
+    <NavigationProperty Name="OrderByUploadedBazarLists" Relationship="KajerCheleModel.FK_OrderByUploadedBazarList_Customers" FromRole="Customer" ToRole="OrderByUploadedBazarList" />
+  </EntityType>
+  <EntityType Name="NewProduct">
+    <Key>
+      <PropertyRef Name="NewProductId" />
+    </Key>
+    <Property Name="NewProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderId" Type="Int32" Nullable="false" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Unit" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="KajerCheleModel.FK_NewProducts_Customers" FromRole="NewProduct" ToRole="Customer" />
+    <NavigationProperty Name="Order" Relationship="KajerCheleModel.FK_NewProducts_Orders" FromRole="NewProduct" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="OrderDetailsId" />
+    </Key>
+    <Property Name="OrderDetailsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderId" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Remarks" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Order" Relationship="KajerCheleModel.FK_OrderDetails_Orders" FromRole="OrderDetail" ToRole="Order" />
+    <NavigationProperty Name="Product" Relationship="KajerCheleModel.FK_OrderDetails_Products" FromRole="OrderDetail" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ShipmentDate" Type="DateTime" Precision="3" />
+    <Property Name="RequestedShipmentDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="KajerCheleModel.FK_Orders_Customers" FromRole="Order" ToRole="Customer" />
+    <NavigationProperty Name="NewProducts" Relationship="KajerCheleModel.FK_NewProducts_Orders" FromRole="Order" ToRole="NewProduct" />
+    <NavigationProperty Name="OrderDetails" Relationship="KajerCheleModel.FK_OrderDetails_Orders" FromRole="Order" ToRole="OrderDetail" />
+  </EntityType>
+  <EntityType Name="SubCategory">
+    <Key>
+      <PropertyRef Name="SubCategoryId" />
+    </Key>
+    <Property Name="SubCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="SubCategoryOrder" Type="Int32" />
+    <Property Name="EditDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Category" Relationship="KajerCheleModel.FK_SubCategory_Category" FromRole="SubCategory" ToRole="Category" />
+    <NavigationProperty Name="Products" Relationship="KajerCheleModel.FK_Products_SubCategory" FromRole="SubCategory" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="tblAdminUser">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="is_admin" Type="Decimal" Nullable="false" Precision="1" Scale="0" />
+    <Property Name="is_loggedIn" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="last_logged_time" Type="DateTime" Precision="3" />
+    <Property Name="approve_by" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="approve_date" Type="Decimal" Precision="9" Scale="0" />
+    <NavigationProperty Name="AspNetUser" Relationship="KajerCheleModel.FK_tblUser_AspNetUsers" FromRole="tblAdminUser" ToRole="AspNetUser" />
+  </EntityType>
+  <Association Name="FK_tblUser_AspNetUsers">
+    <End Type="KajerCheleModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="KajerCheleModel.tblAdminUser" Role="tblAdminUser" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblAdminUser">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubCategory_Category">
+    <End Type="KajerCheleModel.Category" Role="Category" Multiplicity="1" />
+    <End Type="KajerCheleModel.SubCategory" Role="SubCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="SubCategory">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NewProducts_Customers">
+    <End Type="KajerCheleModel.Customer" Role="Customer" Multiplicity="1" />
+    <End Type="KajerCheleModel.NewProduct" Role="NewProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="NewProduct">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Customers">
+    <End Type="KajerCheleModel.Customer" Role="Customer" Multiplicity="1" />
+    <End Type="KajerCheleModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NewProducts_Orders">
+    <End Type="KajerCheleModel.Order" Role="Order" Multiplicity="1" />
+    <End Type="KajerCheleModel.NewProduct" Role="NewProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="OrderId" />
+      </Principal>
+      <Dependent Role="NewProduct">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetails_Orders">
+    <End Type="KajerCheleModel.Order" Role="Order" Multiplicity="1" />
+    <End Type="KajerCheleModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="OrderId" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Banglish" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="English" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="BuyingPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="SellingPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="SubCategoryId" Type="Int32" />
+    <Property Name="Unit" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Discount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Category" Relationship="KajerCheleModel.FK_Products_Category" FromRole="Product" ToRole="Category" />
+    <NavigationProperty Name="OrderDetails" Relationship="KajerCheleModel.FK_OrderDetails_Products" FromRole="Product" ToRole="OrderDetail" />
+    <NavigationProperty Name="SubCategory" Relationship="KajerCheleModel.FK_Products_SubCategory" FromRole="Product" ToRole="SubCategory" />
+  </EntityType>
+  <Association Name="FK_Products_Category">
+    <End Type="KajerCheleModel.Category" Role="Category" Multiplicity="1" />
+    <End Type="KajerCheleModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetails_Products">
+    <End Type="KajerCheleModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="KajerCheleModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_SubCategory">
+    <End Type="KajerCheleModel.SubCategory" Role="SubCategory" Multiplicity="0..1" />
+    <End Type="KajerCheleModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubCategory">
+        <PropertyRef Name="SubCategoryId" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="SubCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ServiceArea">
+    <Key>
+      <PropertyRef Name="AreaCode" />
+    </Key>
+    <Property Name="AreaCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServiceAreaName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="OrderByUploadedBazarList">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="Image" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="RequestShipmentDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="KajerCheleModel.FK_OrderByUploadedBazarList_Customers" FromRole="OrderByUploadedBazarList" ToRole="Customer" />
+  </EntityType>
+  <Association Name="FK_OrderByUploadedBazarList_Customers">
+    <End Type="KajerCheleModel.Customer" Role="Customer" Multiplicity="1" />
+    <End Type="KajerCheleModel.OrderByUploadedBazarList" Role="OrderByUploadedBazarList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="OrderByUploadedBazarList">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

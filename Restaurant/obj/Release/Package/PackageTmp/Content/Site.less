@@ -1,0 +1,277 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.novalidate {
+    border-left: none !important;
+}
+
+input.ng-invalid
+{
+    border-left: 5px solid #E03930;
+}
+
+ select.ng-invalid
+ {
+      border-left: 5px solid #E03930;
+ }
+
+ input.ng-invalid-required
+ {
+     border-left: 5px solid #E03930 !important;
+ }
+
+ select.ng-invalid.required
+ {
+  border-left: 5px solid #E03930;
+}
+
+input.ng-valid, select.ng-valid, input.ng-valid-required, select.ng-valid.required {
+  border-left: 5px solid #57A83F;
+}
+
+textarea.ng-invalid, select.ng-invalid, input.ng-invalid-required, select.ng-invalid.required//,select.ng-invalid-maxlength,select.ng-invalid-minlength 
+{
+  border-left: 5px solid #E03930;
+}
+
+textarea.ng-valid, select.ng-valid, input.ng-valid-required, select.ng-valid.required {
+  border-left: 5px solid #57A83F; 
+}
+
+ input.ng-invalid-email
+    {
+        border-left: 5px solid #E03930;
+    }
+    input.ng-invalid-minlength
+    {
+        border-left: 5px solid #E03930 !important;
+    }
+     input.ng-invalid-maxlength
+    {
+        border-left: 5px solid #E03930 !important;
+    }
+     input.ng-invalid-mismatch
+     {
+         border-left: 5px solid #E03930 !important;
+     }
+      input.ng-valid-email
+    {
+        border-left: 5px solid #57A83F;
+    }
+    input.ng-valid-minlength
+    {
+        border-left: 5px solid #57A83F;
+    }
+    input.ng-valid-maxlength
+    {
+        border-left: 5px solid #57A83F;
+    }
+     input.ng-valid-mismatch
+     {
+         border-left: 5px solid #57A83F;
+     }
+
+.select-page {
+  width: 50px;
+  text-align: center;
+}
+.pagination li a input {
+  padding: 0;
+  margin: -5px 0;
+  border: none;
+}
+
+.error
+{
+    color:red;
+    font-size:11px;
+}
+.modal-backdrop.in {
+    opacity: 0.5;
+    background-color: initial;
+    filter: alpha(opacity=50);
+    display: none;
+}
+
+.modal-content {
+    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    color: ivory;
+}
+
+.modal-header {
+    padding: 15px;
+    border-bottom: 1px solid #1c1e22;
+    min-height: 16.42857143px;
+    color: grey;
+}
+
+
+button.close {
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    -webkit-appearance: none;
+    color: rgba(180, 197, 204, 0.41);
+}
+
+
+
+
+/*------------- range validation design-----------------*/
+.input-help {
+  display: none;
+  position:absolute;
+  z-index: 100;
+  top: -6px;
+  left: 160px;
+  width:200px;
+  padding:10px;
+  background:#fefefe;
+  font-size:.875em;
+  border-radius:5px;
+  box-shadow:0 1px 3px #aaa;
+  border:1px solid #ddd;
+  opacity: 0.9;
+  color:black;
+}
+.input-help::before {
+  content: "\25C0";
+  position: absolute;
+  top:10px;
+  left:-12px;
+  font-size:16px;
+  line-height:16px;
+  color:#ddd;
+  text-shadow:none;
+}
+.input-help h4 {
+  margin:0;
+  padding:0;
+  font-weight: normal;
+  font-size: 1.1em;
+}
+
+ /*Always hide the input help when it's pristine*/ 
+input.ng-pristine + .input-help {
+  display: none;
+}
+
+ /*Hide the invalid box while the input has focus*/ 
+.ng-invalid:focus + .input-help {
+  display: none;
+}
+
+ /*Show a blue border while an input has focus, make sure it overrides everything else 
+ Overriding Twitter Bootstrap cuz I don't agree we need to alarm the user while they're typing*/ 
+input:focus {
+  color: black !important;
+  border-color: rgba(82, 168, 236, 0.8) !important;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6) !important;
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6) !important;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6) !important;
+}
+
+
+ /*Show green border when stuff has been typed in, and its valid*/ 
+.ng-dirty.ng-valid {
+  border-color:#3a7d34;
+}
+
+ /*Show red border when stuff has been typed in, but its invalid*/ 
+.ng-dirty.ng-invalid {
+  border-color:#ec3f41;
+}
+
+/* Show the help box once it has focus */
+.immediate-help:focus + .input-help {
+  display: block;
+}
+
+ /*Immediate help should be red when pristine*/ 
+.immediate-help.ng-pristine:focus + .input-help {
+  border-color:#ec3f41;
+}
+.immediate-help.ng-pristine:focus + .input-help::before {
+  color:#ec3f41;
+}
+
+ /*Help hould be green when input is valid*/ 
+.ng-valid + .input-help {
+  border-color:#3a7d34;
+}
+.ng-valid + .input-help::before {
+  color:#3a7d34;
+}
+
+ /*Help should show and be red when invalid*/ 
+.ng-invalid + .input-help {
+  display: block;
+  border-color: #ec3f41;
+}
+.ng-invalid + .input-help::before {
+  color: #ec3f41;
+}
+
+ Style input help requirement bullets 
+.input-help ul {
+  list-style: none;
+  margin: 10px 0 0 0;
+}
+
+ /*Default each bullet to be invalid with a red cross and text*/ 
+.input-help li {
+  padding-left: 22px;
+  line-height: 24px;
+  color:#ec3f41;
+  background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAA1CAYAAABIkmvkAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAJwAAACcBKgmRTwAAABZ0RVh0Q3JlYXRpb24gVGltZQAxMC8wOS8xMlhq+BkAAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzVxteM2AAAEA0lEQVRIie2WW2jbVRzHv//zT5rkn0ub61zaNdEiPqTC9EFRhtgJk63qg3Wr0806pswNiYgDUXxwyryCEB8UBevtaSCCDHQoboKyoVvVzfRmL2napU0mrdbl8s//dy4+dM1M28n64FsPnIdz+XzO75zfOXA0pRRWU7o/uS9FxOc+3/vlIQBgq4F3fHxvKuIPJ9cFwi9uTXU8BwDa1Uaw/aN7UusCkWRbPI5yxcTI2Bgy49kXrkrwwIedqYg/nGyLXwsJiYHBYWTGs7Cq5Kpt4cA3PXft+2rX40vhrt7OVLgplIzHYuBKoH9gCKMjGVE1LdfJl86YDAAOfN2ziZP4NODyv9/z2fanFuH7P9iWCjcFk/FYK4QSGLgEk0WeUy/3mQCgPXFs9xbBRW883NrssDvQN3hWcOLPEPGWiD94MBaPQymBoaERjI9mBSfu+fHwL+biItpjR3e6JFfloDeAaGQ9SpUycvlp6ExHJBKGYsDvgyMYH81KTsL90yuX4VoWdh3pMqSQpWBjAC3RZkgpYEkCFDA8NIqJ0UlFxI3Tr/5aB9elsau305BcloKBAFpjLeBSYGRwDBNjk4oTN06/dnYZXCcAgK1vbzYkl6VwOATihOzYlOLEjTOvn1sRXiYAgDsP32YIKUuWaXFOwtP3xrnqleAVBQBwy/M3GZy4+PnN3/4TvqJgNWVVj2lNsCZYE6wJ1gRrgv9dYAMAHHw2Bl2fUEpBVavtLPVW/78nVR/Zk4CupzVHA6zChSOK0yHv0S8GFyK4BMPhAJxOgLE03/9kYhE2dz+agKaldY8bDaEQ7D5ft7Roy+UIlCooy5LQdaZ5vVBEgGmmrT172yVxaIylmdcDm9cHc2oK1Zm8kETvLAo0pRRk8mmnEqKouVw68zVCzP8F/uccFHHoXi/sjT6Y53Mw83mhOHn8J7416wQAwPftd0ouiswwdJu/CRASkBKQAmYuBzNfWIC/O173W6llwfbeu6Yi8tDsrAQJYGICyGQAIWDO5KUkaxlcJwAASdSmaWAQHCACOAc4h6YzJi1qWymNNUHlwYcT0JDWXQbACYhGgeh6gHM4Ghuh2/R0YePNiaUCTSmFcvdDCY1paZvhht3nQ2VmGmahICSR5vQHmDt6DcozeZSnp2FdLLZHhwdq94SVd+xMaJqWtrkM2L1uVHILpy0t8igidymXExfHMzBCQbhCIdga7Onz8etqkdgkUYTZbYCSqORmULlQEIq4J3jyexMA8jdu9BRzuaKyLN3udkNjDEqICID+2hbm797Wwez24/T3vJTE3aFTP9Sd9vT1NziVEMUGr1c35+Y2b5jKnqgNKqWglMLspjs6/rj1dudie2mdao07J5s3dCzt/werJTyI1yYqpQAAAABJRU5ErkJggg==) no-repeat  2px -34px;
+}
+
+ /*Set to green check and text when valid*/ 
+.input-help li.valid {
+  color:#3a7d34;
+  background-position: 2px 6px;
+}
+
+ 

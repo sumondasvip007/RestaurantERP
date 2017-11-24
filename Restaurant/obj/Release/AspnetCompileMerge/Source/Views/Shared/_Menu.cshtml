@@ -1,0 +1,41 @@
+﻿@using Restaurant.Utility
+
+
+@if (Request.IsAuthenticated && !SessionManger.IsSessionNull(Session))
+{
+    
+<script src="~/js/jquery-1.9.1.min.js"></script>
+    @Html.AntiForgeryToken()
+    <div class="nav-collapse sidebar-nav" ng-init="init()">
+
+        <ul class="nav nav-tabs nav-stacked main-menu">
+
+            <li ng-repeat="row in module">
+                <a class="dropmenu" dropdown style="cursor:pointer" ng-model="collapsed[row]" ng-click="collapsed[row]=!collapsed[row]" href="#/Index"><i class="{{row.module_icon}}"></i><span class="hidden-tablet"> {{row.module_name}}</span> <span style="background-color:#00897B" class="badge pull-right"><i ng-class="{'halflings-icon white chevron-down': !collapsed[row],'halflings-icon white chevron-up': collapsed[row]}"></i></span> </a>
+                <ul collapse="isCollapsed">
+                    <li ng-repeat="action in row.action">
+                        <a class="submenu" style="font-size:13px" href="{{action.url}}"><i style="font-size:14px" class="icon-hand-right"></i><span class="hidden-tablet"> {{action.display_name}} </span></a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    @*<script type="text/javascript">
+        $(document).ready(function () {
+            $('.dropmenu').click(function (e) {
+
+                e.preventDefault();
+
+                $(this).parent().find('ul').slideToggle();
+
+            });
+        });
+    </script>*@
+
+}
+else
+{
+
+}
+

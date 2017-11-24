@@ -1,0 +1,43 @@
+﻿#chart {
+    height: 440px;
+}
+
+#pie {
+    height: 440px;
+}
+
+
+
+.options {
+    padding: 20px;
+    background-color: #f5f5f5;
+    margin-top: 20px;
+}
+
+.option {
+    margin-top: 10px;
+}
+
+.caption {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.option > span {
+    margin-right: 10px;
+}
+
+.option > .dx-widget {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+
+#pieForPie {
+    height: 440px;
+}
+
+#pieForPie * {
+    margin: 0 auto;
+}

@@ -1,0 +1,105 @@
+﻿@*@model Restaurant.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Create a new account.</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        <div class="col-md-3">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+        <div class="col-md-3">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+        <div class="col-md-3">
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-4">
+            <input type="submit" class="btn btn-default" value="Register" />
+            @*<a class="btn btn-default" href="/#">Register</a>
+            <a class="btn btn-default" href="#">Log in</a>
+           
+
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@
+<h4>Create a new account.</h4>
+<hr />
+<div ng-controller="RegisterController" ng-init="LoadInitial()">
+    <form class="form-horizontal" ng-submit="" name="RegistrationForm">
+        <div class="form-group">
+            <div class="col-md-2">
+                <label>Email</label>
+            </div>
+            <div class="col-md-3">
+                <input type="email" name="Email" class="form-control input-sm" data-ng-model="Register.Email" required enter-as-tab />
+                <p class="error" ng-show="RegistrationForm.Email.$error.email || submitted">Please Provide correct email address</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-2">
+                <label>Phone Number</label>
+            </div>
+            <div class="col-md-3">
+                <input type="text" class="form-control input-sm" data-ng-model="Register.PhoneNumber" required enter-as-tab />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-2">
+                <label>User Name</label>
+            </div>
+            <div class="col-md-3">
+                <input type="text" class="form-control input-sm" data-ng-model="Register.UserName" required enter-as-tab />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-2">
+                <label>Password</label>
+            </div>
+            <div class="col-md-3">
+                <input type="password" name="Password" class="form-control input-sm" ng-model="Register.Password" ng-minlength="6" required enter-as-tab />
+                <p class="error" ng-show="RegistrationForm.Password.$error.minlength || submitted">Password must at least be 6 digits</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-2">
+                <label>Confirm Password</label>
+            </div>
+            <div class="col-md-3">
+                <input type="password" name="ConfirmPassword" class="form-control input-sm" ng-model="Register.ConfirmPassword" ng-minlength="6" required enter-as-tab ng-blur="CheckPassword()" />
+                <p class="error" ng-show="RegistrationForm.ConfirmPassword.$error.mismatch || submitted">Password and confirm password does not match</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-2"></div>
+            <div class="col-md-3">
+                <input type="checkbox" name="is_admin" ng-model="Register.is_admin" ng-true-value=1 ng-false-value=0 enter-as-tab /><label for="is_admin"> Is Admin</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-3">
+                <input type="submit" class="btn btn-default" value="Register" data-ng-click="Registration()" />
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,72 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<div ng-controller="AddGroupAndShiftMappingController">
+    <div>
+        <div class="row-fluid" ng-init="ForLoginSuccess()">
+            <div class="box bornomala span12">
+                <div class="box-header">
+                    <h2>
+                        <i class="halflings-icon tasks"></i><span class="break"></span>Group And Shift Mapping
+                    </h2>
+                </div>
+                <div class="box-content">
+                    <!-- code strat  here-->
+                    <div class="box-content">
+
+                        <form class="form-horizontal" name="AddGroupAndShiftMappingForm">
+
+                            <!-- Get All Sells Point -->
+
+                            <div class="control-group">
+                                <label class="control-label">Select Shift</label>
+                                <div class="controls" ng-init="getShifts()">
+                                    <select ng-model="GroupAndShiftMapping.ShiftId" class="form-control selectpicker" name="ShiftId"
+                                            ng-options="x.ShiftId as x.ShiftName for x in shiftList" required enter-as-tab>
+                                        <option value="">--Select Shift--</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label">Select Group</label>
+                                <div class="controls" ng-init="getGroups()">
+                                    <select ng-model="GroupAndShiftMapping.GroupId" class="form-control selectpicker" name="GroupId"
+                                            ng-options="x.GroupId as x.GroupName for x in groupList" required enter-as-tab>
+                                        <option value="">--Select Group--</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="control-group">
+                                <label class="control-label" for="datepicker1">Date </label>
+                                <div class="controls">
+                                    <div style="width: 200px;">
+                                        <datepicker date-format="yyyy-MM-dd" selector="form-control">
+                                            <input class="form-control" ng-model="FromDate" placeholder="    Choose a date" readonly required enter-as-tab />
+                                        </datepicker>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <!-- button -->
+                            <div class="controls">
+                                <button class="button success btn btn-primary" ng-click="AddGroupAndShiftMapping()">Add</button>
+                            </div>
+                            <!-- button end -->
+                        </form>
+
+                    </div> <!-- box content end -->
+                </div><!--/span-->
+                <!-- code end here-->
+            </div>
+        </div><!--/span-->
+
+    </div><!--/row-->
+</div>

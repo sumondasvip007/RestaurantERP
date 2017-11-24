@@ -1,0 +1,1944 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RestaurantDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="RestaurantEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="BackUpDatabase">
+      <Parameter Name="path" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetProductAvailableQuantity" ReturnType="Collection(Decimal)">
+      <Parameter Name="storeId" Mode="In" Type="Int32" />
+      <Parameter Name="productId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_AvailableQuantityForPhToSpTransfer" ReturnType="Collection(RestaurantDBModel.sp_AvailableQuantityForPhToSpTransfer_Result)">
+      <Parameter Name="storeId" Mode="In" Type="Int32" />
+      <Parameter Name="productId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_AvailableQuantityForProductToProductionHouse" ReturnType="Collection(RestaurantDBModel.sp_AvailableQuantityForProductToProductionHouse_Result)">
+      <Parameter Name="storeId" Mode="In" Type="Int32" />
+      <Parameter Name="productId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_AvailableQuantityForProductUsesInProductionHouse" ReturnType="Collection(RestaurantDBModel.sp_AvailableQuantityForProductUsesInProductionHouse_Result)">
+      <Parameter Name="storeId" Mode="In" Type="Int32" />
+      <Parameter Name="productId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_CheckAvailableQuantityForProductForProductSoldForDayShift" ReturnType="Collection(RestaurantDBModel.sp_CheckAvailableQuantityForProductForProductSoldForDayShift_Result)">
+      <Parameter Name="storeId" Mode="In" Type="Int32" />
+      <Parameter Name="shiftId" Mode="In" Type="Int32" />
+      <Parameter Name="productId" Mode="In" Type="Int32" />
+      <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_CheckAvailableQuantityForProductForProductSoldForNightShift" ReturnType="Collection(RestaurantDBModel.sp_CheckAvailableQuantityForProductForProductSoldForNightShift_Result)">
+      <Parameter Name="storeId" Mode="In" Type="Int32" />
+      <Parameter Name="shiftId" Mode="In" Type="Int32" />
+      <Parameter Name="productId" Mode="In" Type="Int32" />
+      <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetProductAvailableQuantity" ReturnType="Collection(Decimal)">
+      <Parameter Name="storeId" Mode="In" Type="Int32" />
+      <Parameter Name="productId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_MainStoreProductStatusQuery" ReturnType="Collection(RestaurantDBModel.sp_MainStoreProductStatusQuery_Result)">
+      <Parameter Name="storeId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_mainStoreToProductionHouse" ReturnType="Collection(RestaurantDBModel.sp_mainStoreToProductionHouse_Result)">
+      <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="toDate" Mode="In" Type="DateTime" />
+      <Parameter Name="storeId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_mainStoreToProductionHouseFinal" ReturnType="Collection(RestaurantDBModel.sp_mainStoreToProductionHouseFinal_Result)">
+      <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="toDate" Mode="In" Type="DateTime" />
+      <Parameter Name="storeId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_OtherExpenseAmountForSellReportWithOpeningProduct" ReturnType="Collection(RestaurantDBModel.sp_OtherExpenseAmountForSellReportWithOpeningProduct_Result)">
+      <Parameter Name="storeId" Mode="In" Type="Int32" />
+      <Parameter Name="shiftId" Mode="In" Type="Int32" />
+      <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ProductEntryHistoryForaSpecificDateFromSupplierToMainStore" ReturnType="Collection(RestaurantDBModel.sp_ProductEntryHistoryForaSpecificDateFromSupplierToMainStore_Result)">
+      <Parameter Name="date" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ProductEntryHistoryForaSpecificDateFromSupplierToMainStoreFinal" ReturnType="Collection(RestaurantDBModel.sp_ProductEntryHistoryForaSpecificDateFromSupplierToMainStoreFinal_Result)">
+      <Parameter Name="date" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ProductEntryHistoryForSpecificDayInSellsPoint" ReturnType="Collection(RestaurantDBModel.sp_ProductEntryHistoryForSpecificDayInSellsPoint_Result)">
+      <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="storeId" Mode="In" Type="Int32" />
+      <Parameter Name="shiftId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ProductEntryHistoryFromSupplierToMainStoreForReporting" ReturnType="Collection(RestaurantDBModel.sp_ProductEntryHistoryFromSupplierToMainStoreForReporting_Result)">
+      <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="toDate" Mode="In" Type="DateTime" />
+      <Parameter Name="supplierId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ProductEntryHistoryFromSupplierToMainStoreForReportingFinal" ReturnType="Collection(RestaurantDBModel.sp_ProductEntryHistoryFromSupplierToMainStoreForReportingFinal_Result)">
+      <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="toDate" Mode="In" Type="DateTime" />
+      <Parameter Name="supplierId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ProductSell" ReturnType="Collection(RestaurantDBModel.sp_ProductSell_Result)">
+      <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="toDate" Mode="In" Type="DateTime" />
+      <Parameter Name="storeId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ProductSellFinal" ReturnType="Collection(RestaurantDBModel.sp_ProductSellFinal_Result)">
+      <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="toDate" Mode="In" Type="DateTime" />
+      <Parameter Name="storeId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ProductSellHistoryWithOpeningProductForDayShift" ReturnType="Collection(RestaurantDBModel.sp_ProductSellHistoryWithOpeningProductForDayShift_Result)">
+      <Parameter Name="storeId" Mode="In" Type="Int32" />
+      <Parameter Name="shiftId" Mode="In" Type="Int32" />
+      <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ProductSellHistoryWithOpeningProductForDayShiftQueryB" ReturnType="Collection(RestaurantDBModel.sp_ProductSellHistoryWithOpeningProductForDayShiftQueryB_Result)">
+      <Parameter Name="storeId" Mode="In" Type="Int32" />
+      <Parameter Name="shiftId" Mode="In" Type="Int32" />
+      <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ProductSellHistoryWithOpeningProductForNightShift" ReturnType="Collection(RestaurantDBModel.sp_ProductSellHistoryWithOpeningProductForNightShift_Result)">
+      <Parameter Name="storeId" Mode="In" Type="Int32" />
+      <Parameter Name="shiftId" Mode="In" Type="Int32" />
+      <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ProductSellHistoryWithOpeningProductForNightShiftQueryB" ReturnType="Collection(RestaurantDBModel.sp_ProductSellHistoryWithOpeningProductForNightShiftQueryB_Result)">
+      <Parameter Name="storeId" Mode="In" Type="Int32" />
+      <Parameter Name="shiftId" Mode="In" Type="Int32" />
+      <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ProductSellReportWithOpeningProduct" ReturnType="Collection(RestaurantDBModel.sp_ProductSellReportWithOpeningProduct_Result)">
+      <Parameter Name="storeId" Mode="In" Type="Int32" />
+      <Parameter Name="date" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ProductSoldForDayShift" ReturnType="Collection(RestaurantDBModel.sp_ProductSoldForDayShift_Result)">
+      <Parameter Name="storeId" Mode="In" Type="Int32" />
+      <Parameter Name="shiftId" Mode="In" Type="Int32" />
+      <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ProductSoldForNightShift" ReturnType="Collection(RestaurantDBModel.sp_ProductSoldForNightShift_Result)">
+      <Parameter Name="storeId" Mode="In" Type="Int32" />
+      <Parameter Name="shiftId" Mode="In" Type="Int32" />
+      <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_PurchableProductQuantity">
+      <Parameter Name="storeId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_PurchaseAndBothTypeProductList" ReturnType="Collection(RestaurantDBModel.sp_PurchaseAndBothTypeProductList_Result)">
+      <Parameter Name="storeId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_PurchaseAndBothTypeProductListForProductUsesInProductionHouse" ReturnType="Collection(RestaurantDBModel.sp_PurchaseAndBothTypeProductListForProductUsesInProductionHouse_Result)">
+      <Parameter Name="storeId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_PuschaseableProductStatusInProductionHouse" ReturnType="Collection(RestaurantDBModel.sp_PuschaseableProductStatusInProductionHouse_Result)">
+      <Parameter Name="storeId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_SellableProductQuantity">
+      <Parameter Name="storeId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_SellableProductStatusInProductionHouse" ReturnType="Collection(RestaurantDBModel.sp_SellableProductStatusInProductionHouse_Result)">
+      <Parameter Name="storeId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_SellPointProductStatus" ReturnType="Collection(RestaurantDBModel.sp_SellPointProductStatus_Result)">
+      <Parameter Name="storeId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_updatePurchaseTypeProductPrice" />
+    <FunctionImport Name="spSearchProductEntryHistoryInSellsPoint" ReturnType="Collection(RestaurantDBModel.spSearchProductEntryHistoryInSellsPoint_Result)">
+      <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="toDate" Mode="In" Type="DateTime" />
+      <Parameter Name="storeId" Mode="In" Type="Int32" />
+      <Parameter Name="shiftId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spSearchProductEntryHistoryInSellsPointFinal" ReturnType="Collection(RestaurantDBModel.spSearchProductEntryHistoryInSellsPointFinal_Result)">
+      <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="toDate" Mode="In" Type="DateTime" />
+      <Parameter Name="storeId" Mode="In" Type="Int32" />
+      <Parameter Name="shiftId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_InsertTotalAmountDailyByShiftWise" />
+    <FunctionImport Name="sp_monthlyTotalAmountForDayShift" ReturnType="Collection(RestaurantDBModel.sp_monthlyTotalAmountForDayShift_Result)" />
+    <FunctionImport Name="sp_UpdatePurchaseTypeProductPriceForMainStore" />
+    <FunctionImport Name="sp_weeklyTotalProductSellByGraph" ReturnType="Collection(RestaurantDBModel.sp_weeklyTotalProductSellByGraph_Result)" />
+    <FunctionImport Name="sp_InsertTotalAmountDailyForNightShift" />
+    <FunctionImport Name="sp_monthlyTotalAmountForNightShift" ReturnType="Collection(RestaurantDBModel.sp_monthlyTotalAmountForNightShift_Result)" />
+    <FunctionImport Name="sp_monthlyTotalAmount" ReturnType="Collection(RestaurantDBModel.sp_monthlyTotalAmount_Result)" />
+    <EntitySet Name="C__MigrationHistory" EntityType="RestaurantDBModel.C__MigrationHistory" />
+    <EntitySet Name="acc_CashFlow_Type" EntityType="RestaurantDBModel.acc_CashFlow_Type" />
+    <EntitySet Name="acc_CashFlowGroup" EntityType="RestaurantDBModel.acc_CashFlowGroup" />
+    <EntitySet Name="acc_CashFlowMapping" EntityType="RestaurantDBModel.acc_CashFlowMapping" />
+    <EntitySet Name="acc_Chart_of_Account_Maping" EntityType="RestaurantDBModel.acc_Chart_of_Account_Maping" />
+    <EntitySet Name="acc_Group" EntityType="RestaurantDBModel.acc_Group" />
+    <EntitySet Name="acc_Group_Maping" EntityType="RestaurantDBModel.acc_Group_Maping" />
+    <EntitySet Name="acc_Ledger" EntityType="RestaurantDBModel.acc_Ledger" />
+    <EntitySet Name="acc_Nature" EntityType="RestaurantDBModel.acc_Nature" />
+    <EntitySet Name="acc_Subsidiary" EntityType="RestaurantDBModel.acc_Subsidiary" />
+    <EntitySet Name="acc_SubsidiaryVoucherDetail" EntityType="RestaurantDBModel.acc_SubsidiaryVoucherDetail" />
+    <EntitySet Name="acc_tbl_Group_MIS" EntityType="RestaurantDBModel.acc_tbl_Group_MIS" />
+    <EntitySet Name="acc_tbl_MIS" EntityType="RestaurantDBModel.acc_tbl_MIS" />
+    <EntitySet Name="acc_VoucherDetail" EntityType="RestaurantDBModel.acc_VoucherDetail" />
+    <EntitySet Name="acc_VoucherEntry" EntityType="RestaurantDBModel.acc_VoucherEntry" />
+    <EntitySet Name="acc_VoucherType" EntityType="RestaurantDBModel.acc_VoucherType" />
+    <EntitySet Name="AspNetRoles" EntityType="RestaurantDBModel.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="RestaurantDBModel.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="RestaurantDBModel.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="RestaurantDBModel.AspNetUser" />
+    <EntitySet Name="tblActions" EntityType="RestaurantDBModel.tblAction" />
+    <EntitySet Name="tblChalanReports" EntityType="RestaurantDBModel.tblChalanReport" />
+    <EntitySet Name="tblDesignations" EntityType="RestaurantDBModel.tblDesignation" />
+    <EntitySet Name="tblEmployeeInformations" EntityType="RestaurantDBModel.tblEmployeeInformation" />
+    <EntitySet Name="tblGroupAndShiftMappings" EntityType="RestaurantDBModel.tblGroupAndShiftMapping" />
+    <EntitySet Name="tblGroupForShifts" EntityType="RestaurantDBModel.tblGroupForShift" />
+    <EntitySet Name="tblMeasurementUnits" EntityType="RestaurantDBModel.tblMeasurementUnit" />
+    <EntitySet Name="tblModules" EntityType="RestaurantDBModel.tblModule" />
+    <EntitySet Name="tblOtherExpenses" EntityType="RestaurantDBModel.tblOtherExpense" />
+    <EntitySet Name="tblPHtoSPProductTransfers" EntityType="RestaurantDBModel.tblPHtoSPProductTransfer" />
+    <EntitySet Name="tblProductEntryToProductionHouses" EntityType="RestaurantDBModel.tblProductEntryToProductionHouse" />
+    <EntitySet Name="tblProductFromSuppliers" EntityType="RestaurantDBModel.tblProductFromSupplier" />
+    <EntitySet Name="tblProductInformations" EntityType="RestaurantDBModel.tblProductInformation" />
+    <EntitySet Name="tblProductionHouseInformations" EntityType="RestaurantDBModel.tblProductionHouseInformation" />
+    <EntitySet Name="tblProductionHouseToProductMappings" EntityType="RestaurantDBModel.tblProductionHouseToProductMapping" />
+    <EntitySet Name="tblProductSolds" EntityType="RestaurantDBModel.tblProductSold" />
+    <EntitySet Name="tblProductTransfers" EntityType="RestaurantDBModel.tblProductTransfer" />
+    <EntitySet Name="tblProductTypes" EntityType="RestaurantDBModel.tblProductType" />
+    <EntitySet Name="tblRestaurantInformations" EntityType="RestaurantDBModel.tblRestaurantInformation" />
+    <EntitySet Name="tblRestaurantModules" EntityType="RestaurantDBModel.tblRestaurantModule" />
+    <EntitySet Name="tblRestaurantUsers" EntityType="RestaurantDBModel.tblRestaurantUser" />
+    <EntitySet Name="tblRestaurantUserModules" EntityType="RestaurantDBModel.tblRestaurantUserModule" />
+    <EntitySet Name="tblRestaurantUserViews" EntityType="RestaurantDBModel.tblRestaurantUserView" />
+    <EntitySet Name="tblSellsPoints" EntityType="RestaurantDBModel.tblSellsPoint" />
+    <EntitySet Name="tblShifts" EntityType="RestaurantDBModel.tblShift" />
+    <EntitySet Name="tblStoreInformations" EntityType="RestaurantDBModel.tblStoreInformation" />
+    <EntitySet Name="tblSupplierInformations" EntityType="RestaurantDBModel.tblSupplierInformation" />
+    <EntitySet Name="tblSuppliersProducts" EntityType="RestaurantDBModel.tblSuppliersProduct" />
+    <EntitySet Name="tblTotalAmounts" EntityType="RestaurantDBModel.tblTotalAmount" />
+    <EntitySet Name="tblUserActionMappings" EntityType="RestaurantDBModel.tblUserActionMapping" />
+    <EntitySet Name="tblViews" EntityType="RestaurantDBModel.tblView" />
+    <EntitySet Name="tblPurchaseProductUnitPrices" EntityType="RestaurantDBModel.tblPurchaseProductUnitPrice" />
+    <AssociationSet Name="FK_acc_Group_acc_Group" Association="RestaurantDBModel.FK_acc_Group_acc_Group">
+      <End Role="acc_Group" EntitySet="acc_Group" />
+      <End Role="acc_Group1" EntitySet="acc_Group" />
+    </AssociationSet>
+    <AssociationSet Name="FK_acc_Group_Maping_acc_Group" Association="RestaurantDBModel.FK_acc_Group_Maping_acc_Group">
+      <End Role="acc_Group" EntitySet="acc_Group" />
+      <End Role="acc_Group_Maping" EntitySet="acc_Group_Maping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_acc_Ledger_acc_Group" Association="RestaurantDBModel.FK_acc_Ledger_acc_Group">
+      <End Role="acc_Group" EntitySet="acc_Group" />
+      <End Role="acc_Ledger" EntitySet="acc_Ledger" />
+    </AssociationSet>
+    <AssociationSet Name="FK_acc_Group_Maping_acc_tbl_Group_MIS" Association="RestaurantDBModel.FK_acc_Group_Maping_acc_tbl_Group_MIS">
+      <End Role="acc_tbl_Group_MIS" EntitySet="acc_tbl_Group_MIS" />
+      <End Role="acc_Group_Maping" EntitySet="acc_Group_Maping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_acc_LedgerDetail_acc_Ledger" Association="RestaurantDBModel.FK_acc_LedgerDetail_acc_Ledger">
+      <End Role="acc_Ledger" EntitySet="acc_Ledger" />
+      <End Role="acc_VoucherDetail" EntitySet="acc_VoucherDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_acc_SubsidiaryVoucherDetail_acc_Subsidiary" Association="RestaurantDBModel.FK_acc_SubsidiaryVoucherDetail_acc_Subsidiary">
+      <End Role="acc_Subsidiary" EntitySet="acc_Subsidiary" />
+      <End Role="acc_SubsidiaryVoucherDetail" EntitySet="acc_SubsidiaryVoucherDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_acc_SubsidiaryVoucherDetail_acc_SubsidiaryVoucherDetail" Association="RestaurantDBModel.FK_acc_SubsidiaryVoucherDetail_acc_SubsidiaryVoucherDetail">
+      <End Role="acc_VoucherDetail" EntitySet="acc_VoucherDetail" />
+      <End Role="acc_SubsidiaryVoucherDetail" EntitySet="acc_SubsidiaryVoucherDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_acc_VoucherDetail_acc_VoucherEntry" Association="RestaurantDBModel.FK_acc_VoucherDetail_acc_VoucherEntry">
+      <End Role="acc_VoucherEntry" EntitySet="acc_VoucherEntry" />
+      <End Role="acc_VoucherDetail" EntitySet="acc_VoucherDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_acc_VoucherEntry_acc_VoucherType" Association="RestaurantDBModel.FK_acc_VoucherEntry_acc_VoucherType">
+      <End Role="acc_VoucherType" EntitySet="acc_VoucherType" />
+      <End Role="acc_VoucherEntry" EntitySet="acc_VoucherEntry" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="RestaurantDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="RestaurantDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbllRestaurentUser_AspNetUsers" Association="RestaurantDBModel.FK_tbllRestaurentUser_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="tblRestaurantUser" EntitySet="tblRestaurantUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUserActionMapping_AspNetUsers" Association="RestaurantDBModel.FK_tblUserActionMapping_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="tblUserActionMapping" EntitySet="tblUserActionMappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblAction_tblModule" Association="RestaurantDBModel.FK_tblAction_tblModule">
+      <End Role="tblModule" EntitySet="tblModules" />
+      <End Role="tblAction" EntitySet="tblActions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUserActionMapping_tblAction" Association="RestaurantDBModel.FK_tblUserActionMapping_tblAction">
+      <End Role="tblAction" EntitySet="tblActions" />
+      <End Role="tblUserActionMapping" EntitySet="tblUserActionMappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblEmployeeInformation_tblDesignation" Association="RestaurantDBModel.FK_tblEmployeeInformation_tblDesignation">
+      <End Role="tblDesignation" EntitySet="tblDesignations" />
+      <End Role="tblEmployeeInformation" EntitySet="tblEmployeeInformations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbllRestaurentModule_tblModule" Association="RestaurantDBModel.FK_tbllRestaurentModule_tblModule">
+      <End Role="tblModule" EntitySet="tblModules" />
+      <End Role="tblRestaurantModule" EntitySet="tblRestaurantModules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOtherExpense_tblSellsPoint" Association="RestaurantDBModel.FK_tblOtherExpense_tblSellsPoint">
+      <End Role="tblStoreInformation" EntitySet="tblStoreInformations" />
+      <End Role="tblOtherExpense" EntitySet="tblOtherExpenses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOtherExpense_tblShift" Association="RestaurantDBModel.FK_tblOtherExpense_tblShift">
+      <End Role="tblShift" EntitySet="tblShifts" />
+      <End Role="tblOtherExpense" EntitySet="tblOtherExpenses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPHtoSPProductTransfer_tblProductInformation" Association="RestaurantDBModel.FK_tblPHtoSPProductTransfer_tblProductInformation">
+      <End Role="tblProductInformation" EntitySet="tblProductInformations" />
+      <End Role="tblPHtoSPProductTransfer" EntitySet="tblPHtoSPProductTransfers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPHtoSPProductTransfer_tblProductionHouseInformation" Association="RestaurantDBModel.FK_tblPHtoSPProductTransfer_tblProductionHouseInformation">
+      <End Role="tblProductionHouseInformation" EntitySet="tblProductionHouseInformations" />
+      <End Role="tblPHtoSPProductTransfer" EntitySet="tblPHtoSPProductTransfers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPHtoSPProductTransfer_tblSellsPoint" Association="RestaurantDBModel.FK_tblPHtoSPProductTransfer_tblSellsPoint">
+      <End Role="tblSellsPoint" EntitySet="tblSellsPoints" />
+      <End Role="tblPHtoSPProductTransfer" EntitySet="tblPHtoSPProductTransfers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPHtoSPProductTransfer_tblShift" Association="RestaurantDBModel.FK_tblPHtoSPProductTransfer_tblShift">
+      <End Role="tblShift" EntitySet="tblShifts" />
+      <End Role="tblPHtoSPProductTransfer" EntitySet="tblPHtoSPProductTransfers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProductEntryToProductionHouse_tblProductInformation" Association="RestaurantDBModel.FK_tblProductEntryToProductionHouse_tblProductInformation">
+      <End Role="tblProductInformation" EntitySet="tblProductInformations" />
+      <End Role="tblProductEntryToProductionHouse" EntitySet="tblProductEntryToProductionHouses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProductEntryToProductionHouse_tblProductionHouseInformation" Association="RestaurantDBModel.FK_tblProductEntryToProductionHouse_tblProductionHouseInformation">
+      <End Role="tblProductionHouseInformation" EntitySet="tblProductionHouseInformations" />
+      <End Role="tblProductEntryToProductionHouse" EntitySet="tblProductEntryToProductionHouses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProductInformation_tblProductType" Association="RestaurantDBModel.FK_tblProductInformation_tblProductType">
+      <End Role="tblProductType" EntitySet="tblProductTypes" />
+      <End Role="tblProductInformation" EntitySet="tblProductInformations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProductInformation_tblStoreInformation1" Association="RestaurantDBModel.FK_tblProductInformation_tblStoreInformation1">
+      <End Role="tblStoreInformation" EntitySet="tblStoreInformations" />
+      <End Role="tblProductInformation" EntitySet="tblProductInformations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProductionHouseToProductMapping_tblProductInformation" Association="RestaurantDBModel.FK_tblProductionHouseToProductMapping_tblProductInformation">
+      <End Role="tblProductInformation" EntitySet="tblProductInformations" />
+      <End Role="tblProductionHouseToProductMapping" EntitySet="tblProductionHouseToProductMappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProductTransfer_tblProductInformation" Association="RestaurantDBModel.FK_tblProductTransfer_tblProductInformation">
+      <End Role="tblProductInformation" EntitySet="tblProductInformations" />
+      <End Role="tblProductTransfer" EntitySet="tblProductTransfers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSuppliersProduct_tblProductInformation" Association="RestaurantDBModel.FK_tblSuppliersProduct_tblProductInformation">
+      <End Role="tblProductInformation" EntitySet="tblProductInformations" />
+      <End Role="tblSuppliersProduct" EntitySet="tblSuppliersProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProductTransfer_tblStoreInformation" Association="RestaurantDBModel.FK_tblProductTransfer_tblStoreInformation">
+      <End Role="tblStoreInformation" EntitySet="tblStoreInformations" />
+      <End Role="tblProductTransfer" EntitySet="tblProductTransfers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbllRestaurentModule_tblRestaurentInformation" Association="RestaurantDBModel.FK_tbllRestaurentModule_tblRestaurentInformation">
+      <End Role="tblRestaurantInformation" EntitySet="tblRestaurantInformations" />
+      <End Role="tblRestaurantModule" EntitySet="tblRestaurantModules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbllRestaurentUser_tbllRestaurentInformation" Association="RestaurantDBModel.FK_tbllRestaurentUser_tbllRestaurentInformation">
+      <End Role="tblRestaurantInformation" EntitySet="tblRestaurantInformations" />
+      <End Role="tblRestaurantUser" EntitySet="tblRestaurantUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblRestaurentUserModule_tblRestaurentModule" Association="RestaurantDBModel.FK_tblRestaurentUserModule_tblRestaurentModule">
+      <End Role="tblRestaurantModule" EntitySet="tblRestaurantModules" />
+      <End Role="tblRestaurantUserModule" EntitySet="tblRestaurantUserModules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblRestaurentUserModule_tblRestaurentUser" Association="RestaurantDBModel.FK_tblRestaurentUserModule_tblRestaurentUser">
+      <End Role="tblRestaurantUser" EntitySet="tblRestaurantUsers" />
+      <End Role="tblRestaurantUserModule" EntitySet="tblRestaurantUserModules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblRestaurentUserView_tblRestaurentUserModule" Association="RestaurantDBModel.FK_tblRestaurentUserView_tblRestaurentUserModule">
+      <End Role="tblRestaurantUserModule" EntitySet="tblRestaurantUserModules" />
+      <End Role="tblRestaurantUserView" EntitySet="tblRestaurantUserViews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblRestaurentUserView_tblView" Association="RestaurantDBModel.FK_tblRestaurentUserView_tblView">
+      <End Role="tblView" EntitySet="tblViews" />
+      <End Role="tblRestaurantUserView" EntitySet="tblRestaurantUserViews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSellsPoint_tblStoreInformation" Association="RestaurantDBModel.FK_tblSellsPoint_tblStoreInformation">
+      <End Role="tblStoreInformation" EntitySet="tblStoreInformations" />
+      <End Role="tblSellsPoint" EntitySet="tblSellsPoints" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblTotalAmount_tblShift" Association="RestaurantDBModel.FK_tblTotalAmount_tblShift">
+      <End Role="tblShift" EntitySet="tblShifts" />
+      <End Role="tblTotalAmount" EntitySet="tblTotalAmounts" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="RestaurantDBModel.AspNetUserRoles">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <FunctionImport Name="sp_weeklyTotalAmount" ReturnType="Collection(RestaurantDBModel.sp_weeklyTotalAmount_Result)" />
+    <FunctionImport Name="sp_weeklyTotalAmountDayShiftWise" ReturnType="Collection(RestaurantDBModel.sp_weeklyTotalAmountDayShiftWise_Result)" />
+    <FunctionImport Name="sp_weeklyTotalAmountNightShiftWise" ReturnType="Collection(RestaurantDBModel.sp_weeklyTotalAmountNightShiftWise_Result)" />
+  </EntityContainer>
+  <ComplexType Name="sp_AvailableQuantityForPhToSpTransfer_Result">
+    <Property Type="Int32" Name="ProductId" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="200" />
+    <Property Type="Decimal" Name="AvailableQuantity" Nullable="true" Precision="38" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="sp_AvailableQuantityForProductToProductionHouse_Result">
+    <Property Type="Int32" Name="ProductId" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="200" />
+    <Property Type="Decimal" Name="AvailableQuantity" Nullable="true" Precision="38" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="sp_AvailableQuantityForProductUsesInProductionHouse_Result">
+    <Property Type="Int32" Name="ProductId" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="200" />
+    <Property Type="Decimal" Name="AvailableQuantity" Nullable="true" Precision="38" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="sp_CheckAvailableQuantityForProductForProductSoldForDayShift_Result">
+    <Property Type="Int32" Name="ProductId" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Unit" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="UnitPrice" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="AvailableProduct" Nullable="true" Precision="38" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="sp_CheckAvailableQuantityForProductForProductSoldForNightShift_Result">
+    <Property Type="Int32" Name="ProductId" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Unit" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="UnitPrice" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="AvailableProduct" Nullable="true" Precision="38" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="sp_MainStoreProductStatusQuery_Result">
+    <Property Type="Int32" Name="ProductId" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Unit" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="AvailableQuantity" Nullable="true" Precision="38" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="sp_mainStoreToProductionHouse_Result">
+    <Property Type="Int32" Name="ProductId" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="store_name" Nullable="false" MaxLength="50" />
+    <Property Type="Decimal" Name="Quantity" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="String" Name="Unit" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="UnitPrice" Nullable="true" Precision="18" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="sp_mainStoreToProductionHouseFinal_Result">
+    <Property Type="Int32" Name="ProductId" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="store_name" Nullable="false" MaxLength="50" />
+    <Property Type="Decimal" Name="Quantity" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="String" Name="Unit" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="UnitPrice" Nullable="true" Precision="18" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="sp_OtherExpenseAmountForSellReportWithOpeningProduct_Result">
+    <Property Type="Decimal" Name="Less" Nullable="false" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="Due" Nullable="false" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="Compliment" Nullable="false" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="Damage" Nullable="false" Precision="38" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="sp_ProductEntryHistoryForaSpecificDateFromSupplierToMainStore_Result">
+    <Property Type="Int32" Name="SupplierId" Nullable="false" />
+    <Property Type="String" Name="SupplierName" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="ProductId" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="RestaurantId" Nullable="true" />
+    <Property Type="Decimal" Name="Quantity" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="UnitPrice" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="TotalPrice" Nullable="true" Precision="37" Scale="4" />
+  </ComplexType>
+  <ComplexType Name="sp_ProductEntryHistoryForaSpecificDateFromSupplierToMainStoreFinal_Result">
+    <Property Type="Int32" Name="SupplierId" Nullable="false" />
+    <Property Type="String" Name="SupplierName" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="ProductId" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="RestaurantId" Nullable="true" />
+    <Property Type="Decimal" Name="Quantity" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="UnitPrice" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="TotalPrice" Nullable="true" Precision="37" Scale="4" />
+  </ComplexType>
+  <ComplexType Name="sp_ProductEntryHistoryForSpecificDayInSellsPoint_Result">
+    <Property Type="Int32" Name="ProductId" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="200" />
+    <Property Type="Decimal" Name="Quantity" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="String" Name="Unit" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="UnitPrice" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="TotalPrice" Nullable="true" Precision="38" Scale="4" />
+    <Property Type="String" Name="ProductTypeName" Nullable="false" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="sp_ProductEntryHistoryFromSupplierToMainStoreForReporting_Result">
+    <Property Type="Int32" Name="ProductId" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="RestaurantId" Nullable="true" />
+    <Property Type="Decimal" Name="Quantity" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="UnitPrice" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="TotalPrice" Nullable="true" Precision="37" Scale="4" />
+  </ComplexType>
+  <ComplexType Name="sp_ProductEntryHistoryFromSupplierToMainStoreForReportingFinal_Result">
+    <Property Type="Int32" Name="ProductId" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="RestaurantId" Nullable="true" />
+    <Property Type="Decimal" Name="Quantity" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="UnitPrice" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="TotalPrice" Nullable="true" Precision="37" Scale="4" />
+  </ComplexType>
+  <ComplexType Name="sp_ProductSell_Result">
+    <Property Type="Int32" Name="ProductId" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="200" />
+    <Property Type="Decimal" Name="Quantity" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="Unit" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="UnitPrice" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="TotalPrice" Nullable="true" Precision="37" Scale="4" />
+  </ComplexType>
+  <ComplexType Name="sp_ProductSellFinal_Result">
+    <Property Type="Int32" Name="ProductId" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="200" />
+    <Property Type="Decimal" Name="Quantity" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="Unit" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="UnitPrice" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="TotalPrice" Nullable="true" Precision="37" Scale="4" />
+  </ComplexType>
+  <ComplexType Name="sp_ProductSellHistoryWithOpeningProductForDayShift_Result">
+    <Property Type="Int32" Name="ProductId" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Unit" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="UnitPrice" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="ProductionCost" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="OpeningProduct" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="Issue" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="TotalProduct" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="SellProduct" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="ClosingProduct" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="TotalPrice" Nullable="true" Precision="38" Scale="4" />
+  </ComplexType>
+  <ComplexType Name="sp_ProductSellHistoryWithOpeningProductForDayShiftQueryB_Result">
+    <Property Type="Int32" Name="ProductId" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Unit" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="UnitPrice" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="ProductionCost" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="OpeningProduct" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="Issue" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="TotalProduct" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="SellProduct" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="ClosingProduct" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="TotalProductionCost" Nullable="true" Precision="38" Scale="4" />
+    <Property Type="Decimal" Name="TotalPrice" Nullable="true" Precision="38" Scale="4" />
+  </ComplexType>
+  <ComplexType Name="sp_ProductSellHistoryWithOpeningProductForNightShift_Result">
+    <Property Type="Int32" Name="ProductId" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Unit" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="UnitPrice" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="ProductionCost" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="OpeningProduct" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="Issue" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="TotalProduct" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="SellProduct" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="ClosingProduct" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="TotalPrice" Nullable="true" Precision="38" Scale="4" />
+  </ComplexType>
+  <ComplexType Name="sp_ProductSellHistoryWithOpeningProductForNightShiftQueryB_Result">
+    <Property Type="Int32" Name="ProductId" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Unit" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="UnitPrice" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="ProductionCost" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="OpeningProduct" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="Issue" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="TotalProduct" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="SellProduct" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="ClosingProduct" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="TotalProductionCost" Nullable="true" Precision="38" Scale="4" />
+    <Property Type="Decimal" Name="TotalPrice" Nullable="true" Precision="38" Scale="4" />
+  </ComplexType>
+  <ComplexType Name="sp_ProductSellReportWithOpeningProduct_Result">
+    <Property Type="Int32" Name="ProductId" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="200" />
+    <Property Type="Decimal" Name="OpeningQuantity" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="InProductQuantitySelectDate" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="SellProductQuantitySelectDate" Nullable="true" Precision="38" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="sp_ProductSoldForDayShift_Result">
+    <Property Type="Int32" Name="ProductId" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Unit" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="UnitPrice" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="AvailableProduct" Nullable="true" Precision="38" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="sp_ProductSoldForNightShift_Result">
+    <Property Type="Int32" Name="ProductId" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Unit" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="UnitPrice" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="AvailableProduct" Nullable="true" Precision="38" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="sp_PurchaseAndBothTypeProductList_Result">
+    <Property Type="Int32" Name="ProductId" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Unit" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="UnitPrice" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="AvailableQuantity" Nullable="true" Precision="38" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="sp_PurchaseAndBothTypeProductListForProductUsesInProductionHouse_Result">
+    <Property Type="Int32" Name="ProductId" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Unit" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="UnitPrice" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="AvailableQuantity" Nullable="true" Precision="38" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="sp_PuschaseableProductStatusInProductionHouse_Result">
+    <Property Type="Int32" Name="ProductId" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Unit" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="AvailableQuantity" Nullable="true" Precision="38" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="sp_SellableProductStatusInProductionHouse_Result">
+    <Property Type="Int32" Name="ProductId" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Unit" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="UnitPrice" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="AvailableQuantity" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="TotalPrice" Nullable="true" Precision="38" Scale="4" />
+  </ComplexType>
+  <ComplexType Name="sp_SellPointProductStatus_Result">
+    <Property Type="Int32" Name="ProductId" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Unit" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="UnitPrice" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="AvailableQuantity" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="TotalPrice" Nullable="true" Precision="38" Scale="4" />
+  </ComplexType>
+  <ComplexType Name="spSearchProductEntryHistoryInSellsPoint_Result">
+    <Property Type="Int32" Name="ProductId" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="200" />
+    <Property Type="Decimal" Name="Quantity" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="String" Name="Unit" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="UnitPrice" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="TotalPrice" Nullable="true" Precision="38" Scale="4" />
+    <Property Type="String" Name="ProductTypeName" Nullable="false" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="spSearchProductEntryHistoryInSellsPointFinal_Result">
+    <Property Type="Int32" Name="ProductId" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="200" />
+    <Property Type="Decimal" Name="Quantity" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="String" Name="Unit" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="UnitPrice" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="TotalPrice" Nullable="true" Precision="38" Scale="4" />
+    <Property Type="String" Name="ProductTypeName" Nullable="false" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="sp_monthlyTotalAmountForDayShift_Result">
+    <Property Type="Int32" Name="day" Nullable="true" />
+    <Property Type="Decimal" Name="TotalAmount" Nullable="true" Precision="18" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="sp_weeklyTotalProductSellByGraph_Result">
+    <Property Type="String" Name="DayOfWeek" Nullable="true" MaxLength="9" />
+    <Property Type="Decimal" Name="TotalSell" Nullable="true" Precision="38" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="sp_monthlyTotalAmountForNightShift_Result">
+    <Property Type="Int32" Name="day" Nullable="true" />
+    <Property Type="Decimal" Name="TotalAmount" Nullable="true" Precision="18" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="sp_monthlyTotalAmount_Result">
+    <Property Type="Int32" Name="day" Nullable="true" />
+    <Property Type="Decimal" Name="TotalAmount" Nullable="true" Precision="38" Scale="2" />
+  </ComplexType>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="acc_CashFlow_Type">
+    <Key>
+      <PropertyRef Name="CashFlowType_Id" />
+    </Key>
+    <Property Name="CashFlowType_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CashFlowGroup_Id" Type="Int32" />
+    <Property Name="CashFlow_Type" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="EditUser" Type="Guid" />
+    <Property Name="EditDate" Type="DateTime" Precision="3" />
+    <Property Name="OCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="acc_CashFlowGroup">
+    <Key>
+      <PropertyRef Name="CashFlowGroup_Id" />
+    </Key>
+    <Property Name="CashFlowGroup_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CashFlow_Group" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="EditUser" Type="Guid" />
+    <Property Name="EditDate" Type="DateTime" Precision="3" />
+    <Property Name="OCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="acc_CashFlowMapping">
+    <Key>
+      <PropertyRef Name="CashFlowMapping_Id" />
+    </Key>
+    <Property Name="CashFlowMapping_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LedgerID" Type="Guid" Nullable="false" />
+    <Property Name="CashFlowType_Id" Type="Int32" Nullable="false" />
+    <Property Name="EditUser" Type="Guid" />
+    <Property Name="EditDate" Type="DateTime" Precision="3" />
+    <Property Name="OCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="acc_Chart_of_Account_Maping">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MIS_Id" Type="Int32" Nullable="false" />
+    <Property Name="Ledger_Id" Type="Guid" Nullable="false" />
+    <Property Name="DateOfEntry" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EntryBy" Type="Guid" Nullable="false" />
+    <Property Name="OCode" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="acc_Group">
+    <Key>
+      <PropertyRef Name="GroupID" />
+    </Key>
+    <Property Name="GroupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GroupName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GroupCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ParentGroupID" Type="Int32" />
+    <Property Name="NatureID" Type="Int32" Nullable="false" />
+    <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="EditedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="RestrictDelete" Type="Boolean" />
+    <Property Name="IsSystemDefault" Type="Boolean" />
+    <Property Name="OCode" Type="Int32" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <NavigationProperty Name="acc_Group1" Relationship="RestaurantDBModel.FK_acc_Group_acc_Group" FromRole="acc_Group" ToRole="acc_Group1" />
+    <NavigationProperty Name="acc_Group2" Relationship="RestaurantDBModel.FK_acc_Group_acc_Group" FromRole="acc_Group1" ToRole="acc_Group" />
+    <NavigationProperty Name="acc_Group_Maping" Relationship="RestaurantDBModel.FK_acc_Group_Maping_acc_Group" FromRole="acc_Group" ToRole="acc_Group_Maping" />
+    <NavigationProperty Name="acc_Ledger" Relationship="RestaurantDBModel.FK_acc_Ledger_acc_Group" FromRole="acc_Group" ToRole="acc_Ledger" />
+  </EntityType>
+  <EntityType Name="acc_Group_Maping">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Group_MIS_Id" Type="Int32" Nullable="false" />
+    <Property Name="Group_Id" Type="Int32" Nullable="false" />
+    <Property Name="DateOfEntry" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EntryBy" Type="Guid" Nullable="false" />
+    <Property Name="OCode" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="acc_Group" Relationship="RestaurantDBModel.FK_acc_Group_Maping_acc_Group" FromRole="acc_Group_Maping" ToRole="acc_Group" />
+    <NavigationProperty Name="acc_tbl_Group_MIS" Relationship="RestaurantDBModel.FK_acc_Group_Maping_acc_tbl_Group_MIS" FromRole="acc_Group_Maping" ToRole="acc_tbl_Group_MIS" />
+  </EntityType>
+  <EntityType Name="acc_Ledger">
+    <Key>
+      <PropertyRef Name="LedgerID" />
+    </Key>
+    <Property Name="LedgerID" Type="Guid" Nullable="false" />
+    <Property Name="LedgerName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EditedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="GroupID" Type="Int32" Nullable="false" />
+    <Property Name="InitialBalance" Type="Decimal" Precision="19" Scale="2" />
+    <Property Name="BalanceType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RestrictDelete" Type="Boolean" />
+    <Property Name="ParentLedgerID" Type="Guid" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="IsSystemDefault" Type="Boolean" />
+    <Property Name="OCode" Type="Int32" />
+    <Property Name="LedgerCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="acc_Group" Relationship="RestaurantDBModel.FK_acc_Ledger_acc_Group" FromRole="acc_Ledger" ToRole="acc_Group" />
+    <NavigationProperty Name="acc_VoucherDetail" Relationship="RestaurantDBModel.FK_acc_LedgerDetail_acc_Ledger" FromRole="acc_Ledger" ToRole="acc_VoucherDetail" />
+  </EntityType>
+  <EntityType Name="acc_Nature">
+    <Key>
+      <PropertyRef Name="NatureID" />
+    </Key>
+    <Property Name="NatureID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NatureName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NatureType" Type="Int32" />
+    <Property Name="EditUser" Type="Guid" />
+    <Property Name="EditDate" Type="DateTime" Precision="3" />
+    <Property Name="EditUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OCode" Type="Int32" />
+  </EntityType>
+  <EntityType Name="acc_Subsidiary">
+    <Key>
+      <PropertyRef Name="Subsidiary_Id" />
+    </Key>
+    <Property Name="Subsidiary_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Subsidiary_Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="EditUser" Type="Guid" />
+    <Property Name="EditDate" Type="DateTime" Precision="3" />
+    <Property Name="OCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="acc_SubsidiaryVoucherDetail" Relationship="RestaurantDBModel.FK_acc_SubsidiaryVoucherDetail_acc_Subsidiary" FromRole="acc_Subsidiary" ToRole="acc_SubsidiaryVoucherDetail" />
+  </EntityType>
+  <EntityType Name="acc_SubsidiaryVoucherDetail">
+    <Key>
+      <PropertyRef Name="Subsidiary_Voucher_Detail_Id" />
+    </Key>
+    <Property Name="Subsidiary_Voucher_Detail_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VoucherDetailID" Type="Guid" Nullable="false" />
+    <Property Name="Subsidiary_Id" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="2" />
+    <Property Name="VoucherID" Type="Int32" />
+    <Property Name="EditUser" Type="Guid" />
+    <Property Name="EditDate" Type="DateTime" Precision="3" />
+    <Property Name="OCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="acc_Subsidiary" Relationship="RestaurantDBModel.FK_acc_SubsidiaryVoucherDetail_acc_Subsidiary" FromRole="acc_SubsidiaryVoucherDetail" ToRole="acc_Subsidiary" />
+    <NavigationProperty Name="acc_VoucherDetail" Relationship="RestaurantDBModel.FK_acc_SubsidiaryVoucherDetail_acc_SubsidiaryVoucherDetail" FromRole="acc_SubsidiaryVoucherDetail" ToRole="acc_VoucherDetail" />
+  </EntityType>
+  <EntityType Name="acc_tbl_Group_MIS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="MIS_Group_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="acc_Group_Maping" Relationship="RestaurantDBModel.FK_acc_Group_Maping_acc_tbl_Group_MIS" FromRole="acc_tbl_Group_MIS" ToRole="acc_Group_Maping" />
+  </EntityType>
+  <EntityType Name="acc_tbl_MIS">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="MIS_Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="acc_VoucherDetail">
+    <Key>
+      <PropertyRef Name="VoucherDetailID" />
+    </Key>
+    <Property Name="VoucherDetailID" Type="Guid" Nullable="false" />
+    <Property Name="VoucherID" Type="Int32" Nullable="false" />
+    <Property Name="LedgerID" Type="Guid" Nullable="false" />
+    <Property Name="Debit" Type="Decimal" Precision="19" Scale="2" />
+    <Property Name="Credit" Type="Decimal" Precision="19" Scale="2" />
+    <Property Name="ChequeNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TransactionDate" Type="DateTime" Precision="3" />
+    <Property Name="VTypeID" Type="Int32" />
+    <Property Name="OCode" Type="Int32" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="EditedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="acc_Ledger" Relationship="RestaurantDBModel.FK_acc_LedgerDetail_acc_Ledger" FromRole="acc_VoucherDetail" ToRole="acc_Ledger" />
+    <NavigationProperty Name="acc_SubsidiaryVoucherDetail" Relationship="RestaurantDBModel.FK_acc_SubsidiaryVoucherDetail_acc_SubsidiaryVoucherDetail" FromRole="acc_VoucherDetail" ToRole="acc_SubsidiaryVoucherDetail" />
+    <NavigationProperty Name="acc_VoucherEntry" Relationship="RestaurantDBModel.FK_acc_VoucherDetail_acc_VoucherEntry" FromRole="acc_VoucherDetail" ToRole="acc_VoucherEntry" />
+  </EntityType>
+  <EntityType Name="acc_VoucherEntry">
+    <Key>
+      <PropertyRef Name="VoucherID" />
+    </Key>
+    <Property Name="VoucherID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VoucherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TransactionDate" Type="DateTime" Precision="3" />
+    <Property Name="Narration" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="VTypeID" Type="Int32" />
+    <Property Name="VNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="RestrictDelete" Type="Boolean" />
+    <Property Name="OCode" Type="Int32" />
+    <Property Name="ActionName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="EditedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="acc_VoucherDetail" Relationship="RestaurantDBModel.FK_acc_VoucherDetail_acc_VoucherEntry" FromRole="acc_VoucherEntry" ToRole="acc_VoucherDetail" />
+    <NavigationProperty Name="acc_VoucherType" Relationship="RestaurantDBModel.FK_acc_VoucherEntry_acc_VoucherType" FromRole="acc_VoucherEntry" ToRole="acc_VoucherType" />
+  </EntityType>
+  <EntityType Name="acc_VoucherType">
+    <Key>
+      <PropertyRef Name="VTypeID" />
+    </Key>
+    <Property Name="VTypeID" Type="Int32" Nullable="false" />
+    <Property Name="VTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EditUser" Type="Guid" />
+    <Property Name="EditDate" Type="DateTime" Precision="3" />
+    <Property Name="EditUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OCode" Type="Int32" />
+    <NavigationProperty Name="acc_VoucherEntry" Relationship="RestaurantDBModel.FK_acc_VoucherEntry_acc_VoucherType" FromRole="acc_VoucherType" ToRole="acc_VoucherEntry" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="RestaurantDBModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="RestaurantDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="RestaurantDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="UserFullName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="RestaurantDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="RestaurantDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+    <NavigationProperty Name="tblRestaurantUsers" Relationship="RestaurantDBModel.FK_tbllRestaurentUser_AspNetUsers" FromRole="AspNetUser" ToRole="tblRestaurantUser" />
+    <NavigationProperty Name="tblUserActionMappings" Relationship="RestaurantDBModel.FK_tblUserActionMapping_AspNetUsers" FromRole="AspNetUser" ToRole="tblUserActionMapping" />
+    <NavigationProperty Name="AspNetRoles" Relationship="RestaurantDBModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+  </EntityType>
+  <EntityType Name="tblAction">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="url" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="display_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ui_module_id" Type="Int32" />
+    <Property Name="is_view" Type="Boolean" />
+    <Property Name="is_in_menu" Type="Boolean" />
+    <NavigationProperty Name="tblModule" Relationship="RestaurantDBModel.FK_tblAction_tblModule" FromRole="tblAction" ToRole="tblModule" />
+    <NavigationProperty Name="tblUserActionMappings" Relationship="RestaurantDBModel.FK_tblUserActionMapping_tblAction" FromRole="tblAction" ToRole="tblUserActionMapping" />
+  </EntityType>
+  <EntityType Name="tblChalanReport">
+    <Key>
+      <PropertyRef Name="chalanNo" />
+    </Key>
+    <Property Name="chalanNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FromStore" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ToStore" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="ReportName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Supplier" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblDesignation">
+    <Key>
+      <PropertyRef Name="DesignationId" />
+    </Key>
+    <Property Name="DesignationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DesignationName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="EditedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblEmployeeInformations" Relationship="RestaurantDBModel.FK_tblEmployeeInformation_tblDesignation" FromRole="tblDesignation" ToRole="tblEmployeeInformation" />
+  </EntityType>
+  <EntityType Name="tblEmployeeInformation">
+    <Key>
+      <PropertyRef Name="EmployeeId" />
+    </Key>
+    <Property Name="EmployeeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="EmployeeAddress" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="ContactNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="EmployeeNid" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="EmployeeEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="EmployeeImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DesignationId" Type="Int32" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="EditedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblDesignation" Relationship="RestaurantDBModel.FK_tblEmployeeInformation_tblDesignation" FromRole="tblEmployeeInformation" ToRole="tblDesignation" />
+  </EntityType>
+  <EntityType Name="tblGroupAndShiftMapping">
+    <Key>
+      <PropertyRef Name="GroupMappingId" />
+    </Key>
+    <Property Name="GroupMappingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TransferDate" Type="DateTime" Precision="3" />
+    <Property Name="Day" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Night" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="EditedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblGroupForShift">
+    <Key>
+      <PropertyRef Name="GroupId" />
+    </Key>
+    <Property Name="GroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GroupName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="EditedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblMeasurementUnit">
+    <Key>
+      <PropertyRef Name="UnitId" />
+    </Key>
+    <Property Name="UnitId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UnitName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="EditedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblModule">
+    <Key>
+      <PropertyRef Name="module_id" />
+    </Key>
+    <Property Name="module_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="module_name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="module_order" Type="Int32" />
+    <Property Name="module_icon" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="EditedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblActions" Relationship="RestaurantDBModel.FK_tblAction_tblModule" FromRole="tblModule" ToRole="tblAction" />
+    <NavigationProperty Name="tblRestaurantModules" Relationship="RestaurantDBModel.FK_tbllRestaurentModule_tblModule" FromRole="tblModule" ToRole="tblRestaurantModule" />
+  </EntityType>
+  <EntityType Name="tblOtherExpense">
+    <Key>
+      <PropertyRef Name="ExpenseId" />
+    </Key>
+    <Property Name="ExpenseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StoreId" Type="Int32" />
+    <Property Name="ShiftId" Type="Int32" />
+    <Property Name="TransferDate" Type="DateTime" Precision="3" />
+    <Property Name="Less" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Due" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Compliment" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Damage" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="EditedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblStoreInformation" Relationship="RestaurantDBModel.FK_tblOtherExpense_tblSellsPoint" FromRole="tblOtherExpense" ToRole="tblStoreInformation" />
+    <NavigationProperty Name="tblShift" Relationship="RestaurantDBModel.FK_tblOtherExpense_tblShift" FromRole="tblOtherExpense" ToRole="tblShift" />
+  </EntityType>
+  <EntityType Name="tblPHtoSPProductTransfer">
+    <Key>
+      <PropertyRef Name="SPSProductId" />
+    </Key>
+    <Property Name="SPSProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SellsPointId" Type="Int32" />
+    <Property Name="ProductionHouseId" Type="Int32" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="EditedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="isIn" Type="Boolean" />
+    <Property Name="isOut" Type="Boolean" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ShiftId" Type="Int32" />
+    <Property Name="TransferDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblProductInformation" Relationship="RestaurantDBModel.FK_tblPHtoSPProductTransfer_tblProductInformation" FromRole="tblPHtoSPProductTransfer" ToRole="tblProductInformation" />
+    <NavigationProperty Name="tblProductionHouseInformation" Relationship="RestaurantDBModel.FK_tblPHtoSPProductTransfer_tblProductionHouseInformation" FromRole="tblPHtoSPProductTransfer" ToRole="tblProductionHouseInformation" />
+    <NavigationProperty Name="tblSellsPoint" Relationship="RestaurantDBModel.FK_tblPHtoSPProductTransfer_tblSellsPoint" FromRole="tblPHtoSPProductTransfer" ToRole="tblSellsPoint" />
+    <NavigationProperty Name="tblShift" Relationship="RestaurantDBModel.FK_tblPHtoSPProductTransfer_tblShift" FromRole="tblPHtoSPProductTransfer" ToRole="tblShift" />
+  </EntityType>
+  <EntityType Name="tblProductEntryToProductionHouse">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductionHouseId" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RestuarentId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Unit" Type="Int32" />
+    <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="tblProductInformation" Relationship="RestaurantDBModel.FK_tblProductEntryToProductionHouse_tblProductInformation" FromRole="tblProductEntryToProductionHouse" ToRole="tblProductInformation" />
+    <NavigationProperty Name="tblProductionHouseInformation" Relationship="RestaurantDBModel.FK_tblProductEntryToProductionHouse_tblProductionHouseInformation" FromRole="tblProductEntryToProductionHouse" ToRole="tblProductionHouseInformation" />
+  </EntityType>
+  <EntityType Name="tblProductFromSupplier">
+    <Key>
+      <PropertyRef Name="ProductTransferId" />
+    </Key>
+    <Property Name="ProductTransferId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StoreId" Type="Int32" />
+    <Property Name="SupplierId" Type="Int32" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="DateTime" Type="DateTime" Precision="3" />
+    <Property Name="isIn" Type="Boolean" />
+    <Property Name="isOut" Type="Boolean" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="EditedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblProductInformation">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ProductTypeId" Type="Int32" />
+    <Property Name="StoreId" Type="Int32" />
+    <Property Name="Unit" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="EditedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="ProductionCost" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="tblPHtoSPProductTransfers" Relationship="RestaurantDBModel.FK_tblPHtoSPProductTransfer_tblProductInformation" FromRole="tblProductInformation" ToRole="tblPHtoSPProductTransfer" />
+    <NavigationProperty Name="tblProductEntryToProductionHouses" Relationship="RestaurantDBModel.FK_tblProductEntryToProductionHouse_tblProductInformation" FromRole="tblProductInformation" ToRole="tblProductEntryToProductionHouse" />
+    <NavigationProperty Name="tblProductType" Relationship="RestaurantDBModel.FK_tblProductInformation_tblProductType" FromRole="tblProductInformation" ToRole="tblProductType" />
+    <NavigationProperty Name="tblStoreInformation" Relationship="RestaurantDBModel.FK_tblProductInformation_tblStoreInformation1" FromRole="tblProductInformation" ToRole="tblStoreInformation" />
+    <NavigationProperty Name="tblProductionHouseToProductMappings" Relationship="RestaurantDBModel.FK_tblProductionHouseToProductMapping_tblProductInformation" FromRole="tblProductInformation" ToRole="tblProductionHouseToProductMapping" />
+    <NavigationProperty Name="tblProductTransfers" Relationship="RestaurantDBModel.FK_tblProductTransfer_tblProductInformation" FromRole="tblProductInformation" ToRole="tblProductTransfer" />
+    <NavigationProperty Name="tblSuppliersProducts" Relationship="RestaurantDBModel.FK_tblSuppliersProduct_tblProductInformation" FromRole="tblProductInformation" ToRole="tblSuppliersProduct" />
+  </EntityType>
+  <EntityType Name="tblProductionHouseInformation">
+    <Key>
+      <PropertyRef Name="ProductionHouseId" />
+    </Key>
+    <Property Name="ProductionHouseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductionHouseName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MainStore" Type="Int32" Nullable="false" />
+    <Property Name="OwnStore" Type="Int32" Nullable="false" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="EditedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblPHtoSPProductTransfers" Relationship="RestaurantDBModel.FK_tblPHtoSPProductTransfer_tblProductionHouseInformation" FromRole="tblProductionHouseInformation" ToRole="tblPHtoSPProductTransfer" />
+    <NavigationProperty Name="tblProductEntryToProductionHouses" Relationship="RestaurantDBModel.FK_tblProductEntryToProductionHouse_tblProductionHouseInformation" FromRole="tblProductionHouseInformation" ToRole="tblProductEntryToProductionHouse" />
+  </EntityType>
+  <EntityType Name="tblProductionHouseToProductMapping">
+    <Key>
+      <PropertyRef Name="PPMapppingId" />
+    </Key>
+    <Property Name="PPMapppingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductionHouseId" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RestuarentId" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblProductInformation" Relationship="RestaurantDBModel.FK_tblProductionHouseToProductMapping_tblProductInformation" FromRole="tblProductionHouseToProductMapping" ToRole="tblProductInformation" />
+  </EntityType>
+  <EntityType Name="tblProductSold">
+    <Key>
+      <PropertyRef Name="ProductSoldId" />
+    </Key>
+    <Property Name="ProductSoldId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StoreId" Type="Int32" />
+    <Property Name="SupplierId" Type="Int32" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="DateTime" Type="DateTime" Precision="3" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="EditedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="ShiftId" Type="Int32" />
+    <Property Name="TransferDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblProductTransfer">
+    <Key>
+      <PropertyRef Name="ProductTransferId" />
+    </Key>
+    <Property Name="ProductTransferId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StoreId" Type="Int32" />
+    <Property Name="SupplierId" Type="Int32" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="DateTime" Type="DateTime" Precision="3" />
+    <Property Name="isIn" Type="Boolean" />
+    <Property Name="isOut" Type="Boolean" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="EditedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="ShiftId" Type="Int32" />
+    <Property Name="TransferDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblProductInformation" Relationship="RestaurantDBModel.FK_tblProductTransfer_tblProductInformation" FromRole="tblProductTransfer" ToRole="tblProductInformation" />
+    <NavigationProperty Name="tblStoreInformation" Relationship="RestaurantDBModel.FK_tblProductTransfer_tblStoreInformation" FromRole="tblProductTransfer" ToRole="tblStoreInformation" />
+  </EntityType>
+  <EntityType Name="tblProductType">
+    <Key>
+      <PropertyRef Name="ProductTypeId" />
+    </Key>
+    <Property Name="ProductTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductTypeName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="EditedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblProductInformations" Relationship="RestaurantDBModel.FK_tblProductInformation_tblProductType" FromRole="tblProductType" ToRole="tblProductInformation" />
+  </EntityType>
+  <EntityType Name="tblRestaurantInformation">
+    <Key>
+      <PropertyRef Name="restaurant_id" />
+    </Key>
+    <Property Name="restaurant_id" Type="Decimal" Nullable="false" Precision="9" Scale="0" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="short_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="reg_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="initial_date" Type="DateTime" Precision="3" />
+    <Property Name="trec_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="EditedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="Address" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblRestaurantModules" Relationship="RestaurantDBModel.FK_tbllRestaurentModule_tblRestaurentInformation" FromRole="tblRestaurantInformation" ToRole="tblRestaurantModule" />
+    <NavigationProperty Name="tblRestaurantUsers" Relationship="RestaurantDBModel.FK_tbllRestaurentUser_tbllRestaurentInformation" FromRole="tblRestaurantInformation" ToRole="tblRestaurantUser" />
+  </EntityType>
+  <EntityType Name="tblRestaurantModule">
+    <Key>
+      <PropertyRef Name="restaurant_id" />
+      <PropertyRef Name="module_id" />
+    </Key>
+    <Property Name="restaurant_id" Type="Decimal" Nullable="false" Precision="9" Scale="0" />
+    <Property Name="module_id" Type="Int32" Nullable="false" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="EditedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblModule" Relationship="RestaurantDBModel.FK_tbllRestaurentModule_tblModule" FromRole="tblRestaurantModule" ToRole="tblModule" />
+    <NavigationProperty Name="tblRestaurantInformation" Relationship="RestaurantDBModel.FK_tbllRestaurentModule_tblRestaurentInformation" FromRole="tblRestaurantModule" ToRole="tblRestaurantInformation" />
+    <NavigationProperty Name="tblRestaurantUserModules" Relationship="RestaurantDBModel.FK_tblRestaurentUserModule_tblRestaurentModule" FromRole="tblRestaurantModule" ToRole="tblRestaurantUserModule" />
+  </EntityType>
+  <EntityType Name="tblRestaurantUser">
+    <Key>
+      <PropertyRef Name="restaurant_id" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="restaurant_id" Type="Decimal" Nullable="false" Precision="9" Scale="0" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="is_admin" Type="Decimal" Nullable="false" Precision="1" Scale="0" />
+    <Property Name="is_loggedIn" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="last_logged_time" Type="DateTime" Precision="3" />
+    <Property Name="approve_by" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="approve_date" Type="Decimal" Precision="9" Scale="0" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="EditedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="AspNetUser" Relationship="RestaurantDBModel.FK_tbllRestaurentUser_AspNetUsers" FromRole="tblRestaurantUser" ToRole="AspNetUser" />
+    <NavigationProperty Name="tblRestaurantInformation" Relationship="RestaurantDBModel.FK_tbllRestaurentUser_tbllRestaurentInformation" FromRole="tblRestaurantUser" ToRole="tblRestaurantInformation" />
+    <NavigationProperty Name="tblRestaurantUserModules" Relationship="RestaurantDBModel.FK_tblRestaurentUserModule_tblRestaurentUser" FromRole="tblRestaurantUser" ToRole="tblRestaurantUserModule" />
+  </EntityType>
+  <EntityType Name="tblRestaurantUserModule">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="restaurant_id" />
+      <PropertyRef Name="module_id" />
+    </Key>
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="restaurant_id" Type="Decimal" Nullable="false" Precision="9" Scale="0" />
+    <Property Name="module_id" Type="Int32" Nullable="false" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="EditedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblRestaurantModule" Relationship="RestaurantDBModel.FK_tblRestaurentUserModule_tblRestaurentModule" FromRole="tblRestaurantUserModule" ToRole="tblRestaurantModule" />
+    <NavigationProperty Name="tblRestaurantUser" Relationship="RestaurantDBModel.FK_tblRestaurentUserModule_tblRestaurentUser" FromRole="tblRestaurantUserModule" ToRole="tblRestaurantUser" />
+    <NavigationProperty Name="tblRestaurantUserViews" Relationship="RestaurantDBModel.FK_tblRestaurentUserView_tblRestaurentUserModule" FromRole="tblRestaurantUserModule" ToRole="tblRestaurantUserView" />
+  </EntityType>
+  <EntityType Name="tblRestaurantUserView">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="restaurant_id" />
+      <PropertyRef Name="module_id" />
+      <PropertyRef Name="veiw_id" />
+    </Key>
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="restaurant_id" Type="Decimal" Nullable="false" Precision="9" Scale="0" />
+    <Property Name="module_id" Type="Int32" Nullable="false" />
+    <Property Name="veiw_id" Type="Decimal" Nullable="false" Precision="9" Scale="0" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="EditedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblRestaurantUserModule" Relationship="RestaurantDBModel.FK_tblRestaurentUserView_tblRestaurentUserModule" FromRole="tblRestaurantUserView" ToRole="tblRestaurantUserModule" />
+    <NavigationProperty Name="tblView" Relationship="RestaurantDBModel.FK_tblRestaurentUserView_tblView" FromRole="tblRestaurantUserView" ToRole="tblView" />
+  </EntityType>
+  <EntityType Name="tblSellsPoint">
+    <Key>
+      <PropertyRef Name="SellsPointId" />
+    </Key>
+    <Property Name="SellsPointId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SellsPointName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="SellsPointStoreId" Type="Int32" Nullable="false" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="EditedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblPHtoSPProductTransfers" Relationship="RestaurantDBModel.FK_tblPHtoSPProductTransfer_tblSellsPoint" FromRole="tblSellsPoint" ToRole="tblPHtoSPProductTransfer" />
+    <NavigationProperty Name="tblStoreInformation" Relationship="RestaurantDBModel.FK_tblSellsPoint_tblStoreInformation" FromRole="tblSellsPoint" ToRole="tblStoreInformation" />
+  </EntityType>
+  <EntityType Name="tblShift">
+    <Key>
+      <PropertyRef Name="ShiftId" />
+    </Key>
+    <Property Name="ShiftId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShiftName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="EditedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblOtherExpenses" Relationship="RestaurantDBModel.FK_tblOtherExpense_tblShift" FromRole="tblShift" ToRole="tblOtherExpense" />
+    <NavigationProperty Name="tblPHtoSPProductTransfers" Relationship="RestaurantDBModel.FK_tblPHtoSPProductTransfer_tblShift" FromRole="tblShift" ToRole="tblPHtoSPProductTransfer" />
+    <NavigationProperty Name="tblTotalAmounts" Relationship="RestaurantDBModel.FK_tblTotalAmount_tblShift" FromRole="tblShift" ToRole="tblTotalAmount" />
+  </EntityType>
+  <EntityType Name="tblStoreInformation">
+    <Key>
+      <PropertyRef Name="store_id" />
+    </Key>
+    <Property Name="store_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="store_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="is_mainStore" Type="Boolean" Nullable="false" />
+    <Property Name="ProductionHouseId" Type="Int32" />
+    <Property Name="ParentStoreId" Type="Int32" />
+    <Property Name="SellsPointStoreId" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="isProductionHouseStore" Type="Boolean" />
+    <Property Name="IsSellsPointStore" Type="Boolean" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="EditedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblOtherExpenses" Relationship="RestaurantDBModel.FK_tblOtherExpense_tblSellsPoint" FromRole="tblStoreInformation" ToRole="tblOtherExpense" />
+    <NavigationProperty Name="tblProductInformations" Relationship="RestaurantDBModel.FK_tblProductInformation_tblStoreInformation1" FromRole="tblStoreInformation" ToRole="tblProductInformation" />
+    <NavigationProperty Name="tblProductTransfers" Relationship="RestaurantDBModel.FK_tblProductTransfer_tblStoreInformation" FromRole="tblStoreInformation" ToRole="tblProductTransfer" />
+    <NavigationProperty Name="tblSellsPoints" Relationship="RestaurantDBModel.FK_tblSellsPoint_tblStoreInformation" FromRole="tblStoreInformation" ToRole="tblSellsPoint" />
+  </EntityType>
+  <EntityType Name="tblSupplierInformation">
+    <Key>
+      <PropertyRef Name="SupplierId" />
+    </Key>
+    <Property Name="SupplierId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SupplierName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SupplierAddress" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SupplierPhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SupplierEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="EditedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblSuppliersProduct">
+    <Key>
+      <PropertyRef Name="SupplierProductId" />
+    </Key>
+    <Property Name="SupplierProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SupplierId" Type="Int32" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="Mapped" Type="Boolean" />
+    <Property Name="EntryDate" Type="DateTime" Precision="3" />
+    <Property Name="EntryUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="EditedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblProductInformation" Relationship="RestaurantDBModel.FK_tblSuppliersProduct_tblProductInformation" FromRole="tblSuppliersProduct" ToRole="tblProductInformation" />
+  </EntityType>
+  <EntityType Name="tblTotalAmount">
+    <Key>
+      <PropertyRef Name="TotalAmountId" />
+    </Key>
+    <Property Name="TotalAmountId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TransferDate" Type="DateTime" Precision="0" />
+    <Property Name="ShiftId" Type="Int32" />
+    <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="tblShift" Relationship="RestaurantDBModel.FK_tblTotalAmount_tblShift" FromRole="tblTotalAmount" ToRole="tblShift" />
+  </EntityType>
+  <EntityType Name="tblUserActionMapping">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="action_id" Type="Int32" Nullable="false" />
+    <Property Name="is_permitted" Type="Int32" />
+    <Property Name="restaurant_id" Type="Int32" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="EditedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="AspNetUser" Relationship="RestaurantDBModel.FK_tblUserActionMapping_AspNetUsers" FromRole="tblUserActionMapping" ToRole="AspNetUser" />
+    <NavigationProperty Name="tblAction" Relationship="RestaurantDBModel.FK_tblUserActionMapping_tblAction" FromRole="tblUserActionMapping" ToRole="tblAction" />
+  </EntityType>
+  <EntityType Name="tblView">
+    <Key>
+      <PropertyRef Name="view_id" />
+    </Key>
+    <Property Name="view_id" Type="Decimal" Nullable="false" Precision="9" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="module_id" Type="Decimal" Nullable="false" Precision="9" Scale="0" />
+    <Property Name="view_name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="router_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="action_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="area_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblRestaurantUserViews" Relationship="RestaurantDBModel.FK_tblRestaurentUserView_tblView" FromRole="tblView" ToRole="tblRestaurantUserView" />
+  </EntityType>
+  <EntityType Name="tblPurchaseProductUnitPrice">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="ProductCost" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ProcesDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <Association Name="FK_acc_Group_acc_Group">
+    <End Type="RestaurantDBModel.acc_Group" Role="acc_Group" Multiplicity="0..1" />
+    <End Type="RestaurantDBModel.acc_Group" Role="acc_Group1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="acc_Group">
+        <PropertyRef Name="GroupID" />
+      </Principal>
+      <Dependent Role="acc_Group1">
+        <PropertyRef Name="ParentGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_acc_Group_Maping_acc_Group">
+    <End Type="RestaurantDBModel.acc_Group" Role="acc_Group" Multiplicity="1" />
+    <End Type="RestaurantDBModel.acc_Group_Maping" Role="acc_Group_Maping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="acc_Group">
+        <PropertyRef Name="GroupID" />
+      </Principal>
+      <Dependent Role="acc_Group_Maping">
+        <PropertyRef Name="Group_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_acc_Ledger_acc_Group">
+    <End Type="RestaurantDBModel.acc_Group" Role="acc_Group" Multiplicity="1" />
+    <End Type="RestaurantDBModel.acc_Ledger" Role="acc_Ledger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="acc_Group">
+        <PropertyRef Name="GroupID" />
+      </Principal>
+      <Dependent Role="acc_Ledger">
+        <PropertyRef Name="GroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_acc_Group_Maping_acc_tbl_Group_MIS">
+    <End Type="RestaurantDBModel.acc_tbl_Group_MIS" Role="acc_tbl_Group_MIS" Multiplicity="1" />
+    <End Type="RestaurantDBModel.acc_Group_Maping" Role="acc_Group_Maping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="acc_tbl_Group_MIS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="acc_Group_Maping">
+        <PropertyRef Name="Group_MIS_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_acc_LedgerDetail_acc_Ledger">
+    <End Type="RestaurantDBModel.acc_Ledger" Role="acc_Ledger" Multiplicity="1" />
+    <End Type="RestaurantDBModel.acc_VoucherDetail" Role="acc_VoucherDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="acc_Ledger">
+        <PropertyRef Name="LedgerID" />
+      </Principal>
+      <Dependent Role="acc_VoucherDetail">
+        <PropertyRef Name="LedgerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_acc_SubsidiaryVoucherDetail_acc_Subsidiary">
+    <End Type="RestaurantDBModel.acc_Subsidiary" Role="acc_Subsidiary" Multiplicity="1" />
+    <End Type="RestaurantDBModel.acc_SubsidiaryVoucherDetail" Role="acc_SubsidiaryVoucherDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="acc_Subsidiary">
+        <PropertyRef Name="Subsidiary_Id" />
+      </Principal>
+      <Dependent Role="acc_SubsidiaryVoucherDetail">
+        <PropertyRef Name="Subsidiary_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_acc_SubsidiaryVoucherDetail_acc_SubsidiaryVoucherDetail">
+    <End Type="RestaurantDBModel.acc_VoucherDetail" Role="acc_VoucherDetail" Multiplicity="1" />
+    <End Type="RestaurantDBModel.acc_SubsidiaryVoucherDetail" Role="acc_SubsidiaryVoucherDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="acc_VoucherDetail">
+        <PropertyRef Name="VoucherDetailID" />
+      </Principal>
+      <Dependent Role="acc_SubsidiaryVoucherDetail">
+        <PropertyRef Name="VoucherDetailID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_acc_VoucherDetail_acc_VoucherEntry">
+    <End Type="RestaurantDBModel.acc_VoucherEntry" Role="acc_VoucherEntry" Multiplicity="1" />
+    <End Type="RestaurantDBModel.acc_VoucherDetail" Role="acc_VoucherDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="acc_VoucherEntry">
+        <PropertyRef Name="VoucherID" />
+      </Principal>
+      <Dependent Role="acc_VoucherDetail">
+        <PropertyRef Name="VoucherID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_acc_VoucherEntry_acc_VoucherType">
+    <End Type="RestaurantDBModel.acc_VoucherType" Role="acc_VoucherType" Multiplicity="0..1" />
+    <End Type="RestaurantDBModel.acc_VoucherEntry" Role="acc_VoucherEntry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="acc_VoucherType">
+        <PropertyRef Name="VTypeID" />
+      </Principal>
+      <Dependent Role="acc_VoucherEntry">
+        <PropertyRef Name="VTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Type="RestaurantDBModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="RestaurantDBModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaim">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Type="RestaurantDBModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="RestaurantDBModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogin">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbllRestaurentUser_AspNetUsers">
+    <End Type="RestaurantDBModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="RestaurantDBModel.tblRestaurantUser" Role="tblRestaurantUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblRestaurantUser">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUserActionMapping_AspNetUsers">
+    <End Type="RestaurantDBModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="RestaurantDBModel.tblUserActionMapping" Role="tblUserActionMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblUserActionMapping">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblAction_tblModule">
+    <End Type="RestaurantDBModel.tblModule" Role="tblModule" Multiplicity="0..1" />
+    <End Type="RestaurantDBModel.tblAction" Role="tblAction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblModule">
+        <PropertyRef Name="module_id" />
+      </Principal>
+      <Dependent Role="tblAction">
+        <PropertyRef Name="ui_module_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUserActionMapping_tblAction">
+    <End Type="RestaurantDBModel.tblAction" Role="tblAction" Multiplicity="1" />
+    <End Type="RestaurantDBModel.tblUserActionMapping" Role="tblUserActionMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblAction">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tblUserActionMapping">
+        <PropertyRef Name="action_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblEmployeeInformation_tblDesignation">
+    <End Type="RestaurantDBModel.tblDesignation" Role="tblDesignation" Multiplicity="0..1" />
+    <End Type="RestaurantDBModel.tblEmployeeInformation" Role="tblEmployeeInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblDesignation">
+        <PropertyRef Name="DesignationId" />
+      </Principal>
+      <Dependent Role="tblEmployeeInformation">
+        <PropertyRef Name="DesignationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbllRestaurentModule_tblModule">
+    <End Type="RestaurantDBModel.tblModule" Role="tblModule" Multiplicity="1" />
+    <End Type="RestaurantDBModel.tblRestaurantModule" Role="tblRestaurantModule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblModule">
+        <PropertyRef Name="module_id" />
+      </Principal>
+      <Dependent Role="tblRestaurantModule">
+        <PropertyRef Name="module_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOtherExpense_tblSellsPoint">
+    <End Type="RestaurantDBModel.tblStoreInformation" Role="tblStoreInformation" Multiplicity="0..1" />
+    <End Type="RestaurantDBModel.tblOtherExpense" Role="tblOtherExpense" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblStoreInformation">
+        <PropertyRef Name="store_id" />
+      </Principal>
+      <Dependent Role="tblOtherExpense">
+        <PropertyRef Name="StoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOtherExpense_tblShift">
+    <End Type="RestaurantDBModel.tblShift" Role="tblShift" Multiplicity="0..1" />
+    <End Type="RestaurantDBModel.tblOtherExpense" Role="tblOtherExpense" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblShift">
+        <PropertyRef Name="ShiftId" />
+      </Principal>
+      <Dependent Role="tblOtherExpense">
+        <PropertyRef Name="ShiftId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPHtoSPProductTransfer_tblProductInformation">
+    <End Type="RestaurantDBModel.tblProductInformation" Role="tblProductInformation" Multiplicity="0..1" />
+    <End Type="RestaurantDBModel.tblPHtoSPProductTransfer" Role="tblPHtoSPProductTransfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProductInformation">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="tblPHtoSPProductTransfer">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPHtoSPProductTransfer_tblProductionHouseInformation">
+    <End Type="RestaurantDBModel.tblProductionHouseInformation" Role="tblProductionHouseInformation" Multiplicity="0..1" />
+    <End Type="RestaurantDBModel.tblPHtoSPProductTransfer" Role="tblPHtoSPProductTransfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProductionHouseInformation">
+        <PropertyRef Name="ProductionHouseId" />
+      </Principal>
+      <Dependent Role="tblPHtoSPProductTransfer">
+        <PropertyRef Name="ProductionHouseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPHtoSPProductTransfer_tblSellsPoint">
+    <End Type="RestaurantDBModel.tblSellsPoint" Role="tblSellsPoint" Multiplicity="0..1" />
+    <End Type="RestaurantDBModel.tblPHtoSPProductTransfer" Role="tblPHtoSPProductTransfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSellsPoint">
+        <PropertyRef Name="SellsPointId" />
+      </Principal>
+      <Dependent Role="tblPHtoSPProductTransfer">
+        <PropertyRef Name="SellsPointId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPHtoSPProductTransfer_tblShift">
+    <End Type="RestaurantDBModel.tblShift" Role="tblShift" Multiplicity="0..1" />
+    <End Type="RestaurantDBModel.tblPHtoSPProductTransfer" Role="tblPHtoSPProductTransfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblShift">
+        <PropertyRef Name="ShiftId" />
+      </Principal>
+      <Dependent Role="tblPHtoSPProductTransfer">
+        <PropertyRef Name="ShiftId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProductEntryToProductionHouse_tblProductInformation">
+    <End Type="RestaurantDBModel.tblProductInformation" Role="tblProductInformation" Multiplicity="1" />
+    <End Type="RestaurantDBModel.tblProductEntryToProductionHouse" Role="tblProductEntryToProductionHouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProductInformation">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="tblProductEntryToProductionHouse">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProductEntryToProductionHouse_tblProductionHouseInformation">
+    <End Type="RestaurantDBModel.tblProductionHouseInformation" Role="tblProductionHouseInformation" Multiplicity="1" />
+    <End Type="RestaurantDBModel.tblProductEntryToProductionHouse" Role="tblProductEntryToProductionHouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProductionHouseInformation">
+        <PropertyRef Name="ProductionHouseId" />
+      </Principal>
+      <Dependent Role="tblProductEntryToProductionHouse">
+        <PropertyRef Name="ProductionHouseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProductInformation_tblProductType">
+    <End Type="RestaurantDBModel.tblProductType" Role="tblProductType" Multiplicity="0..1" />
+    <End Type="RestaurantDBModel.tblProductInformation" Role="tblProductInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProductType">
+        <PropertyRef Name="ProductTypeId" />
+      </Principal>
+      <Dependent Role="tblProductInformation">
+        <PropertyRef Name="ProductTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProductInformation_tblStoreInformation1">
+    <End Type="RestaurantDBModel.tblStoreInformation" Role="tblStoreInformation" Multiplicity="0..1" />
+    <End Type="RestaurantDBModel.tblProductInformation" Role="tblProductInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblStoreInformation">
+        <PropertyRef Name="store_id" />
+      </Principal>
+      <Dependent Role="tblProductInformation">
+        <PropertyRef Name="StoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProductionHouseToProductMapping_tblProductInformation">
+    <End Type="RestaurantDBModel.tblProductInformation" Role="tblProductInformation" Multiplicity="1" />
+    <End Type="RestaurantDBModel.tblProductionHouseToProductMapping" Role="tblProductionHouseToProductMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProductInformation">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="tblProductionHouseToProductMapping">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProductTransfer_tblProductInformation">
+    <End Type="RestaurantDBModel.tblProductInformation" Role="tblProductInformation" Multiplicity="0..1" />
+    <End Type="RestaurantDBModel.tblProductTransfer" Role="tblProductTransfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProductInformation">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="tblProductTransfer">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSuppliersProduct_tblProductInformation">
+    <End Type="RestaurantDBModel.tblProductInformation" Role="tblProductInformation" Multiplicity="0..1" />
+    <End Type="RestaurantDBModel.tblSuppliersProduct" Role="tblSuppliersProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProductInformation">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="tblSuppliersProduct">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProductTransfer_tblStoreInformation">
+    <End Type="RestaurantDBModel.tblStoreInformation" Role="tblStoreInformation" Multiplicity="0..1" />
+    <End Type="RestaurantDBModel.tblProductTransfer" Role="tblProductTransfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblStoreInformation">
+        <PropertyRef Name="store_id" />
+      </Principal>
+      <Dependent Role="tblProductTransfer">
+        <PropertyRef Name="StoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbllRestaurentModule_tblRestaurentInformation">
+    <End Type="RestaurantDBModel.tblRestaurantInformation" Role="tblRestaurantInformation" Multiplicity="1" />
+    <End Type="RestaurantDBModel.tblRestaurantModule" Role="tblRestaurantModule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRestaurantInformation">
+        <PropertyRef Name="restaurant_id" />
+      </Principal>
+      <Dependent Role="tblRestaurantModule">
+        <PropertyRef Name="restaurant_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbllRestaurentUser_tbllRestaurentInformation">
+    <End Type="RestaurantDBModel.tblRestaurantInformation" Role="tblRestaurantInformation" Multiplicity="1" />
+    <End Type="RestaurantDBModel.tblRestaurantUser" Role="tblRestaurantUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRestaurantInformation">
+        <PropertyRef Name="restaurant_id" />
+      </Principal>
+      <Dependent Role="tblRestaurantUser">
+        <PropertyRef Name="restaurant_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblRestaurentUserModule_tblRestaurentModule">
+    <End Type="RestaurantDBModel.tblRestaurantModule" Role="tblRestaurantModule" Multiplicity="1" />
+    <End Type="RestaurantDBModel.tblRestaurantUserModule" Role="tblRestaurantUserModule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRestaurantModule">
+        <PropertyRef Name="restaurant_id" />
+        <PropertyRef Name="module_id" />
+      </Principal>
+      <Dependent Role="tblRestaurantUserModule">
+        <PropertyRef Name="restaurant_id" />
+        <PropertyRef Name="module_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblRestaurentUserModule_tblRestaurentUser">
+    <End Type="RestaurantDBModel.tblRestaurantUser" Role="tblRestaurantUser" Multiplicity="1" />
+    <End Type="RestaurantDBModel.tblRestaurantUserModule" Role="tblRestaurantUserModule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRestaurantUser">
+        <PropertyRef Name="restaurant_id" />
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tblRestaurantUserModule">
+        <PropertyRef Name="restaurant_id" />
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblRestaurentUserView_tblRestaurentUserModule">
+    <End Type="RestaurantDBModel.tblRestaurantUserModule" Role="tblRestaurantUserModule" Multiplicity="1" />
+    <End Type="RestaurantDBModel.tblRestaurantUserView" Role="tblRestaurantUserView" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRestaurantUserModule">
+        <PropertyRef Name="UserId" />
+        <PropertyRef Name="restaurant_id" />
+        <PropertyRef Name="module_id" />
+      </Principal>
+      <Dependent Role="tblRestaurantUserView">
+        <PropertyRef Name="UserId" />
+        <PropertyRef Name="restaurant_id" />
+        <PropertyRef Name="module_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblRestaurentUserView_tblView">
+    <End Type="RestaurantDBModel.tblView" Role="tblView" Multiplicity="1" />
+    <End Type="RestaurantDBModel.tblRestaurantUserView" Role="tblRestaurantUserView" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblView">
+        <PropertyRef Name="view_id" />
+      </Principal>
+      <Dependent Role="tblRestaurantUserView">
+        <PropertyRef Name="veiw_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSellsPoint_tblStoreInformation">
+    <End Type="RestaurantDBModel.tblStoreInformation" Role="tblStoreInformation" Multiplicity="1" />
+    <End Type="RestaurantDBModel.tblSellsPoint" Role="tblSellsPoint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblStoreInformation">
+        <PropertyRef Name="store_id" />
+      </Principal>
+      <Dependent Role="tblSellsPoint">
+        <PropertyRef Name="SellsPointStoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblTotalAmount_tblShift">
+    <End Type="RestaurantDBModel.tblShift" Role="tblShift" Multiplicity="0..1" />
+    <End Type="RestaurantDBModel.tblTotalAmount" Role="tblTotalAmount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblShift">
+        <PropertyRef Name="ShiftId" />
+      </Principal>
+      <Dependent Role="tblTotalAmount">
+        <PropertyRef Name="ShiftId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Type="RestaurantDBModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+    <End Type="RestaurantDBModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+  </Association>
+  <ComplexType Name="sp_weeklyTotalAmount_Result">
+    <Property Type="String" Name="DayOFWeek" Nullable="true" MaxLength="30" />
+    <Property Type="Decimal" Name="TotalAmount" Nullable="true" Precision="38" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="sp_weeklyTotalAmountDayShiftWise_Result">
+    <Property Type="String" Name="DayOFWeek" Nullable="true" MaxLength="30" />
+    <Property Type="Decimal" Name="TotalAmount" Nullable="true" Precision="38" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="sp_weeklyTotalAmountNightShiftWise_Result">
+    <Property Type="String" Name="DayOFWeek" Nullable="true" MaxLength="30" />
+    <Property Type="Decimal" Name="TotalAmount" Nullable="true" Precision="38" Scale="2" />
+  </ComplexType>
+</Schema>

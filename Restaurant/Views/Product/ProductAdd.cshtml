@@ -1,0 +1,83 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="row-fluid" ng-init="ForLoginSuccess()">
+    <div class="box bornomala span12">
+        <div class="box-header">
+            <h2><i class="halflings-icon tasks"></i><span class="break"></span>Add Product</h2>
+        </div>
+        <div class="box-content" ng-controller="ProductController">
+
+            <form class="form-horizontal" name="ProductAddForm" ng-init="Product">
+                <div class="form-group">
+                    <label class="control-label">Product Name</label>
+                    <div class="controls">
+                        <input type="text" class="form-control input-sm" data-ng-model="Product.ProductName" required enter-as-tab />
+                    </div>
+                </div>
+                <br />
+
+                <div class="form-group" ng-init="GetAllProductType()">
+                    <label class="control-label">Product Type</label>
+                    
+                    <div class="controls">
+                        <select ng-model="Product.ProductTypeId" class="form-control selectpicker" ng-options="x.ProductTypeId as x.ProductTypeName for x in productTypeList"
+                                ng-change="GetStoreInformation(Product.ProductTypeId)" required enter-as-tab>
+                            <option value="">Select Product Type</option>
+                        </select>
+
+                    </div>
+                </div>
+                <br/>
+                <div class="form-group">
+                    <label class="control-label">Select Store</label>
+                    <div class="controls">
+                        <select ng-model="Product.StoreId" class="form-control selectpicker" ng-disable="!StoreList" ng-options="x.StoreId as x.StoreName for x in StoreList" required enter-as-tab>
+                            <option value="">Select Store</option>
+                        </select>
+                    </div>
+                </div>
+                <br/>
+                <div class="form-group" ng-init="GetAllUnit()">
+                    <label class="control-label">Unit Name</label>
+                    <div class="controls">
+                        <select ng-model="Product.Unit" class="form-control selectpicker" ng-options="x.unit as x.unit for x in unitList" required enter-as-tab>
+                            <option value="">Select Unit</option>
+                        </select>
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label class="control-label">Unit Price</label>
+                    <div class="controls">
+                        <div class="input-prepend">
+                            <input id="prependedInput" data-ng-model="Product.UnitPrice" type="text" positive-numbers-only>
+                        </div>
+                    </div>
+                </div>
+
+                <br/>
+                <div class="form-group" ng-show="ShowProductionCostForSellTypeProduct">
+                    <label class="control-label">Production Cost</label>
+                    <div class="controls">
+                        <div class="input-prepend">
+                            <input id="prependedInput" data-ng-model="Product.ProductionCost" type="text" positive-numbers-only>
+                        </div>
+                    </div>
+                </div>
+
+
+                <br />
+                @*<toaster-container toaster-options="{'time-out': 1000}"></toaster-container>*@
+                <div class="form-group">
+                    <div class=" controls">
+
+                        <input type="submit" class="btn btn-primary" value="Add Product" data-ng-click="SaveProduct()" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div><!--/span-->
+
+</div><!--/row-->
